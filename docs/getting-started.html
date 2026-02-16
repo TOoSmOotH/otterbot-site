@@ -298,7 +298,7 @@ td code {
   <div class="step">
     <span class="step-num">Step 02 &mdash; Run the container</span>
     <div class="code-block" style="margin-bottom:0;">
-      <span class="kw">$</span> docker run <span class="fl">-d</span> <span class="fl">-p</span> <span class="str">8080:8080</span> \<br>
+      <span class="kw">$</span> docker run <span class="fl">-d</span> <span class="fl">-p</span> <span class="str">62626:62626</span> \<br>
       &nbsp;&nbsp;<span class="fl">--name</span> <span class="str">otterbot</span> \<br>
       &nbsp;&nbsp;ghcr.io/toosmooth/otterbot:latest
     </div>
@@ -307,7 +307,7 @@ td code {
   <div class="step">
     <span class="step-num">Step 03 &mdash; Open the UI</span>
     <p style="margin-bottom:0;">
-      Navigate to <code>http://localhost:8080</code> in your browser. The first-run setup wizard
+      Navigate to <code>http://localhost:62626</code> in your browser. The first-run setup wizard
       will guide you through configuring your LLM provider and API key.
     </p>
   </div>
@@ -324,7 +324,7 @@ td code {
   <div class="code-block">
     <span class="kw">$</span> docker run <span class="fl">-d</span> \<br>
     &nbsp;&nbsp;<span class="fl">--name</span> <span class="str">otterbot</span> \<br>
-    &nbsp;&nbsp;<span class="fl">-p</span> <span class="str">8080:8080</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># Web UI</span><br>
+    &nbsp;&nbsp;<span class="fl">-p</span> <span class="str">62626:62626</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># Web UI</span><br>
     &nbsp;&nbsp;<span class="fl">-v</span> <span class="str">~/otterbot-data:/data</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># Persistent storage</span><br>
     &nbsp;&nbsp;<span class="fl">-e</span> <span class="str">ENABLE_DESKTOP=true</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># Enable virtual desktop</span><br>
     &nbsp;&nbsp;ghcr.io/toosmooth/otterbot:latest
