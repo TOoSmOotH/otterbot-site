@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OtterBot — Documentation</title>
+<meta name="description" content="Comprehensive documentation for OtterBot, a free open-source AI assistant running in Docker.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,79 +22,342 @@
   --white: #e8f4f8;
   --foam: #c8e6ec;
   --grey: #7b9eb8;
+  --sidebar-w: 260px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  background: var(--navy);
-  font-family: 'IBM Plex Sans', sans-serif;
-  color: var(--foam);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-}
+html { scroll-behavior: smooth; }
+body { background: var(--navy); font-family: 'IBM Plex Sans', sans-serif; color: var(--foam); }
+::selection { background: #00d4ff33; color: var(--white); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: #00d4ff33; border-radius: 3px; }
 
-.badge {
-  display: inline-block;
+/* SIDEBAR */
+.sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--navy-light);
+  border-right: 1px solid #00d4ff12;
+  padding: 24px 0;
+  overflow-y: auto;
+  z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-brand {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 18px; font-weight: 800; color: var(--white);
+  padding: 0 24px 20px;
+  border-bottom: 1px solid #00d4ff10;
+  margin-bottom: 16px;
+  text-decoration: none; display: block;
+}
+.sidebar-brand .cyan { color: var(--cyan); }
+.sidebar-brand .sub {
+  display: block; font-size: 11px; font-weight: 500;
+  color: var(--grey); margin-top: 4px; letter-spacing: 0.05em;
+}
+.sidebar-section {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  color: var(--grey); letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cyan);
-  border: 1px solid var(--cyan-dim);
-  border-radius: 999px;
-  padding: 0.35rem 1rem;
-  margin-bottom: 1.5rem;
+  padding: 16px 24px 8px;
+}
+.sidebar-link {
+  display: block; padding: 8px 24px;
+  font-size: 14px; font-weight: 500;
+  color: var(--grey); text-decoration: none;
+  transition: all 0.15s; border-left: 2px solid transparent;
+}
+.sidebar-link:hover { color: var(--cyan); background: #00d4ff08; }
+.sidebar-link.active {
+  color: var(--cyan); background: #00d4ff10;
+  border-left-color: var(--cyan);
+}
+.sidebar-back {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 24px; margin-bottom: 8px;
+  font-size: 13px; color: var(--grey);
+  text-decoration: none; transition: color 0.15s;
+}
+.sidebar-back:hover { color: var(--cyan); }
+.sidebar-footer {
+  margin-top: auto; padding: 16px 24px;
+  border-top: 1px solid #00d4ff10;
+}
+.sidebar-footer a {
+  font-size: 12px; color: var(--grey); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+}
+.sidebar-footer a:hover { color: var(--cyan); }
+
+/* MOBILE TOGGLE */
+.mobile-toggle {
+  display: none; position: fixed; top: 16px; left: 16px; z-index: 200;
+  background: var(--navy-light); border: 1px solid #00d4ff20;
+  border-radius: 8px; padding: 8px 12px; cursor: pointer;
+  color: var(--cyan); font-size: 20px;
 }
 
-h1 {
+/* MAIN */
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh; padding: 48px 60px 80px;
+  max-width: calc(var(--sidebar-w) + 900px);
+}
+
+/* HERO CARD */
+.doc-hero {
+  background: linear-gradient(135deg, #0f2240cc, #132d5466);
+  border: 1px solid #00d4ff15;
+  border-radius: 20px; padding: 48px;
+  position: relative; overflow: hidden;
+  margin-bottom: 48px;
+}
+.doc-hero .glow {
+  position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, #00d4ff10, transparent 70%);
+  pointer-events: none;
+}
+.doc-hero h1 {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  color: var(--white);
-  margin-bottom: 1rem;
+  font-size: 32px; font-weight: 800; color: var(--white);
+  letter-spacing: -0.03em; margin-bottom: 12px;
+}
+.doc-hero h1 .cyan { color: var(--cyan); }
+.doc-hero p {
+  font-size: 16px; color: var(--grey); line-height: 1.7;
+  max-width: 560px;
 }
 
-h1 span {
-  color: var(--cyan);
-}
-
-p {
-  font-size: 1.125rem;
-  color: var(--grey);
-  max-width: 480px;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.btn {
-  display: inline-block;
+/* SECTION LABEL */
+.section-label {
   font-family: 'JetBrains Mono', monospace;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, var(--cyan), var(--teal));
-  color: var(--navy);
+  font-size: 11px; font-weight: 600;
+  color: var(--cyan); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 16px;
+  display: block;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 24px var(--cyan-glow);
+/* CARDS GRID */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px; margin-bottom: 48px;
+}
+.doc-card {
+  background: linear-gradient(135deg, #0f2240cc, #132d5488);
+  border: 1px solid #00d4ff18;
+  border-radius: 14px; padding: 28px 24px;
+  backdrop-filter: blur(12px);
+  text-decoration: none; color: inherit;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.doc-card:hover {
+  border-color: #00d4ff44;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px #00d4ff15;
+}
+.doc-card .icon {
+  font-size: 28px; margin-bottom: 12px;
+  filter: drop-shadow(0 0 8px rgba(0,212,255,0.3));
+}
+.doc-card h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px; font-weight: 700; color: var(--cyan);
+  margin-bottom: 8px; letter-spacing: -0.02em;
+}
+.doc-card p {
+  font-size: 13.5px; line-height: 1.6; color: var(--grey);
+}
+
+/* FEATURE HIGHLIGHTS */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px; margin-bottom: 48px;
+}
+.highlight {
+  background: #0f224066;
+  border: 1px solid #00d4ff10;
+  border-radius: 10px; padding: 20px;
+  text-align: center;
+}
+.highlight .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px; font-weight: 800; color: var(--cyan);
+  display: block; margin-bottom: 4px;
+}
+.highlight .label {
+  font-size: 13px; color: var(--grey);
+}
+
+/* QUICK LINKS */
+.quick-links {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 20px;
+}
+.quick-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
+  background: #00d4ff10; color: var(--cyan);
+  border: 1px solid #00d4ff20;
+}
+.quick-link:hover {
+  background: #00d4ff20; border-color: #00d4ff44;
+  transform: translateY(-1px);
+}
+
+/* CODE BLOCKS */
+.code-block {
+  background: var(--navy);
+  border: 1px solid #00d4ff20;
+  border-radius: 12px; padding: 20px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; line-height: 1.7; color: var(--foam);
+  overflow-x: auto; margin: 16px 0;
+}
+.code-block .kw { color: #c792ea; }
+.code-block .str { color: #c3e88d; }
+.code-block .fl { color: var(--cyan); }
+.code-block .cm { color: #546e7a; }
+
+h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px; font-weight: 700; color: var(--white);
+  letter-spacing: -0.02em; margin: 40px 0 16px;
+}
+h2 .cyan { color: var(--cyan); }
+
+p.body-text {
+  font-size: 15px; line-height: 1.7; color: var(--grey);
+  margin-bottom: 20px; max-width: 640px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+  .sidebar.open { transform: translateX(0); }
+  .mobile-toggle { display: block; }
+  .main { margin-left: 0; padding: 48px 20px 60px; }
+  .doc-hero { padding: 32px 24px; }
+  .cards-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
-  <div class="badge">Documentation</div>
-  <h1>Coming <span>Soon</span></h1>
-  <p>We're working on comprehensive documentation for OtterBot. Check back soon.</p>
-  <a href="/" class="btn">Back to Home</a>
+
+<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+
+<nav class="sidebar">
+  <a href="/" class="sidebar-brand">
+    <span class="cyan">Otter</span>Bot
+    <span class="sub">Documentation</span>
+  </a>
+  <a href="/" class="sidebar-back">&larr; Back to Home</a>
+
+  <div class="sidebar-section">Guide</div>
+  <a href="/docs/" class="sidebar-link active">Overview</a>
+  <a href="/docs/getting-started.html" class="sidebar-link">Getting Started</a>
+  <a href="/docs/architecture.html" class="sidebar-link">Architecture</a>
+  <a href="/docs/agents.html" class="sidebar-link">Agent System</a>
+  <a href="/docs/features.html" class="sidebar-link">Features</a>
+
+  <div class="sidebar-section">Reference</div>
+  <a href="/docs/api.html" class="sidebar-link">API Reference</a>
+
+  <div class="sidebar-footer">
+    <a href="https://github.com/TOoSmOotH/otterbot">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="doc-hero">
+    <div class="glow"></div>
+    <h1><span class="cyan">Otter</span>Bot Docs</h1>
+    <p>
+      Everything you need to run, configure, and extend OtterBot &mdash; the free, open-source
+      multi-agent AI assistant that runs entirely in Docker.
+    </p>
+    <div class="quick-links">
+      <a href="/docs/getting-started.html" class="quick-link">Quick Start &rarr;</a>
+      <a href="/docs/api.html" class="quick-link">API Reference &rarr;</a>
+      <a href="https://github.com/TOoSmOotH/otterbot" class="quick-link">GitHub &rarr;</a>
+    </div>
+  </div>
+
+  <span class="section-label">Explore the Docs</span>
+  <div class="cards-grid">
+    <a href="/docs/getting-started.html" class="doc-card">
+      <div class="icon">&#9889;</div>
+      <h3>Getting Started</h3>
+      <p>Prerequisites, Docker quick start, development setup, and environment variables.</p>
+    </a>
+    <a href="/docs/architecture.html" class="doc-card">
+      <div class="icon">&#128736;</div>
+      <h3>Architecture</h3>
+      <p>System overview, agent hierarchy, message bus, workspace isolation, and monorepo layout.</p>
+    </a>
+    <a href="/docs/agents.html" class="doc-card">
+      <div class="icon">&#129302;</div>
+      <h3>Agent System</h3>
+      <p>Agent roles, built-in templates, lifecycle, tool capabilities, and customization.</p>
+    </a>
+    <a href="/docs/features.html" class="doc-card">
+      <div class="icon">&#127912;</div>
+      <h3>Features</h3>
+      <p>Voice, 3D Live View, web search, browser automation, Kanban boards, desktop environment.</p>
+    </a>
+    <a href="/docs/api.html" class="doc-card">
+      <div class="icon">&#128268;</div>
+      <h3>API Reference</h3>
+      <p>REST endpoints, Socket.IO events, request/response schemas, and data types.</p>
+    </a>
+  </div>
+
+  <span class="section-label">At a Glance</span>
+  <div class="highlights">
+    <div class="highlight">
+      <span class="num">10</span>
+      <span class="label">Built-in Agent Templates</span>
+    </div>
+    <div class="highlight">
+      <span class="num">20+</span>
+      <span class="label">REST API Endpoints</span>
+    </div>
+    <div class="highlight">
+      <span class="num">20+</span>
+      <span class="label">Real-time Socket Events</span>
+    </div>
+    <div class="highlight">
+      <span class="num">4</span>
+      <span class="label">Search Providers</span>
+    </div>
+  </div>
+
+  <h2>Quick <span class="cyan">Start</span></h2>
+  <p class="body-text">Get OtterBot running in seconds with Docker:</p>
+  <div class="code-block">
+    <span class="cm"># Pull &amp; run</span><br>
+    <span class="kw">$</span> docker pull <span class="str">ghcr.io/toosmooth/otterbot:latest</span><br>
+    <span class="kw">$</span> docker run <span class="fl">-d</span> <span class="fl">-p</span> <span class="str">8080:8080</span> <span class="fl">--name</span> <span class="str">otterbot</span> ghcr.io/toosmooth/otterbot:latest<br><br>
+    <span class="cm"># Open in your browser</span><br>
+    <span class="kw">$</span> open <span class="str">http://localhost:8080</span>
+  </div>
+  <p class="body-text">
+    For detailed setup instructions including development mode and environment configuration,
+    see the <a href="/docs/getting-started.html" style="color:var(--cyan);">Getting Started</a> guide.
+  </p>
+</main>
+
 </body>
 </html>

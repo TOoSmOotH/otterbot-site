@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent System — OtterBot Docs</title>
+<meta name="description" content="OtterBot agent system: roles, built-in templates, lifecycle, tool capabilities, and customization.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-light: #0f2240;
+  --navy-mid: #132d54;
+  --cyan: #00d4ff;
+  --cyan-glow: #00d4ff55;
+  --cyan-dim: #00d4ff22;
+  --teal: #0891b2;
+  --green: #4a7c59;
+  --green-light: #5fa872;
+  --white: #e8f4f8;
+  --foam: #c8e6ec;
+  --grey: #7b9eb8;
+  --sidebar-w: 260px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); font-family: 'IBM Plex Sans', sans-serif; color: var(--foam); }
+::selection { background: #00d4ff33; color: var(--white); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: #00d4ff33; border-radius: 3px; }
+
+.sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w); background: var(--navy-light);
+  border-right: 1px solid #00d4ff12;
+  padding: 24px 0; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px; font-weight: 800; color: var(--white);
+  padding: 0 24px 20px; border-bottom: 1px solid #00d4ff10;
+  margin-bottom: 16px; text-decoration: none; display: block;
+}
+.sidebar-brand .cyan { color: var(--cyan); }
+.sidebar-brand .sub {
+  display: block; font-size: 11px; font-weight: 500;
+  color: var(--grey); margin-top: 4px; letter-spacing: 0.05em;
+}
+.sidebar-section {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600; color: var(--grey);
+  letter-spacing: 0.12em; text-transform: uppercase; padding: 16px 24px 8px;
+}
+.sidebar-link {
+  display: block; padding: 8px 24px; font-size: 14px; font-weight: 500;
+  color: var(--grey); text-decoration: none;
+  transition: all 0.15s; border-left: 2px solid transparent;
+}
+.sidebar-link:hover { color: var(--cyan); background: #00d4ff08; }
+.sidebar-link.active { color: var(--cyan); background: #00d4ff10; border-left-color: var(--cyan); }
+.sidebar-back {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 24px; margin-bottom: 8px;
+  font-size: 13px; color: var(--grey);
+  text-decoration: none; transition: color 0.15s;
+}
+.sidebar-back:hover { color: var(--cyan); }
+.sidebar-footer {
+  margin-top: auto; padding: 16px 24px; border-top: 1px solid #00d4ff10;
+}
+.sidebar-footer a {
+  font-size: 12px; color: var(--grey); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+}
+.sidebar-footer a:hover { color: var(--cyan); }
+
+.mobile-toggle {
+  display: none; position: fixed; top: 16px; left: 16px; z-index: 200;
+  background: var(--navy-light); border: 1px solid #00d4ff20;
+  border-radius: 8px; padding: 8px 12px; cursor: pointer;
+  color: var(--cyan); font-size: 20px;
+}
+
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh; padding: 48px 60px 80px;
+  max-width: calc(var(--sidebar-w) + 900px);
+}
+
+h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px; font-weight: 800; color: var(--white);
+  letter-spacing: -0.03em; margin-bottom: 8px;
+}
+h1 .cyan { color: var(--cyan); }
+.page-desc {
+  font-size: 16px; color: var(--grey); line-height: 1.7;
+  margin-bottom: 40px; max-width: 600px;
+}
+h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px; font-weight: 700; color: var(--white);
+  letter-spacing: -0.02em; margin: 48px 0 16px;
+  padding-bottom: 8px; border-bottom: 1px solid #00d4ff10;
+}
+h2 .cyan { color: var(--cyan); }
+h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px; font-weight: 600; color: var(--cyan);
+  margin: 28px 0 12px;
+}
+p, li {
+  font-size: 15px; line-height: 1.7; color: var(--grey);
+  margin-bottom: 12px; max-width: 700px;
+}
+ul { padding-left: 20px; margin-bottom: 16px; }
+li { margin-bottom: 6px; }
+a { color: var(--cyan); }
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; background: #0f224088;
+  padding: 2px 6px; border-radius: 4px; color: var(--cyan);
+}
+
+.code-block {
+  background: var(--navy);
+  border: 1px solid #00d4ff20;
+  border-radius: 12px; padding: 20px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; line-height: 1.7; color: var(--foam);
+  overflow-x: auto; margin: 16px 0 24px;
+  white-space: pre;
+}
+.code-block .kw { color: #c792ea; }
+.code-block .str { color: #c3e88d; }
+.code-block .fl { color: var(--cyan); }
+.code-block .cm { color: #546e7a; }
+
+.callout {
+  margin: 20px 0; padding: 16px 20px;
+  border-radius: 10px; display: flex;
+  align-items: flex-start; gap: 12px;
+}
+.callout.info { background: #0891b215; border: 1px solid #0891b230; }
+.callout.tip { background: #4a7c5915; border: 1px solid #4a7c5930; }
+.callout p { margin: 0; font-size: 14px; }
+.callout strong { color: var(--foam); }
+.callout .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+.on-page {
+  background: #0f224066; border: 1px solid #00d4ff10;
+  border-radius: 12px; padding: 20px 24px; margin-bottom: 32px;
+}
+.on-page-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600; color: var(--grey);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;
+}
+.on-page a {
+  display: block; font-size: 14px; color: var(--grey);
+  text-decoration: none; padding: 4px 0; transition: color 0.15s;
+}
+.on-page a:hover { color: var(--cyan); }
+
+/* TEMPLATE CARDS */
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px; margin: 16px 0 24px;
+}
+.template-card {
+  background: linear-gradient(135deg, #0f2240cc, #132d5466);
+  border: 1px solid #00d4ff15; border-radius: 12px;
+  padding: 22px; position: relative;
+}
+.template-card h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px; font-weight: 700; color: var(--cyan);
+  margin-bottom: 4px;
+}
+.template-card .role-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px;
+  display: inline-block; margin-bottom: 8px;
+}
+.template-card .role-badge.coo { background: #c792ea22; color: #c792ea; }
+.template-card .role-badge.lead { background: #ffcb6b22; color: #ffcb6b; }
+.template-card .role-badge.worker { background: #00d4ff22; color: var(--cyan); }
+.template-card p {
+  font-size: 13px; line-height: 1.5; margin: 0 0 10px;
+}
+.template-card .caps {
+  display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;
+}
+.template-card .cap {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; padding: 2px 8px;
+  background: #0f224088; border-radius: 4px;
+  color: var(--grey);
+}
+.template-card .tools-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600; color: var(--grey);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.template-card .tools-list {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--foam);
+}
+
+/* LIFECYCLE DIAGRAM */
+.diagram {
+  background: var(--navy);
+  border: 1px solid #00d4ff20;
+  border-radius: 14px; padding: 28px 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; line-height: 1.6; color: var(--foam);
+  overflow-x: auto; margin: 16px 0 24px;
+  white-space: pre;
+}
+.diagram .state { color: var(--cyan); font-weight: 700; }
+.diagram .arrow { color: var(--grey); }
+.diagram .note { color: #546e7a; }
+
+.table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600; color: var(--cyan);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  text-align: left; padding: 10px 16px;
+  background: #0f224088; border-bottom: 1px solid #00d4ff20;
+}
+td {
+  padding: 10px 16px; color: var(--grey);
+  border-bottom: 1px solid #00d4ff08; vertical-align: top;
+}
+td code { font-size: 12px; white-space: nowrap; }
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+  .sidebar.open { transform: translateX(0); }
+  .mobile-toggle { display: block; }
+  .main { margin-left: 0; padding: 48px 20px 60px; }
+  .template-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+
+<nav class="sidebar">
+  <a href="/" class="sidebar-brand">
+    <span class="cyan">Otter</span>Bot
+    <span class="sub">Documentation</span>
+  </a>
+  <a href="/" class="sidebar-back">&larr; Back to Home</a>
+  <div class="sidebar-section">Guide</div>
+  <a href="/docs/" class="sidebar-link">Overview</a>
+  <a href="/docs/getting-started.html" class="sidebar-link">Getting Started</a>
+  <a href="/docs/architecture.html" class="sidebar-link">Architecture</a>
+  <a href="/docs/agents.html" class="sidebar-link active">Agent System</a>
+  <a href="/docs/features.html" class="sidebar-link">Features</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="/docs/api.html" class="sidebar-link">API Reference</a>
+  <div class="sidebar-footer">
+    <a href="https://github.com/TOoSmOotH/otterbot">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <h1>Agent <span class="cyan">System</span></h1>
+  <p class="page-desc">
+    OtterBot's multi-agent architecture uses a hierarchy of specialized AI agents, each with
+    distinct roles, tools, and capabilities.
+  </p>
+
+  <div class="on-page">
+    <div class="on-page-title">On this page</div>
+    <a href="#roles">Agent Roles &amp; Hierarchy</a>
+    <a href="#templates">Built-in Templates</a>
+    <a href="#lifecycle">Agent Lifecycle</a>
+    <a href="#tools">Tool Capabilities</a>
+    <a href="#customization">Customizing Agents</a>
+    <a href="#thinking">Extended Thinking</a>
+  </div>
+
+  <!-- ROLES -->
+  <h2 id="roles"><span class="cyan">#</span> Agent Roles &amp; Hierarchy</h2>
+  <p>
+    Every agent instance is created from a template in the <strong>Agent Registry</strong>. Each
+    template defines a role, which determines the agent's position in the hierarchy:
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Role</th><th>Count</th><th>Responsibility</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>coo</code></td>
+          <td>Exactly 1</td>
+          <td>Primary orchestrator. Receives CEO goals, creates projects, writes charters, delegates to Team Leads. Maintains conversation context per chat thread.</td>
+        </tr>
+        <tr>
+          <td><code>team_lead</code></td>
+          <td>1 per project</td>
+          <td>Project manager. Breaks directives into Kanban tasks, spawns workers, monitors progress, reports results to the COO.</td>
+        </tr>
+        <tr>
+          <td><code>worker</code></td>
+          <td>1 per task</td>
+          <td>Individual contributor. Executes a single task using its assigned tools. Reports completion back to its Team Lead.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout info">
+    <span class="icon">&#128218;</span>
+    <p>
+      <strong>The CEO is you.</strong> The human user is always the CEO &mdash; the top of the
+      hierarchy. All work flows down from your goals and back up as results.
+    </p>
+  </div>
+
+  <!-- TEMPLATES -->
+  <h2 id="templates"><span class="cyan">#</span> Built-in Templates</h2>
+  <p>
+    OtterBot ships with 10 built-in agent templates. These cannot be modified or deleted, but
+    they can be <a href="#customization">cloned and customized</a>.
+  </p>
+
+  <h3>Management Templates</h3>
+  <div class="template-grid">
+    <div class="template-card">
+      <h4>COO</h4>
+      <span class="role-badge coo">COO</span>
+      <p>Chief Operating Officer. Receives goals from the CEO and delegates to Team Leads.</p>
+      <div class="caps">
+        <span class="cap">management</span>
+        <span class="cap">delegation</span>
+        <span class="cap">coordination</span>
+      </div>
+      <div class="tools-label">Default Model</div>
+      <div class="tools-list">claude-sonnet-4-5-20250929 (Anthropic)</div>
+    </div>
+    <div class="template-card">
+      <h4>Team Lead</h4>
+      <span class="role-badge lead">Team Lead</span>
+      <p>Manages a team of workers. Breaks directives into tasks and assigns them.</p>
+      <div class="caps">
+        <span class="cap">management</span>
+        <span class="cap">planning</span>
+        <span class="cap">coordination</span>
+      </div>
+      <div class="tools-label">Default Model</div>
+      <div class="tools-list">claude-sonnet-4-5-20250929 (Anthropic)</div>
+    </div>
+  </div>
+
+  <h3>Worker Templates</h3>
+  <div class="template-grid">
+    <div class="template-card">
+      <h4>Coder</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Writes, edits, and debugs code across multiple languages.</p>
+      <div class="caps">
+        <span class="cap">code</span>
+        <span class="cap">typescript</span>
+        <span class="cap">python</span>
+        <span class="cap">debugging</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">file_read, file_write, shell_exec, install_package</div>
+    </div>
+    <div class="template-card">
+      <h4>Researcher</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Searches the web, reads content, and synthesizes findings.</p>
+      <div class="caps">
+        <span class="cap">research</span>
+        <span class="cap">analysis</span>
+        <span class="cap">summarization</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">web_search, web_browse, file_read</div>
+    </div>
+    <div class="template-card">
+      <h4>Reviewer</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Reviews code for quality, correctness, and best practices.</p>
+      <div class="caps">
+        <span class="cap">code-review</span>
+        <span class="cap">testing</span>
+        <span class="cap">quality</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">file_read</div>
+    </div>
+    <div class="template-card">
+      <h4>Writer</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Creates documentation, specifications, and written content.</p>
+      <div class="caps">
+        <span class="cap">writing</span>
+        <span class="cap">documentation</span>
+        <span class="cap">specs</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">file_read, file_write</div>
+    </div>
+    <div class="template-card">
+      <h4>Planner</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Designs architectures, plans implementations, and decomposes problems.</p>
+      <div class="caps">
+        <span class="cap">planning</span>
+        <span class="cap">architecture</span>
+        <span class="cap">decomposition</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">file_read, file_write</div>
+    </div>
+    <div class="template-card">
+      <h4>Security Reviewer</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Audits code for security vulnerabilities and compliance issues.</p>
+      <div class="caps">
+        <span class="cap">security</span>
+        <span class="cap">audit</span>
+        <span class="cap">vulnerability</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">file_read, shell_exec</div>
+    </div>
+    <div class="template-card">
+      <h4>Tester</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Writes and runs tests, identifies edge cases, and ensures quality.</p>
+      <div class="caps">
+        <span class="cap">testing</span>
+        <span class="cap">test-writing</span>
+        <span class="cap">qa</span>
+        <span class="cap">edge-cases</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">file_read, file_write, shell_exec</div>
+    </div>
+    <div class="template-card">
+      <h4>Browser Agent</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Navigates websites, scrapes content, fills forms, and interacts with web applications.</p>
+      <div class="caps">
+        <span class="cap">browser</span>
+        <span class="cap">web-scraping</span>
+        <span class="cap">form-filling</span>
+        <span class="cap">web-interaction</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">web_browse, file_read, file_write</div>
+    </div>
+  </div>
+
+  <!-- LIFECYCLE -->
+  <h2 id="lifecycle"><span class="cyan">#</span> Agent Lifecycle</h2>
+  <p>Every agent instance transitions through a defined set of statuses:</p>
+
+  <div class="diagram"><span class="state">Idle</span> <span class="arrow">&mdash;&mdash;&gt;</span> <span class="state">Thinking</span> <span class="arrow">&mdash;&mdash;&gt;</span> <span class="state">Acting</span> <span class="arrow">&mdash;&mdash;&gt;</span> <span class="state">Done</span>
+  <span class="arrow">|</span>                                  <span class="arrow">|</span>
+  <span class="arrow">|</span>          <span class="note">(on error)</span>               <span class="arrow">|</span>
+  <span class="arrow">+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&gt;</span> <span class="state">Error</span> <span class="arrow">&lt;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+</span></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Status</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>Idle</code></td><td>Agent is created but not yet processing. Waiting for a message or task.</td></tr>
+        <tr><td><code>Thinking</code></td><td>Running LLM inference. Streaming tokens to the frontend via <code>agent:stream</code> or <code>coo:stream</code>.</td></tr>
+        <tr><td><code>Acting</code></td><td>Executing a tool call (file I/O, shell command, web browse, etc.). Tool invocations are broadcast via <code>agent:tool-call</code>.</td></tr>
+        <tr><td><code>Done</code></td><td>Task completed successfully. Results reported to parent agent.</td></tr>
+        <tr><td><code>Error</code></td><td>An error occurred during thinking or acting. Error details logged.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    The <strong>BaseAgent</strong> class manages this lifecycle, including LLM streaming with
+    configurable timeouts (30s for first chunk, 120s between chunks) and a serialized message
+    queue to prevent concurrent processing.
+  </p>
+
+  <!-- TOOLS -->
+  <h2 id="tools"><span class="cyan">#</span> Tool Capabilities</h2>
+  <p>
+    Workers use tools to interact with the environment. Each tool is injected via a
+    <strong>ToolContext</strong> based on the agent's template configuration.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Tool</th><th>Description</th><th>Used By</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>file_read</code></td>
+          <td>Read file contents from the workspace</td>
+          <td>Coder, Researcher, Reviewer, Writer, Planner, Security Reviewer</td>
+        </tr>
+        <tr>
+          <td><code>file_write</code></td>
+          <td>Create or overwrite files in the workspace</td>
+          <td>Coder, Writer, Planner</td>
+        </tr>
+        <tr>
+          <td><code>shell_exec</code></td>
+          <td>Execute shell commands (respects <code>SUDO_MODE</code>)</td>
+          <td>Coder</td>
+        </tr>
+        <tr>
+          <td><code>web_search</code></td>
+          <td>Search the web using the configured provider</td>
+          <td>Researcher</td>
+        </tr>
+        <tr>
+          <td><code>web_browse</code></td>
+          <td>Navigate and extract content from web pages (Playwright)</td>
+          <td>Researcher</td>
+        </tr>
+        <tr>
+          <td><code>install_package</code></td>
+          <td>Install apt or npm packages in the container</td>
+          <td>Coder</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <span class="icon">&#127793;</span>
+    <p>
+      <strong>Management agents</strong> (COO and Team Lead) don't use tools directly. Instead,
+      they delegate tasks to workers that have the right tools for the job.
+    </p>
+  </div>
+
+  <!-- CUSTOMIZATION -->
+  <h2 id="customization"><span class="cyan">#</span> Customizing Agents</h2>
+  <p>
+    You can create custom agent templates through the Agent Registry. Custom templates let you
+    define specialized agents with tailored system prompts, capabilities, and tool sets.
+  </p>
+
+  <h3>Registry Operations</h3>
+  <ul>
+    <li><strong>List</strong> &mdash; View all templates (built-in + custom)</li>
+    <li><strong>Create</strong> &mdash; Create a new custom template from scratch</li>
+    <li><strong>Clone</strong> &mdash; Duplicate a built-in or custom template as a starting point</li>
+    <li><strong>Update</strong> &mdash; Modify a custom template (built-in templates are immutable)</li>
+    <li><strong>Delete</strong> &mdash; Remove a custom template (built-in templates cannot be deleted)</li>
+    <li><strong>Search</strong> &mdash; Find templates by capability keyword</li>
+  </ul>
+
+  <h3>RegistryEntry Fields</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="str">"custom-api-tester"</span>,
+  <span class="str">"name"</span>: <span class="str">"API Tester"</span>,
+  <span class="str">"description"</span>: <span class="str">"Tests REST APIs..."</span>,
+  <span class="str">"systemPrompt"</span>: <span class="str">"You are an API testing specialist..."</span>,
+  <span class="str">"promptAddendum"</span>: <span class="kw">null</span>,
+  <span class="str">"capabilities"</span>: [<span class="str">"testing"</span>, <span class="str">"api"</span>, <span class="str">"http"</span>],
+  <span class="str">"defaultModel"</span>: <span class="str">"claude-sonnet-4-5-20250929"</span>,
+  <span class="str">"defaultProvider"</span>: <span class="str">"anthropic"</span>,
+  <span class="str">"tools"</span>: [<span class="str">"shell_exec"</span>, <span class="str">"file_read"</span>, <span class="str">"web_browse"</span>],
+  <span class="str">"builtIn"</span>: <span class="kw">false</span>,
+  <span class="str">"role"</span>: <span class="str">"worker"</span>,
+  <span class="str">"modelPackId"</span>: <span class="kw">null</span>,
+  <span class="str">"gearConfig"</span>: <span class="kw">null</span>,
+  <span class="str">"clonedFromId"</span>: <span class="str">"builtin-coder"</span>
+}</div>
+
+  <p>
+    The <code>gearConfig</code> field lets you assign a 3D model pack to an agent for the
+    <a href="/docs/features.html#live-view">Live View</a> visualization.
+  </p>
+
+  <!-- EXTENDED THINKING -->
+  <h2 id="thinking"><span class="cyan">#</span> Extended Thinking</h2>
+  <p>
+    OtterBot supports extended thinking (reasoning) for models that support it (e.g., Claude
+    Sonnet). When enabled, agents emit <code>coo:thinking</code> / <code>agent:thinking</code>
+    events with reasoning tokens before the final response.
+  </p>
+  <ul>
+    <li>Thinking tokens are streamed in real-time to the frontend</li>
+    <li>A <code>coo:thinking-end</code> / <code>agent:thinking-end</code> event signals the end of the reasoning block</li>
+    <li>The final response follows as normal <code>coo:stream</code> / <code>agent:stream</code> tokens</li>
+  </ul>
+
+  <p>
+    This allows the UI to show the agent's reasoning process separately from its final output,
+    giving transparency into how decisions are made.
+  </p>
+</main>
+
+</body>
+</html>

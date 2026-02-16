@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Reference — OtterBot Docs</title>
+<meta name="description" content="OtterBot API reference: REST endpoints, Socket.IO events, and data types.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-light: #0f2240;
+  --navy-mid: #132d54;
+  --cyan: #00d4ff;
+  --cyan-glow: #00d4ff55;
+  --cyan-dim: #00d4ff22;
+  --teal: #0891b2;
+  --green: #4a7c59;
+  --green-light: #5fa872;
+  --white: #e8f4f8;
+  --foam: #c8e6ec;
+  --grey: #7b9eb8;
+  --sidebar-w: 260px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); font-family: 'IBM Plex Sans', sans-serif; color: var(--foam); }
+::selection { background: #00d4ff33; color: var(--white); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: #00d4ff33; border-radius: 3px; }
+
+.sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w); background: var(--navy-light);
+  border-right: 1px solid #00d4ff12;
+  padding: 24px 0; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px; font-weight: 800; color: var(--white);
+  padding: 0 24px 20px; border-bottom: 1px solid #00d4ff10;
+  margin-bottom: 16px; text-decoration: none; display: block;
+}
+.sidebar-brand .cyan { color: var(--cyan); }
+.sidebar-brand .sub {
+  display: block; font-size: 11px; font-weight: 500;
+  color: var(--grey); margin-top: 4px; letter-spacing: 0.05em;
+}
+.sidebar-section {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600; color: var(--grey);
+  letter-spacing: 0.12em; text-transform: uppercase; padding: 16px 24px 8px;
+}
+.sidebar-link {
+  display: block; padding: 8px 24px; font-size: 14px; font-weight: 500;
+  color: var(--grey); text-decoration: none;
+  transition: all 0.15s; border-left: 2px solid transparent;
+}
+.sidebar-link:hover { color: var(--cyan); background: #00d4ff08; }
+.sidebar-link.active { color: var(--cyan); background: #00d4ff10; border-left-color: var(--cyan); }
+.sidebar-back {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 24px; margin-bottom: 8px;
+  font-size: 13px; color: var(--grey);
+  text-decoration: none; transition: color 0.15s;
+}
+.sidebar-back:hover { color: var(--cyan); }
+.sidebar-footer {
+  margin-top: auto; padding: 16px 24px; border-top: 1px solid #00d4ff10;
+}
+.sidebar-footer a {
+  font-size: 12px; color: var(--grey); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+}
+.sidebar-footer a:hover { color: var(--cyan); }
+
+.mobile-toggle {
+  display: none; position: fixed; top: 16px; left: 16px; z-index: 200;
+  background: var(--navy-light); border: 1px solid #00d4ff20;
+  border-radius: 8px; padding: 8px 12px; cursor: pointer;
+  color: var(--cyan); font-size: 20px;
+}
+
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh; padding: 48px 60px 80px;
+  max-width: calc(var(--sidebar-w) + 960px);
+}
+
+h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px; font-weight: 800; color: var(--white);
+  letter-spacing: -0.03em; margin-bottom: 8px;
+}
+h1 .cyan { color: var(--cyan); }
+.page-desc {
+  font-size: 16px; color: var(--grey); line-height: 1.7;
+  margin-bottom: 40px; max-width: 600px;
+}
+h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px; font-weight: 700; color: var(--white);
+  letter-spacing: -0.02em; margin: 48px 0 16px;
+  padding-bottom: 8px; border-bottom: 1px solid #00d4ff10;
+}
+h2 .cyan { color: var(--cyan); }
+h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px; font-weight: 600; color: var(--cyan);
+  margin: 32px 0 12px;
+}
+h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; font-weight: 600; color: var(--foam);
+  margin: 20px 0 8px;
+}
+p, li {
+  font-size: 15px; line-height: 1.7; color: var(--grey);
+  margin-bottom: 12px; max-width: 700px;
+}
+ul { padding-left: 20px; margin-bottom: 16px; }
+li { margin-bottom: 6px; }
+a { color: var(--cyan); }
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; background: #0f224088;
+  padding: 2px 6px; border-radius: 4px; color: var(--cyan);
+}
+
+.code-block {
+  background: var(--navy);
+  border: 1px solid #00d4ff20;
+  border-radius: 12px; padding: 20px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; line-height: 1.7; color: var(--foam);
+  overflow-x: auto; margin: 12px 0 20px;
+  white-space: pre;
+}
+.code-block .kw { color: #c792ea; }
+.code-block .str { color: #c3e88d; }
+.code-block .fl { color: var(--cyan); }
+.code-block .cm { color: #546e7a; }
+.code-block .num { color: #f78c6c; }
+
+.callout {
+  margin: 20px 0; padding: 16px 20px;
+  border-radius: 10px; display: flex;
+  align-items: flex-start; gap: 12px;
+}
+.callout.info { background: #0891b215; border: 1px solid #0891b230; }
+.callout p { margin: 0; font-size: 14px; }
+.callout strong { color: var(--foam); }
+.callout .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+.on-page {
+  background: #0f224066; border: 1px solid #00d4ff10;
+  border-radius: 12px; padding: 20px 24px; margin-bottom: 32px;
+}
+.on-page-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600; color: var(--grey);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;
+}
+.on-page a {
+  display: block; font-size: 14px; color: var(--grey);
+  text-decoration: none; padding: 4px 0; transition: color 0.15s;
+}
+.on-page a:hover { color: var(--cyan); }
+
+/* ENDPOINT CARDS */
+.endpoint {
+  background: linear-gradient(135deg, #0f2240cc, #132d5433);
+  border: 1px solid #00d4ff12; border-radius: 12px;
+  padding: 20px 24px; margin: 12px 0 20px;
+}
+.endpoint-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 8px; flex-wrap: wrap;
+}
+.method {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+.method.get { background: #4a7c5933; color: var(--green-light); }
+.method.post { background: #00d4ff22; color: var(--cyan); }
+.method.put { background: #ffcb6b22; color: #ffcb6b; }
+.method.delete { background: #ff537022; color: #ff5370; }
+.endpoint-path {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; font-weight: 600; color: var(--foam);
+}
+.endpoint-desc {
+  font-size: 13.5px; color: var(--grey); margin: 0;
+  line-height: 1.5;
+}
+.endpoint-params {
+  margin-top: 10px; font-size: 13px;
+}
+.endpoint-params .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600; color: var(--grey);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* SOCKET EVENT CARDS */
+.event {
+  background: linear-gradient(135deg, #0f2240cc, #132d5433);
+  border: 1px solid #00d4ff12; border-radius: 12px;
+  padding: 18px 24px; margin: 10px 0 16px;
+}
+.event-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 6px; flex-wrap: wrap;
+}
+.event-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; font-weight: 700; color: var(--cyan);
+}
+.direction {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+.direction.c2s { background: #c792ea22; color: #c792ea; }
+.direction.s2c { background: #4a7c5933; color: var(--green-light); }
+.event-desc {
+  font-size: 13.5px; color: var(--grey); margin: 0; line-height: 1.5;
+}
+
+/* DATA TYPES */
+.table-wrap { overflow-x: auto; margin: 12px 0 20px; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600; color: var(--cyan);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  text-align: left; padding: 10px 16px;
+  background: #0f224088; border-bottom: 1px solid #00d4ff20;
+}
+td {
+  padding: 10px 16px; color: var(--grey);
+  border-bottom: 1px solid #00d4ff08; vertical-align: top;
+}
+td code { font-size: 12px; white-space: nowrap; }
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+  .sidebar.open { transform: translateX(0); }
+  .mobile-toggle { display: block; }
+  .main { margin-left: 0; padding: 48px 20px 60px; }
+}
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+
+<nav class="sidebar">
+  <a href="/" class="sidebar-brand">
+    <span class="cyan">Otter</span>Bot
+    <span class="sub">Documentation</span>
+  </a>
+  <a href="/" class="sidebar-back">&larr; Back to Home</a>
+  <div class="sidebar-section">Guide</div>
+  <a href="/docs/" class="sidebar-link">Overview</a>
+  <a href="/docs/getting-started.html" class="sidebar-link">Getting Started</a>
+  <a href="/docs/architecture.html" class="sidebar-link">Architecture</a>
+  <a href="/docs/agents.html" class="sidebar-link">Agent System</a>
+  <a href="/docs/features.html" class="sidebar-link">Features</a>
+  <div class="sidebar-section">Reference</div>
+  <a href="/docs/api.html" class="sidebar-link active">API Reference</a>
+  <div class="sidebar-footer">
+    <a href="https://github.com/TOoSmOotH/otterbot">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <h1>API <span class="cyan">Reference</span></h1>
+  <p class="page-desc">
+    Complete reference for OtterBot's REST API endpoints, Socket.IO events, and core data types.
+  </p>
+
+  <div class="on-page">
+    <div class="on-page-title">On this page</div>
+    <a href="#auth">Authentication</a>
+    <a href="#rest-setup">REST: Setup</a>
+    <a href="#rest-auth">REST: Auth</a>
+    <a href="#rest-agents">REST: Agents &amp; Registry</a>
+    <a href="#rest-conversations">REST: Conversations &amp; Messages</a>
+    <a href="#rest-projects">REST: Projects</a>
+    <a href="#rest-3d">REST: 3D Models &amp; Scenes</a>
+    <a href="#rest-settings">REST: Settings</a>
+    <a href="#rest-other">REST: Desktop, Packages, Profile</a>
+    <a href="#socket-c2s">Socket.IO: Client &rarr; Server</a>
+    <a href="#socket-s2c">Socket.IO: Server &rarr; Client</a>
+    <a href="#types">Data Types</a>
+  </div>
+
+  <!-- AUTH -->
+  <h2 id="auth"><span class="cyan">#</span> Authentication</h2>
+  <p>
+    OtterBot uses session-based authentication. After initial setup, the server issues a session
+    cookie. All subsequent requests (REST and Socket.IO) are authenticated via this cookie.
+  </p>
+  <ul>
+    <li>Check auth status: <code>GET /api/auth/check</code></li>
+    <li>Logout: <code>POST /api/auth/logout</code></li>
+    <li>Socket.IO connections are authenticated on the <code>connection</code> event</li>
+  </ul>
+
+  <!-- REST: SETUP -->
+  <h2 id="rest-setup"><span class="cyan">#</span> REST: Setup</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/setup/status</span>
+    </div>
+    <p class="endpoint-desc">Returns whether the initial setup has been completed and which provider types are configured.</p>
+    <div class="code-block"><span class="cm">// Response</span>
+{
+  <span class="str">"setupComplete"</span>: <span class="kw">true</span>,
+  <span class="str">"providerType"</span>: <span class="str">"anthropic"</span>
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/setup/probe-models</span>
+    </div>
+    <p class="endpoint-desc">Probe available models from an LLM provider. Used during the setup wizard to list models.</p>
+    <div class="code-block"><span class="cm">// Request body</span>
+{
+  <span class="str">"provider"</span>: <span class="str">"anthropic"</span>,
+  <span class="str">"apiKey"</span>: <span class="str">"sk-ant-..."</span>,
+  <span class="str">"baseUrl"</span>: <span class="str">"https://api.anthropic.com"</span>  <span class="cm">// optional</span>
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/setup/tts-preview</span>
+    </div>
+    <p class="endpoint-desc">Preview a TTS voice. Returns audio for a sample sentence.</p>
+    <div class="code-block"><span class="cm">// Request body</span>
+{
+  <span class="str">"voice"</span>: <span class="str">"af_heart"</span>,
+  <span class="str">"ttsProvider"</span>: <span class="str">"kokoro"</span>  <span class="cm">// optional</span>
+}</div>
+  </div>
+
+  <!-- REST: AUTH -->
+  <h2 id="rest-auth"><span class="cyan">#</span> REST: Auth</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/auth/check</span>
+    </div>
+    <p class="endpoint-desc">Check current authentication status.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/auth/logout</span>
+    </div>
+    <p class="endpoint-desc">Logout and destroy the current session.</p>
+  </div>
+
+  <!-- REST: AGENTS -->
+  <h2 id="rest-agents"><span class="cyan">#</span> REST: Agents &amp; Registry</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/agents</span>
+    </div>
+    <p class="endpoint-desc">List all active agent instances.</p>
+    <div class="code-block"><span class="cm">// Response</span>
+[
+  {
+    <span class="str">"id"</span>: <span class="str">"coo-main"</span>,
+    <span class="str">"name"</span>: <span class="str">"COO"</span>,
+    <span class="str">"role"</span>: <span class="str">"coo"</span>,
+    <span class="str">"status"</span>: <span class="str">"idle"</span>,
+    <span class="str">"registryId"</span>: <span class="str">"builtin-coo"</span>,
+    <span class="str">"projectId"</span>: <span class="kw">null</span>
+  }
+]</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/registry</span>
+    </div>
+    <p class="endpoint-desc">List all agent templates (built-in and custom) from the registry.</p>
+    <div class="code-block"><span class="cm">// Response: RegistryEntry[]</span>
+[
+  {
+    <span class="str">"id"</span>: <span class="str">"builtin-coder"</span>,
+    <span class="str">"name"</span>: <span class="str">"Coder"</span>,
+    <span class="str">"role"</span>: <span class="str">"worker"</span>,
+    <span class="str">"capabilities"</span>: [<span class="str">"code"</span>, <span class="str">"typescript"</span>, <span class="str">"python"</span>, <span class="str">"debugging"</span>],
+    <span class="str">"tools"</span>: [<span class="str">"file_read"</span>, <span class="str">"file_write"</span>, <span class="str">"shell_exec"</span>, <span class="str">"install_package"</span>],
+    <span class="str">"builtIn"</span>: <span class="kw">true</span>,
+    ...
+  }
+]</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/registry/:id</span>
+    </div>
+    <p class="endpoint-desc">Get a specific agent template by ID.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/registry</span>
+    </div>
+    <p class="endpoint-desc">Create a new custom agent template.</p>
+    <div class="code-block"><span class="cm">// Request body: RegistryEntryCreate</span>
+{
+  <span class="str">"name"</span>: <span class="str">"API Tester"</span>,
+  <span class="str">"description"</span>: <span class="str">"Tests REST APIs..."</span>,
+  <span class="str">"systemPrompt"</span>: <span class="str">"You are an API testing specialist..."</span>,
+  <span class="str">"capabilities"</span>: [<span class="str">"testing"</span>, <span class="str">"api"</span>],
+  <span class="str">"defaultModel"</span>: <span class="str">"claude-sonnet-4-5-20250929"</span>,
+  <span class="str">"defaultProvider"</span>: <span class="str">"anthropic"</span>,
+  <span class="str">"tools"</span>: [<span class="str">"shell_exec"</span>, <span class="str">"file_read"</span>]
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/registry/:id/clone</span>
+    </div>
+    <p class="endpoint-desc">Clone an existing template (built-in or custom) as a new custom template.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PATCH</span>
+      <span class="endpoint-path">/api/registry/:id</span>
+    </div>
+    <p class="endpoint-desc">Update a custom agent template. Built-in templates cannot be modified.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/registry/:id</span>
+    </div>
+    <p class="endpoint-desc">Delete a custom agent template. Built-in templates cannot be deleted.</p>
+  </div>
+
+  <!-- REST: CONVERSATIONS -->
+  <h2 id="rest-conversations"><span class="cyan">#</span> REST: Conversations &amp; Messages</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/conversations</span>
+    </div>
+    <p class="endpoint-desc">List conversations. Optionally filter by project.</p>
+    <div class="endpoint-params">
+      <div class="label">Query Parameters</div>
+      <code>projectId</code> (optional) &mdash; Filter conversations by project ID
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/messages</span>
+    </div>
+    <p class="endpoint-desc">Cursor-paginated message history.</p>
+    <div class="endpoint-params">
+      <div class="label">Query Parameters</div>
+      <code>projectId</code> &mdash; Project ID<br>
+      <code>agentId</code> &mdash; Agent ID<br>
+      <code>limit</code> &mdash; Number of messages (default 50)<br>
+      <code>before</code> &mdash; Cursor for pagination (message ID)
+    </div>
+  </div>
+
+  <!-- REST: PROJECTS -->
+  <h2 id="rest-projects"><span class="cyan">#</span> REST: Projects</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/projects</span>
+    </div>
+    <p class="endpoint-desc">List all projects.</p>
+    <div class="code-block"><span class="cm">// Response: Project[]</span>
+[
+  {
+    <span class="str">"id"</span>: <span class="str">"proj_abc"</span>,
+    <span class="str">"name"</span>: <span class="str">"Build Login Page"</span>,
+    <span class="str">"description"</span>: <span class="str">"Create a login page with OAuth..."</span>,
+    <span class="str">"status"</span>: <span class="str">"active"</span>,
+    <span class="str">"charter"</span>: <span class="str">"..."</span>,
+    <span class="str">"charterStatus"</span>: <span class="str">"finalized"</span>,
+    <span class="str">"createdAt"</span>: <span class="str">"2025-01-15T10:00:00Z"</span>
+  }
+]</div>
+  </div>
+
+  <!-- REST: 3D -->
+  <h2 id="rest-3d"><span class="cyan">#</span> REST: 3D Models &amp; Scenes</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/model-packs</span>
+    </div>
+    <p class="endpoint-desc">List available 3D character model packs for the Live View.</p>
+    <div class="code-block"><span class="cm">// Response: ModelPack[]</span>
+[
+  {
+    <span class="str">"id"</span>: <span class="str">"otter-default"</span>,
+    <span class="str">"name"</span>: <span class="str">"Otter Default"</span>,
+    <span class="str">"characterUrl"</span>: <span class="str">"/assets/workers/otter/characters/otter.glb"</span>,
+    <span class="str">"thumbnailUrl"</span>: <span class="str">"/assets/workers/otter/artwork.png"</span>,
+    <span class="str">"animations"</span>: {
+      <span class="str">"idle"</span>: <span class="str">"/assets/workers/otter/Animations/gltf/..."</span>,
+      <span class="str">"action"</span>: <span class="str">"/assets/workers/otter/Animations/gltf/..."</span>
+    }
+  }
+]</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/environment-packs</span>
+    </div>
+    <p class="endpoint-desc">List available 3D environment packs.</p>
+    <div class="code-block"><span class="cm">// Response: EnvironmentPack[]</span>
+[
+  {
+    <span class="str">"id"</span>: <span class="str">"office"</span>,
+    <span class="str">"name"</span>: <span class="str">"Office"</span>,
+    <span class="str">"assets"</span>: [
+      { <span class="str">"id"</span>: <span class="str">"desk"</span>, <span class="str">"name"</span>: <span class="str">"Desk"</span>, <span class="str">"modelUrl"</span>: <span class="str">"..."</span> }
+    ]
+  }
+]</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/scenes</span>
+    </div>
+    <p class="endpoint-desc">List available scene configurations (camera, lighting, layout).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/scenes/:id</span>
+    </div>
+    <p class="endpoint-desc">Save or update a scene configuration.</p>
+  </div>
+
+  <!-- REST: SETTINGS -->
+  <h2 id="rest-settings"><span class="cyan">#</span> REST: Settings</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings</span>
+    </div>
+    <p class="endpoint-desc">Get all settings as key-value pairs.</p>
+  </div>
+
+  <h3>LLM Providers</h3>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/providers</span>
+    </div>
+    <p class="endpoint-desc">Get configured LLM provider settings (provider type, models).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/provider/:id</span>
+    </div>
+    <p class="endpoint-desc">Update an LLM provider's configuration (API key, base URL, etc.).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/defaults</span>
+    </div>
+    <p class="endpoint-desc">Update default models for each agent tier (COO, Team Lead, Worker).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/provider/:id/test</span>
+    </div>
+    <p class="endpoint-desc">Test connectivity to an LLM provider.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/models/:id</span>
+    </div>
+    <p class="endpoint-desc">Fetch available models from a specific provider.</p>
+  </div>
+
+  <h3>Search Settings</h3>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/search</span>
+    </div>
+    <p class="endpoint-desc">Get search provider configuration.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/search/active</span>
+    </div>
+    <p class="endpoint-desc">Set the active search provider.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/search/provider/:id</span>
+    </div>
+    <p class="endpoint-desc">Update a search provider's configuration (API key, base URL).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/search/provider/:id/test</span>
+    </div>
+    <p class="endpoint-desc">Test connectivity to a search provider.</p>
+  </div>
+
+  <h3>TTS Settings</h3>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/tts</span>
+    </div>
+    <p class="endpoint-desc">Get text-to-speech settings (provider, voice, speed).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/tts/enabled</span>
+    </div>
+    <p class="endpoint-desc">Enable or disable TTS.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/tts/active</span>
+    </div>
+    <p class="endpoint-desc">Set the active TTS provider.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/tts/voice</span>
+    </div>
+    <p class="endpoint-desc">Set the TTS voice.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/tts/speed</span>
+    </div>
+    <p class="endpoint-desc">Set the TTS playback speed.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/tts/provider/:id</span>
+    </div>
+    <p class="endpoint-desc">Update a TTS provider's configuration.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/tts/provider/:id/test</span>
+    </div>
+    <p class="endpoint-desc">Test a TTS provider.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/tts/preview</span>
+    </div>
+    <p class="endpoint-desc">Preview a TTS voice with a sample sentence.</p>
+  </div>
+
+  <h3>STT Settings</h3>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/stt</span>
+    </div>
+    <p class="endpoint-desc">Get speech-to-text settings (provider, model).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/stt/enabled</span>
+    </div>
+    <p class="endpoint-desc">Enable or disable STT.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/stt/active</span>
+    </div>
+    <p class="endpoint-desc">Set the active STT provider.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/stt/language</span>
+    </div>
+    <p class="endpoint-desc">Set the STT language.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/stt/model</span>
+    </div>
+    <p class="endpoint-desc">Set the Whisper model ID for local STT.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/stt/provider/:id</span>
+    </div>
+    <p class="endpoint-desc">Update an STT provider's configuration.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/stt/provider/:id/test</span>
+    </div>
+    <p class="endpoint-desc">Test an STT provider.</p>
+  </div>
+
+  <h3>Other Settings</h3>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/stt/transcribe</span>
+    </div>
+    <p class="endpoint-desc">Transcribe audio to text. Accepts multipart form data with an audio file.</p>
+    <div class="endpoint-params">
+      <div class="label">Body (multipart/form-data)</div>
+      <code>file</code> &mdash; Audio file (WebM format)
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/opencode</span>
+    </div>
+    <p class="endpoint-desc">Get OpenCode integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/opencode/test</span>
+    </div>
+    <p class="endpoint-desc">Test the OpenCode integration configuration.</p>
+  </div>
+
+  <!-- REST: OTHER -->
+  <h2 id="rest-other"><span class="cyan">#</span> REST: Desktop, Packages, Profile</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/desktop/status</span>
+    </div>
+    <p class="endpoint-desc">Get the virtual desktop environment status (running, resolution, ports).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/novnc/*</span>
+    </div>
+    <p class="endpoint-desc">Serve noVNC web client files. Path traversal protection is enforced.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/packages</span>
+    </div>
+    <p class="endpoint-desc">List installed apt and npm packages.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/packages</span>
+    </div>
+    <p class="endpoint-desc">Install a new package (apt or npm).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/packages</span>
+    </div>
+    <p class="endpoint-desc">Uninstall a package.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/profile</span>
+    </div>
+    <p class="endpoint-desc">Get the current user's profile information.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/profile/model-pack</span>
+    </div>
+    <p class="endpoint-desc">Update the user's 3D model pack for the Live View.</p>
+  </div>
+
+  <!-- SOCKET: CLIENT TO SERVER -->
+  <h2 id="socket-c2s"><span class="cyan">#</span> Socket.IO: Client &rarr; Server</h2>
+  <p>Events emitted by the client (browser) to the server. Most use an acknowledgment callback to return data.</p>
+
+  <h3>Chat</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">ceo:message</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Send a message from the CEO (human) to the COO.</p>
+    <div class="code-block"><span class="cm">// Payload</span>
+{ <span class="str">"content"</span>: <span class="str">"Build a REST API for..."</span>, <span class="str">"conversationId"</span>?: <span class="str">"conv_1"</span>, <span class="str">"projectId"</span>?: <span class="str">"proj_1"</span> }
+
+<span class="cm">// Ack callback</span>
+{ <span class="str">"messageId"</span>: <span class="str">"msg_abc"</span>, <span class="str">"conversationId"</span>: <span class="str">"conv_1"</span> }</div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">ceo:new-chat</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Start a new conversation, resetting the COO's context.</p>
+    <div class="code-block"><span class="cm">// Ack callback</span>
+{ <span class="str">"ok"</span>: <span class="kw">true</span> }</div>
+  </div>
+
+  <h3>Conversations</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">ceo:list-conversations</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">List conversations, optionally filtered by project.</p>
+    <div class="code-block"><span class="cm">// Payload (optional)</span>
+{ <span class="str">"projectId"</span>?: <span class="str">"proj_1"</span> }
+
+<span class="cm">// Ack: Conversation[]</span></div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">ceo:load-conversation</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Load a specific conversation's messages.</p>
+    <div class="code-block"><span class="cm">// Payload</span>
+{ <span class="str">"conversationId"</span>: <span class="str">"conv_1"</span> }
+
+<span class="cm">// Ack</span>
+{ <span class="str">"messages"</span>: BusMessage[] }</div>
+  </div>
+
+  <h3>Registry &amp; Agents</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">registry:list</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Get all agent templates from the registry.</p>
+    <div class="code-block"><span class="cm">// Ack: RegistryEntry[]</span></div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:inspect</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Get detailed information about a specific agent instance.</p>
+    <div class="code-block"><span class="cm">// Payload</span>
+{ <span class="str">"agentId"</span>: <span class="str">"worker-abc"</span> }
+
+<span class="cm">// Ack: Agent | null</span></div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:activity</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Get an agent's message history and activity log.</p>
+    <div class="code-block"><span class="cm">// Payload</span>
+{ <span class="str">"agentId"</span>: <span class="str">"worker-abc"</span> }
+
+<span class="cm">// Ack</span>
+{ <span class="str">"messages"</span>: BusMessage[], <span class="str">"activity"</span>: AgentActivityRecord[] }</div>
+  </div>
+
+  <h3>Projects</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:list</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">List all projects.</p>
+    <div class="code-block"><span class="cm">// Ack: Project[]</span></div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:get</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Get a single project by ID.</p>
+    <div class="code-block"><span class="cm">// Payload</span>
+{ <span class="str">"projectId"</span>: <span class="str">"proj_1"</span> }
+
+<span class="cm">// Ack: Project | null</span></div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:enter</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Enter a project context. Returns the project, its conversations, and Kanban tasks.</p>
+    <div class="code-block"><span class="cm">// Payload</span>
+{ <span class="str">"projectId"</span>: <span class="str">"proj_1"</span> }
+
+<span class="cm">// Ack</span>
+{ <span class="str">"project"</span>: Project, <span class="str">"conversations"</span>: Conversation[], <span class="str">"tasks"</span>: KanbanTask[] }</div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:conversations</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">List conversations for a specific project.</p>
+    <div class="code-block"><span class="cm">// Payload</span>
+{ <span class="str">"projectId"</span>: <span class="str">"proj_1"</span> }
+
+<span class="cm">// Ack: Conversation[]</span></div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:delete</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Delete a project and cascade-delete all related data (tasks, conversations, agents, messages).</p>
+    <div class="code-block"><span class="cm">// Payload</span>
+{ <span class="str">"projectId"</span>: <span class="str">"proj_1"</span> }
+
+<span class="cm">// Ack</span>
+{ <span class="str">"ok"</span>: <span class="kw">true</span>, <span class="str">"error"</span>?: <span class="str">"..."</span> }</div>
+  </div>
+
+  <!-- SOCKET: SERVER TO CLIENT -->
+  <h2 id="socket-s2c"><span class="cyan">#</span> Socket.IO: Server &rarr; Client</h2>
+  <p>Events broadcast from the server to connected clients.</p>
+
+  <h3>Message Bus</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">bus:message</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Broadcast of every message on the internal agent bus. Used by the frontend to show agent communication in real-time.</p>
+  </div>
+
+  <h3>COO Responses</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">coo:response</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Complete COO response message (after streaming ends).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">coo:stream</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Token-by-token streaming from the COO agent. Emitted as each token is generated.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">coo:thinking</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Extended thinking (reasoning) tokens from the COO.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">coo:thinking-end</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Signals the end of a COO thinking block.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">coo:audio</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">TTS audio synthesis result for the COO's response.</p>
+  </div>
+
+  <h3>Conversations</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">conversation:created</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A new conversation was created.</p>
+  </div>
+
+  <h3>Projects</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:created</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A new project was created by the COO.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:updated</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A project was updated (status change, charter update, etc.).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:deleted</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A project was deleted.</p>
+  </div>
+
+  <h3>Kanban</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">kanban:task-created</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A new Kanban task was created.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">kanban:task-updated</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A Kanban task was updated (column change, assignment, completion report).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">kanban:task-deleted</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A Kanban task was deleted.</p>
+  </div>
+
+  <h3>Agents</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:spawned</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A new agent instance was created (Team Lead or Worker).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:status</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">An agent's status changed (idle, thinking, acting, done, error).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:destroyed</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">An agent instance was destroyed.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:stream</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Token-by-token streaming from a worker agent.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:thinking</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Extended thinking tokens from a worker agent.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:thinking-end</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">End of an agent's thinking block.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:tool-call</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">An agent invoked a tool (file_read, shell_exec, web_search, etc.).</p>
+  </div>
+
+  <!-- DATA TYPES -->
+  <h2 id="types"><span class="cyan">#</span> Data Types</h2>
+
+  <h3>Agent</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"name"</span>: <span class="fl">string</span>,
+  <span class="str">"role"</span>: <span class="str">"coo"</span> | <span class="str">"team_lead"</span> | <span class="str">"worker"</span>,
+  <span class="str">"status"</span>: <span class="str">"idle"</span> | <span class="str">"thinking"</span> | <span class="str">"acting"</span> | <span class="str">"done"</span> | <span class="str">"error"</span>,
+  <span class="str">"registryId"</span>: <span class="fl">string</span>,
+  <span class="str">"projectId"</span>: <span class="fl">string</span> | <span class="kw">null</span>
+}</div>
+
+  <h3>RegistryEntry</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"name"</span>: <span class="fl">string</span>,
+  <span class="str">"description"</span>: <span class="fl">string</span>,
+  <span class="str">"systemPrompt"</span>: <span class="fl">string</span>,
+  <span class="str">"promptAddendum"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"capabilities"</span>: <span class="fl">string</span>[],
+  <span class="str">"defaultModel"</span>: <span class="fl">string</span>,
+  <span class="str">"defaultProvider"</span>: <span class="fl">string</span>,
+  <span class="str">"tools"</span>: <span class="fl">string</span>[],
+  <span class="str">"builtIn"</span>: <span class="fl">boolean</span>,
+  <span class="str">"role"</span>: <span class="str">"coo"</span> | <span class="str">"team_lead"</span> | <span class="str">"worker"</span>,
+  <span class="str">"modelPackId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"gearConfig"</span>: <span class="fl">GearConfig</span> | <span class="kw">null</span>,
+  <span class="str">"clonedFromId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>Project</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"name"</span>: <span class="fl">string</span>,
+  <span class="str">"description"</span>: <span class="fl">string</span>,
+  <span class="str">"status"</span>: <span class="str">"active"</span> | <span class="str">"completed"</span> | <span class="str">"failed"</span> | <span class="str">"cancelled"</span>,
+  <span class="str">"charter"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"charterStatus"</span>: <span class="str">"gathering"</span> | <span class="str">"finalized"</span>,
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>KanbanTask</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"projectId"</span>: <span class="fl">string</span>,
+  <span class="str">"title"</span>: <span class="fl">string</span>,
+  <span class="str">"description"</span>: <span class="fl">string</span>,
+  <span class="str">"column"</span>: <span class="str">"backlog"</span> | <span class="str">"in_progress"</span> | <span class="str">"done"</span>,
+  <span class="str">"position"</span>: <span class="fl">number</span>,
+  <span class="str">"assigneeAgentId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"createdBy"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"completionReport"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"labels"</span>: <span class="fl">string</span>[],
+  <span class="str">"blockedBy"</span>: <span class="fl">string</span>[],
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>,
+  <span class="str">"updatedAt"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>Conversation</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"title"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"projectId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>BusMessage</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"fromAgentId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"toAgentId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"content"</span>: <span class="fl">string</span>,
+  <span class="str">"role"</span>: <span class="str">"user"</span> | <span class="str">"assistant"</span>,
+  <span class="str">"conversationId"</span>: <span class="fl">string</span>,
+  <span class="str">"projectId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"timestamp"</span>: <span class="fl">string</span>
+}</div>
+
+</main>
+
+</body>
+</html>
