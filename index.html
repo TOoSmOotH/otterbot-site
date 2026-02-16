@@ -493,6 +493,9 @@ footer .copyright {
         <div class="code-content">
           <div><span class="kw">$</span> docker run <span class="fl">-d</span> <span class="fl">-p</span> <span class="str">62626:62626</span> \</div>
           <div>&nbsp;&nbsp;<span class="fl">--name</span> <span class="str">otterbot</span> \</div>
+          <div>&nbsp;&nbsp;<span class="fl">-e</span> <span class="str">OTTERBOT_DB_KEY=change-me-to-something-secret</span> \</div>
+          <div>&nbsp;&nbsp;<span class="fl">-v</span> <span class="str">~/otterbot:/otterbot</span> \</div>
+          <div>&nbsp;&nbsp;<span class="fl">--shm-size</span> <span class="str">256m</span> \</div>
           <div>&nbsp;&nbsp;ghcr.io/toosmooth/otterbot:latest</div>
         </div>
       </div>
@@ -512,9 +515,9 @@ footer .copyright {
   <div class="pro-tip">
     <span style="font-size:20px;flex-shrink:0;">&#x1F9A6;</span>
     <p>
-      <strong>Pro tip:</strong> OtterBot is ephemeral by default.
-      When you stop the container, all conversation data is gone. To persist data between sessions,
-      mount a volume with <code>-v ~/otterbot:/data</code>
+      <strong>Pro tip:</strong> Set your <code>OTTERBOT_DB_KEY</code> to a unique secret &mdash; it encrypts your database.
+      The <code>-v ~/otterbot:/otterbot</code> volume persists data between container restarts.
+      See the <a href="/docs/getting-started.html" style="color:var(--green-light);">docs</a> for all runtime options.
     </p>
   </div>
 </section>
