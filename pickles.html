@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pickles — OtterBot</title>
-<meta name="description" content="All about pickles — a delicious world of fermented and viral goodness">
+<title>Pickles — The Best Cucumbers</title>
+<meta name="description" content="Everything you ever wanted to know about pickles — the briny, crisp, delicious cucumbers that brighten any meal.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -29,8 +29,43 @@ html { scroll-behavior: smooth; }
 body { background: var(--navy); overflow-x: hidden; font-family: 'IBM Plex Sans', sans-serif; color: var(--foam); }
 
 ::selection { background: #00d4ff33; color: var(--white); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: #00d4ff33; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #00d4ff55; }
 
-/* NAV */
+@keyframes waveSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes pulse { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.1); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+
+.wave-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.wave-bg-gradient {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 0%, var(--navy-mid) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 50% at 80% 100%, var(--cyan-dim) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 80%, #0d3b5522 0%, transparent 50%),
+    var(--navy);
+}
+.circuit-svg { position: absolute; inset: 0; opacity: 0.04; }
+.wave-layer-1 {
+  position: absolute; bottom: 0; left: 0; width: 200%; height: 180px; opacity: 0.08;
+  animation: waveSlide 18s linear infinite;
+}
+.wave-layer-2 {
+  position: absolute; bottom: 0; left: 0; width: 200%; height: 130px; opacity: 0.05;
+  animation: waveSlide 24s linear infinite reverse;
+}
+
+.starfield { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.star {
+  position: absolute; border-radius: 50%; background: var(--cyan); opacity: 0.3;
+}
+
+.glow-orb { position: absolute; border-radius: 50%; pointer-events: none; }
+
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   padding: 16px 40px;
@@ -50,13 +85,6 @@ body { background: var(--navy); overflow-x: hidden; font-family: 'IBM Plex Sans'
   display: flex; align-items: center; gap: 12px;
 }
 .nav-brand .cyan { color: var(--cyan); }
-.badge {
-  background: #4a7c5933; color: var(--green-light);
-  font-size: 10px; font-weight: 600;
-  font-family: 'JetBrains Mono', monospace;
-  padding: 3px 8px; border-radius: 6px;
-  letter-spacing: 0.05em;
-}
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-link {
   color: var(--grey); text-decoration: none;
@@ -66,47 +94,55 @@ body { background: var(--navy); overflow-x: hidden; font-family: 'IBM Plex Sans'
 }
 .nav-link:hover { color: var(--cyan); }
 
-/* CONTENT */
-.content { padding: 140px 40px 80px; max-width: 900px; margin: 0 auto; }
-.page-title {
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 120px 40px 80px;
+  position: relative; text-align: center;
+}
+.hero h1 {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(36px, 5vw, 56px);
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 800; color: var(--white);
+  line-height: 1.1; letter-spacing: -0.04em;
+  margin-bottom: 20px;
+}
+.hero-subtitle {
+  font-size: clamp(17px, 2.2vw, 21px);
+  color: var(--grey); max-width: 580px;
+  line-height: 1.6; margin-bottom: 12px;
+}
+.hero-tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--cyan);
+  opacity: 0.6; margin-bottom: 36px;
+}
+
+.content { padding: 80px 40px; max-width: 800px; margin: 0 auto; }
+.section-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(28px, 4vw, 40px);
   font-weight: 800; color: var(--white);
   letter-spacing: -0.03em;
   margin-bottom: 24px;
 }
-.page-subtitle {
-  font-size: clamp(17px, 2.2vw, 21px);
-  color: var(--grey); max-width: 600px;
-  line-height: 1.6; margin-bottom: 48px;
-}
-.info-card {
+.card {
   background: linear-gradient(135deg, #0f2240cc, #132d5488);
   border: 1px solid #00d4ff18;
-  border-radius: 16px; padding: 40px;
-  margin-bottom: 32px;
+  border-radius: 16px; padding: 32px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(12px);
 }
-.info-card h2 {
+.card h3 {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 24px; font-weight: 700;
-  color: var(--cyan); margin-bottom: 16px;
+  font-size: 18px; font-weight: 700; color: var(--cyan);
+  margin-bottom: 12px;
 }
-.info-card p {
-  font-size: 15px; line-height: 1.7; color: var(--grey); margin-bottom: 12px;
-}
-.info-card ul {
-  list-style: none; padding: 0; margin: 16px 0 0;
-}
-.info-card li {
-  font-size: 14.5px; line-height: 1.65; color: var(--grey);
-  padding: 8px 0; border-bottom: 1px solid #00d4ff08;
-}
-.info-card li:last-child { border-bottom: none; }
-.info-card li::before {
-  content: "🥒"; display: inline-block; margin-right: 10px;
+.card p {
+  font-size: 15px; line-height: 1.7; color: var(--grey); margin: 0;
 }
 
-/* FOOTER */
 footer {
   background: var(--navy-light);
   padding: 60px 40px 40px;
@@ -126,22 +162,13 @@ footer {
   display: flex; align-items: center; gap: 8px;
 }
 .footer-brand .cyan { color: var(--cyan); }
-.footer-brand .tagline {
-  display: block;
-  font-size: 12px; color: var(--grey);
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 400;
-  margin-top: 4px;
-}
 .footer-col h4 {
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px; font-weight: 700;
   color: var(--white);
   margin-bottom: 16px; letter-spacing: 0.05em;
 }
-.footer-col ul {
-  list-style: none; padding: 0; margin: 0;
-}
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
 .footer-col li { margin-bottom: 8px; }
 .footer-col a {
   color: var(--grey); text-decoration: none;
@@ -150,98 +177,84 @@ footer {
 }
 .footer-col a:hover { color: var(--cyan); }
 
-.copyright-bar {
-  max-width: 1100px; margin: 40px auto 0;
-  padding-top: 32px; border-top: 1px solid #00d4ff08;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 16px;
-}
-.copyright-text {
-  font-size: 13px; color: var(--grey);
-  display: flex; align-items: center; gap: 8px;
-}
-.copyright-text a { color: var(--cyan); text-decoration: none; }
-.copyright-text a:hover { opacity: 0.8; }
-.social-links {
-  display: flex; gap: 16px;
-}
-.social-links a {
-  display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; border-radius: 8px;
-  background: #00d4ff08; color: var(--cyan);
-  text-decoration: none; transition: all 0.2s;
-}
-.social-links a:hover {
-  background: #00d4ff15; transform: translateY(-2px);
-}
-.social-links svg { width: 16px; height: 16px; fill: currentColor; }
-
 @media (max-width: 768px) {
   .nav { padding: 14px 20px; }
-  .nav-links .nav-link { display: none; }
-  .content { padding: 120px 24px 60px; }
-  .info-card { padding: 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .content { padding: 60px 20px; }
   .footer-container { grid-template-columns: 1fr; gap: 24px; }
-  .footer-col:nth-child(2), .footer-col:nth-child(3) { order: -1; }
-  .copyright-bar { flex-direction: column; text-align: center; }
-  footer { padding: 60px 24px 40px; }
 }
 </style>
 </head>
 <body>
 
+<div class="wave-bg">
+  <div class="wave-bg-gradient"></div>
+  <svg class="circuit-svg" width="100%" height="100%">
+    <defs>
+      <pattern id="circuit" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+        <path d="M0 60h40M80 60h40M60 0v40M60 80v40" stroke="#00d4ff" stroke-width="1" fill="none"/>
+        <circle cx="60" cy="60" r="3" fill="#00d4ff"/>
+        <circle cx="40" cy="60" r="2" fill="#00d4ff"/>
+        <circle cx="80" cy="60" r="2" fill="#00d4ff"/>
+        <circle cx="60" cy="40" r="2" fill="#00d4ff"/>
+        <circle cx="60" cy="80" r="2" fill="#00d4ff"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#circuit)"/>
+  </svg>
+  <svg class="wave-layer-1" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <path fill="#00d4ff" d="M0,224L60,213.3C120,203,240,181,360,181.3C480,181,600,203,720,213.3C840,224,960,224,1080,208C1200,192,1320,160,1440,165.3L1440,320L0,320Z"/>
+  </svg>
+  <svg class="wave-layer-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <path fill="#0891b2" d="M0,288L80,272C160,256,320,224,480,229.3C640,235,800,277,960,277.3C1120,277,1280,235,1440,218.7L1440,320L0,320Z"/>
+  </svg>
+</div>
+
+<div class="starfield" id="starfield"></div>
+
 <nav class="nav" id="nav">
   <div class="nav-brand">
     <span><span class="cyan">Otter</span>Bot</span>
-    <span class="badge">OPEN SOURCE</span>
   </div>
   <div class="nav-links">
     <a href="index.html" class="nav-link">Home</a>
     <a href="pickles.html" class="nav-link">Pickles</a>
     <a href="#features" class="nav-link">Features</a>
+    <a href="#quickstart" class="nav-link">Quick Start</a>
+    <a href="/docs" class="nav-link">Docs</a>
     <a href="#about" class="nav-link">About</a>
   </div>
 </nav>
 
-<div class="content">
-  <h1 class="page-title">Pickles</h1>
-  <p class="page-subtitle">
-    Dive into the crunchy, tangy, and refreshing world of pickles — 
-    where fermentation meets flavor in every bite.
-  </p>
+<section class="hero">
+  <div class="glow-orb" style="width:400px;height:400px;top:-100px;left:-100px;background:radial-gradient(circle,#5fa87215,transparent 70%);animation:pulse 4s ease-in-out infinite;"></div>
+  <div class="glow-orb" style="width:300px;height:300px;top:60%;left:75%;background:radial-gradient(circle,#4a7c5915,transparent 70%);animation:pulse 6s ease-in-out infinite 2s;"></div>
+  <h1><span class="cyan">Pickles</span></h1>
+  <p class="hero-subtitle">The briny, crisp, delicious cucumbers that brighten any meal</p>
+  <p class="hero-tagline">Fermented. Canned. Crisp. Delicious.</p>
+</section>
 
-  <div class="info-card">
-    <h2>The Art of Pickling</h2>
-    <p>Pickling is a culinary tradition that dates back thousands of years. 
-       From cucumbers to cauliflower, from beets to bread-and-butter slices, 
-       the pickle universe is vast and varied.</p>
-    <p>At OtterBot, we appreciate the craftsmanship behind the jar — 
-       the careful balance of vinegar, salt, and spices that transforms 
-       ordinary ingredients into extraordinary flavor.</p>
+<div class="content" id="features">
+  <h2 class="section-title">Why Pickles?</h2>
+  
+  <div class="card" style="animation:fadeUp 0.8s ease-out 0.1s both;">
+    <h3>&#127818; Crunchy Delight</h3>
+    <p>Nothing beats the satisfying crunch of a perfectly made pickle. Whether dill, bread-and-butter, or half-sour, each bite delivers crisp freshness.</p>
   </div>
-
-  <div class="info-card">
-    <h2>Popular Pickle Variety</h2>
-    <ul>
-      <li>Classic Dill Pickles — Garlic-infused and crisp</li>
-      <li>Bread-and-Butter Pickles — Sweet and tangy slices</li>
-      <li>Spicy Jalapeño Pickles — Heat with a crunch</li>
-      <li>Refrigerator Pickles — Quick, no-canning needed</li>
-      <li>Kosher Dills — Tradition and authenticity</li>
-      <li>Full-Sour Pickles — Bold, vinegar-packed punch</li>
-    </ul>
+  
+  <div class="card" style="animation:fadeUp 0.8s ease-out 0.2s both;">
+    <h3>&#127802; Fermentation Magic</h3>
+    <p>Traditionally fermented in brine, pickles harness the power of lactic acid bacteria to preserve cucumbers while enhancing flavor and probiotic content.</p>
   </div>
-
-  <div class="info-card">
-    <h2>Why We Love Pickles</h2>
-    <p>Pickles aren't just tasty — they're packed with benefits:</p>
-    <ul>
-      <li>Probiotics from fermentation support gut health</li>
-      <li>Low in calories, high in flavor</li>
-      <li>Versatile snack for any time of day</li>
-      <li>Perfect pairing for sandwiches and burgers</li>
-      <li>Can be made at home with minimal equipment</li>
-    </ul>
+  
+  <div class="card" style="animation:fadeUp 0.8s ease-out 0.3s both;">
+    <h3>&#127836; Universal Pairing</h3>
+    <p>Pickles complement everything from sandwiches and burgers to cheese boards and cocktails. They add acidity, saltiness, and crunch to any dish.</p>
+  </div>
+  
+  <div class="card" style="animation:fadeUp 0.8s ease-out 0.4s both;">
+    <h3>&#127800; Versatile Flavors</h3>
+    <p>From classic dill and garlic to spicy jalapeño and sweet bread-and-butter, there's a pickle for every palate. Experiment with different varieties!</p>
   </div>
 </div>
 
@@ -250,7 +263,6 @@ footer {
     <div class="footer-col">
       <div class="footer-brand">
         <span><span class="cyan">Otter</span>Bot</span>
-        <span class="tagline">Free & Open Source AI Assistant</span>
       </div>
       <p style="margin-top: 16px; font-size: 14px; line-height: 1.6; color: var(--grey);">
         OtterBot brings a full desktop environment and AI assistant together in a single Docker container.
@@ -259,8 +271,7 @@ footer {
     <div class="footer-col">
       <h4>Product</h4>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pickles.html">Pickles</a></li>
+        <li><a href="index.html#quickstart">Quick Start</a></li>
         <li><a href="https://github.com/TOoSmOotH/otterbot" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="/docs">Documentation</a></li>
       </ul>
@@ -269,7 +280,6 @@ footer {
       <h4>Community</h4>
       <ul>
         <li><a href="https://github.com/TOoSmOotH/otterbot/issues" target="_blank" rel="noopener">Issues</a></li>
-        <li><a href="https://github.com/TOoSmOotH/otterbot/discussions" target="_blank" rel="noopener">Discussions</a></li>
         <li><a href="mailto:contact@otterbot.ai" class="external">contact<span class="external-icon"></span></a></li>
       </ul>
     </div>
@@ -278,38 +288,31 @@ footer {
       <ul>
         <li><a href="/LICENSE">MIT License</a></li>
         <li><a href="/privacy-policy">Privacy Policy</a></li>
-        <li><a href="/terms-of-service">Terms of Service</a></li>
       </ul>
     </div>
   </div>
-  <div class="copyright-bar">
-    <div class="copyright-text">
-      <span>&copy; <span id="year"></span> OtterBot. All rights reserved.</span>
-      <span>&middot;</span>
-      <span>Open Source &middot; Built with <span style="color:var(--cyan)">Docker</span></span>
-    </div>
-    <div class="social-links">
-      <a href="https://github.com/TOoSmOotH/otterbot" aria-label="GitHub" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-      <a href="https://twitter.com/otterbot_ai" aria-label="Twitter" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-2.37-.65v.06a4.48 4.48 0 003.17 4.39 4.51 4.51 0 01-2.03.08 4.51 4.51 0 002.03-2.48 9.03 9.03 0 01-7.21-3.58 4.52 4.52 0 00.69 2.38 4.51 4.51 0 01-2.06-.54v.05a4.51 4.51 0 003.62 4.42 9.05 9.05 0 01-5.59 1.93 4.52 4.52 0 002.17.06 4.52 4.52 0 001.58-.3 4.51 4.51 0 01-3.53-4.42c0-.07.01-.14.02-.2 1 .7 2.16 1.12 3.41 1.16a4.53 4.53 0 003.03-1.25 9.04 9.04 0 01-2.6-.07 4.51 4.51 0 004.38 3.12 9.05 9.05 0 01-5.56 1.92 12.7 12.7 0 006.76 2c8.08 0 12.5-6.69 12.5-12.49 0-.19 0-.37-.02-.55.85-.61 1.59-1.37 2.22-2.24z"/></svg>
-      </a>
-      <a href="mailto:contact@otterbot.ai" aria-label="Email">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v.71c0 .35.14.68.38.91L9.64 12.5a1.03 1.03 0 001.21.3l.8-.27a1.02 1.02 0 011.22.1l6.22 4.46a1 1 0 001.14-.15V6a2 2 0 00-2-2zm0 1.83L13.83 12a.99.99 0 00-1.16.07L7.55 9.28 5.17 12.4A.29.29 0 015 12.63V18a1 1 0 001 1h16a1 1 0 001-1v-5.37a.29.29 0 01-.17-.24L18.45 12.77l-1.5 1.25a.99.99 0 00-1.16.07L4.17 6.83V6h16v.83z"/></svg>
-      </a>
-    </div>
-  </div>
 </footer>
-<div style="height:40px;"></div>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+const starfield = document.getElementById('starfield');
+for (let i = 0; i < 40; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  const size = Math.random() * 2 + 0.5;
+  star.style.cssText = `
+    left: ${Math.random() * 100}%;
+    top: ${Math.random() * 100}%;
+    width: ${size}px;
+    height: ${size}px;
+    animation: twinkle ${Math.random() * 3 + 2}s ease-in-out ${Math.random() * 5}s infinite;
+  `;
+  starfield.appendChild(star);
+}
 
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 50);
-  }, { passive: true });
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
 </script>
 </body>
 </html>
