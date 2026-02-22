@@ -265,6 +265,7 @@ td code {
     <a href="#dev-setup">Development Setup</a>
     <a href="#setup-wizard">First-Run Setup Wizard</a>
     <a href="#env-vars">Environment Variables</a>
+    <a href="#hosting">Hosting for Clients</a>
   </div>
 
   <!-- PREREQUISITES -->
@@ -586,6 +587,102 @@ td code {
     <li><strong>Build tools:</strong> build-essential, git, curl, sqlite3, ffmpeg, GitHub CLI (gh)</li>
     <li><strong>Coding agent CLIs:</strong> Claude Code, Codex, OpenCode (optional &mdash; configure in Settings)</li>
   </ul>
+
+  <!-- HOSTING -->
+  <h2 id="hosting"><span class="cyan">#</span> Hosting for Clients</h2>
+  <p>
+    If you're hosting an OtterBot instance for someone else &mdash; a client, teammate, or friend &mdash;
+    you can set a temporary bootstrap passphrase so they can log in and complete their own setup
+    (change passphrase, configure LLM provider, profile, voice, search, etc.).
+  </p>
+
+  <h3>Bootstrap Passphrase</h3>
+  <p>
+    Set the <code>OTTER_PASSPHRASE</code> environment variable to a temporary passphrase before
+    starting the container. This passphrase is marked as temporary &mdash; the client will be
+    required to change it on first login.
+  </p>
+  <p>
+    For Docker secrets, use <code>OTTER_PASSPHRASE_FILE</code> instead, pointing to a file
+    containing the passphrase.
+  </p>
+  <div class="code-block">
+    <span class="kw">$</span> docker run <span class="fl">-d</span> <span class="fl">-p</span> <span class="str">62626:62626</span> \<br>
+    &nbsp;&nbsp;<span class="fl">--name</span> <span class="str">otterbot</span> \<br>
+    &nbsp;&nbsp;<span class="fl">-v</span> <span class="str">~/otterbot:/otterbot</span> \<br>
+    &nbsp;&nbsp;<span class="fl">-e</span> <span class="str">OTTERBOT_DB_KEY=my-secret-key</span> \<br>
+    &nbsp;&nbsp;<span class="fl">-e</span> <span class="str">OTTER_PASSPHRASE=temp-pass-for-client</span> \<br>
+    &nbsp;&nbsp;<span class="fl">--shm-size</span> <span class="str">256m</span> \<br>
+    &nbsp;&nbsp;ghcr.io/toosmooth/otterbot:latest
+  </div>
+
+  <h3>Client Setup Flow</h3>
+
+  <div class="step">
+    <span class="step-num">Step 01 &mdash; Log in</span>
+    <p style="margin-bottom:0;">
+      The client opens <code>https://your-host:62626</code> in their browser and enters the
+      bootstrap passphrase you provided.
+    </p>
+  </div>
+
+  <div class="step">
+    <span class="step-num">Step 02 &mdash; Set a permanent passphrase</span>
+    <p style="margin-bottom:0;">
+      Because the bootstrap passphrase is temporary, the client is immediately prompted to
+      choose their own permanent passphrase.
+    </p>
+  </div>
+
+  <div class="step">
+    <span class="step-num">Step 03 &mdash; Complete the setup wizard</span>
+    <p style="margin-bottom:0;">
+      The client walks through the standard setup wizard &mdash; configuring their LLM provider
+      and API key, profile, voice, and search preferences.
+    </p>
+  </div>
+
+  <h3>CORS / Remote Access</h3>
+  <p>
+    If your OtterBot instance is behind a reverse proxy or accessed from a different origin,
+    set <code>OTTERBOT_ALLOWED_ORIGIN</code> to the origin(s) that need access:
+  </p>
+  <div class="code-block">
+    <span class="fl">-e</span> <span class="str">OTTERBOT_ALLOWED_ORIGIN=https://otterbot.example.com</span>
+  </div>
+
+  <div class="callout info">
+    <span class="icon">&#128274;</span>
+    <p>
+      <strong>HTTPS &amp; Microphone:</strong> OtterBot automatically generates a self-signed TLS
+      certificate so the UI is served over HTTPS. This is required for browser microphone access
+      (<code>getUserMedia</code>) when connecting from a remote host.
+    </p>
+  </div>
+
+  <h3>Hosting Environment Variables</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Variable</th><th>Description</th><th>Default</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>OTTER_PASSPHRASE</code></td><td>Bootstrap passphrase for client login. Marked as temporary &mdash; the client must change it on first use.</td><td>&mdash;</td></tr>
+        <tr><td><code>OTTER_PASSPHRASE_FILE</code></td><td>Path to a file containing the bootstrap passphrase (for Docker secrets).</td><td>&mdash;</td></tr>
+        <tr><td><code>OTTERBOT_ALLOWED_ORIGIN</code></td><td>Comma-separated origins allowed to access the API (CORS). Required when the client connects from a different origin than the server.</td><td>Same-origin only</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <span class="icon">&#9888;&#65039;</span>
+    <p>
+      <strong>Security:</strong> The bootstrap passphrase is intended as a one-time handoff.
+      Ensure your client changes it immediately. For production deployments, place OtterBot
+      behind a reverse proxy with a proper TLS certificate rather than relying on the
+      self-signed cert.
+    </p>
+  </div>
 </main>
 
 </body>
