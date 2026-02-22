@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oranges</title>
+<meta name="description" content="Oranges are citrus fruits known for their sweet taste and high vitamin C content.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-light: #0f2240;
+  --navy-mid: #132d54;
+  --cyan: #00d4ff;
+  --cyan-glow: #00d4ff55;
+  --cyan-dim: #00d4ff22;
+  --teal: #0891b2;
+  --green: #4a7c59;
+  --green-light: #5fa872;
+  --white: #e8f4f8;
+  --foam: #c8e6ec;
+  --grey: #7b9eb8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); overflow-x: hidden; font-family: 'IBM Plex Sans', sans-serif; color: var(--foam); }
+
+::selection { background: #00d4ff33; color: var(--white); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: #00d4ff33; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #00d4ff55; }
+
+@keyframes waveSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.wave-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.wave-bg-gradient {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 0%, var(--navy-mid) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 50% at 80% 100%, var(--cyan-dim) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 80%, #0d3b5522 0%, transparent 50%),
+    var(--navy);
+}
+.circuit-svg { position: absolute; inset: 0; opacity: 0.04; }
+.wave-layer-1 {
+  position: absolute; bottom: 0; left: 0; width: 200%; height: 180px; opacity: 0.08;
+  animation: waveSlide 18s linear infinite;
+}
+.wave-layer-2 {
+  position: absolute; bottom: 0; left: 0; width: 200%; height: 130px; opacity: 0.05;
+  animation: waveSlide 24s linear infinite reverse;
+}
+
+.starfield { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.star {
+  position: absolute; border-radius: 50%; background: var(--cyan); opacity: 0.3;
+}
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.3s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: #0a1628ee;
+  backdrop-filter: blur(16px);
+  border-bottom-color: #00d4ff10;
+}
+.nav-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 800; color: var(--white);
+  letter-spacing: -0.03em;
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-brand .cyan { color: var(--cyan); }
+.badge {
+  background: #4a7c5933; color: var(--green-light);
+  font-size: 10px; font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 3px 8px; border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-link {
+  color: var(--grey); text-decoration: none;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px; font-weight: 500;
+  transition: color 0.2s; letter-spacing: 0.02em;
+}
+.nav-link:hover { color: var(--cyan); }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 120px 40px 80px;
+  text-align: center;
+  position: relative;
+}
+
+.orange-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 20px;
+  margin: 40px auto 30px;
+  display: block;
+  box-shadow: 0 20px 60px var(--cyan-glow);
+  animation: fadeUp 0.8s ease-out;
+}
+
+.content {
+  background: linear-gradient(135deg, #0f2240cc, #132d5488);
+  border: 1px solid #00d4ff18;
+  border-radius: 16px;
+  padding: 48px;
+  backdrop-filter: blur(12px);
+  position: relative;
+  margin-top: 40px;
+}
+
+.content h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: clamp(16px, 2vw, 18px);
+  line-height: 1.7;
+  color: var(--grey);
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.features-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+footer {
+  background: var(--navy-light);
+  padding: 60px 40px 40px;
+  border-top: 1px solid #00d4ff10;
+  margin-top: 80px;
+}
+.footer-col {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 32px;
+}
+.footer-col:last-child {
+  padding-right: 0;
+}
+.footer-col h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-col li { margin-bottom: 8px; }
+.footer-col a {
+  color: var(--grey);
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--cyan); }
+
+@media (max-width: 768px) {
+  .nav { padding: 14px 20px; }
+  .nav-links .nav-link { display: none; }
+  .container { padding: 80px 24px 60px; }
+  .content { padding: 32px 24px; }
+  .footer-col { display: block; padding-right: 0; margin-bottom: 24px; }
+  footer { padding: 60px 24px 40px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wave-bg">
+  <div class="wave-bg-gradient"></div>
+  <svg class="circuit-svg" width="100%" height="100%">
+    <defs>
+      <pattern id="circuit" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+        <path d="M0 60h40M80 60h40M60 0v40M60 80v40" stroke="#00d4ff" stroke-width="1" fill="none"/>
+        <circle cx="60" cy="60" r="3" fill="#00d4ff"/>
+        <circle cx="40" cy="60" r="2" fill="#00d4ff"/>
+        <circle cx="80" cy="60" r="2" fill="#00d4ff"/>
+        <circle cx="60" cy="40" r="2" fill="#00d4ff"/>
+        <circle cx="60" cy="80" r="2" fill="#00d4ff"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#circuit)"/>
+  </svg>
+  <svg class="wave-layer-1" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <path fill="#00d4ff" d="M0,224L60,213.3C120,203,240,181,360,181.3C480,181,600,203,720,213.3C840,224,960,224,1080,208C1200,192,1320,160,1440,165.3L1440,320L0,320Z"/>
+  </svg>
+  <svg class="wave-layer-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <path fill="#0891b2" d="M0,288L80,272C160,256,320,224,480,229.3C640,235,800,277,960,277.3C1120,277,1280,235,1440,218.7L1440,320L0,320Z"/>
+  </svg>
+</div>
+
+<div class="starfield" id="starfield"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-brand">
+    <span><span class="cyan">Otter</span>Bot</span>
+    <span class="badge">OPEN SOURCE</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="oranges.html" class="nav-link">Oranges</a>
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#quickstart" class="nav-link">Quick Start</a>
+    <a href="/docs" class="nav-link">Docs</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#quickstart" class="btn btn-outline btn-sm">&#9889; Get Started</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="content">
+    <h1 class="orange-title">Oranges</h1>
+    <img src="https://images.unsplash.com/photo-1569937853745-75856ab98611" alt="Orange" class="orange-image">
+    <p class="orange-description">
+      Oranges are citrus fruits known for their sweet taste and high vitamin C content. 
+      These vibrant fruits are not only delicious but also packed with nutrients, 
+      antioxidants, and fiber that support overall health and boost the immune system.
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-col">
+      <div class="footer-brand">
+        <span><span class="cyan">Otter</span>Bot</span>
+        <span class="tagline" style="display:block;font-size:12px;color:var(--grey);font-family:'IBM Plex Sans',sans-serif;font-weight:400;margin-top:4px;">Free & Open Source AI Assistant</span>
+      </div>
+      <p style="margin-top:16px;font-size:14px;line-height:1.6;color:var(--grey);">
+        OtterBot brings a full desktop environment and AI assistant together in a single Docker container. Built for privacy, designed for ease.
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#quickstart">Quick Start</a></li>
+        <li><a href="https://github.com/TOoSmOotH/otterbot" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://hub.docker.com/r/otterbot" target="_blank" rel="noopener">Docker Hub</a></li>
+        <li><a href="/docs">Documentation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <ul>
+        <li><a href="https://github.com/TOoSmOotH/otterbot/issues" target="_blank" rel="noopener">Issues</a></li>
+        <li><a href="https://github.com/TOoSmOotH/otterbot/discussions" target="_blank" rel="noopener">Discussions</a></li>
+        <li><a href="https://twitter.com/otterbot_ai" target="_blank" rel="noopener" class="external">Twitter<span style="display:inline-block;margin-left:4px;width:10px;height:10px;background:var(--cyan);mask:url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M19 19H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z\"/></svg>') no-repeat center/contain;-webkit-mask:url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M19 19H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z\"/></svg>') no-repeat center/contain;"></span></a></li>
+        <li><a href="mailto:contact@otterbot.ai" class="external">contact<span style="display:inline-block;margin-left:4px;width:10px;height:10px;background:var(--cyan);mask:url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M19 19H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z\"/></svg>') no-repeat center/contain;-webkit-mask:url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M19 19H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z\"/></svg>') no-repeat center/contain;"></span></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/LICENSE">MIT License</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/terms-of-service">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:40px auto 0;padding-top:32px;border-top:1px solid #00d4ff08;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <div style="font-size:13px;color:var(--grey);display:flex;align-items:center;gap:8px;">
+      <span>&copy; <span id="year"></span> OtterBot. All rights reserved.</span>
+      <span>&middot;</span>
+      <span>Open Source &middot; Built with <span style="color:var(--cyan)">Docker</span></span>
+    </div>
+  </div>
+</footer>
+<div style="height:40px;"></div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const starfield = document.getElementById('starfield');
+  for (let i = 0; i < 40; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    star.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      width: ${size}px;
+      height: ${size}px;
+      animation: twinkle ${Math.random() * 3 + 2}s ease-in-out ${Math.random() * 5}s infinite;
+    `;
+    starfield.appendChild(star);
+  }
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+</script>
+</body>
+</html>
