@@ -192,6 +192,7 @@ code {
 .template-card .role-badge.coo { background: #c792ea22; color: #c792ea; }
 .template-card .role-badge.lead { background: #ffcb6b22; color: #ffcb6b; }
 .template-card .role-badge.worker { background: #00d4ff22; color: var(--cyan); }
+.template-card .role-badge.admin { background: #f5a62322; color: #f5a623; }
 .template-card p {
   font-size: 13px; line-height: 1.5; margin: 0 0 10px;
 }
@@ -320,6 +321,16 @@ td code { font-size: 12px; white-space: nowrap; }
           <td>Project manager. Breaks directives into Kanban tasks, spawns workers, monitors progress, reports results to the COO.</td>
         </tr>
         <tr>
+          <td><code>admin_assistant</code></td>
+          <td>Exactly 1</td>
+          <td>Personal productivity agent. Manages todos, reads/sends email via Gmail, and manages Google Calendar events. Reports to the CEO alongside the COO.</td>
+        </tr>
+        <tr>
+          <td><code>scheduler</code></td>
+          <td>Exactly 1</td>
+          <td>Background agent that runs recurring tasks on configurable intervals (e.g., daily summaries, periodic monitoring). Operates autonomously.</td>
+        </tr>
+        <tr>
           <td><code>worker</code></td>
           <td>1 per task</td>
           <td>Individual contributor. Executes a single task using its assigned tools. Reports completion back to its Team Lead.</td>
@@ -339,7 +350,7 @@ td code { font-size: 12px; white-space: nowrap; }
   <!-- TEMPLATES -->
   <h2 id="templates"><span class="cyan">#</span> Built-in Templates</h2>
   <p>
-    OtterBot ships with 10 built-in agent templates. These cannot be modified or deleted, but
+    OtterBot ships with 14 built-in agent templates. These cannot be modified or deleted, but
     they can be <a href="#customization">cloned and customized</a>.
   </p>
 
@@ -472,6 +483,71 @@ td code { font-size: 12px; white-space: nowrap; }
       <div class="tools-label">Tools</div>
       <div class="tools-list">web_browse, file_read, file_write</div>
     </div>
+    <div class="template-card">
+      <h4>OpenCode Coder</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Delegates coding tasks to the OpenCode CLI via a managed PTY session.</p>
+      <div class="caps">
+        <span class="cap">code</span>
+        <span class="cap">opencode</span>
+        <span class="cap">pty</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">codeagent_delegate, file_read</div>
+    </div>
+    <div class="template-card">
+      <h4>Claude Code Coder</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Delegates coding tasks to the Claude Code CLI via a managed PTY session.</p>
+      <div class="caps">
+        <span class="cap">code</span>
+        <span class="cap">claude-code</span>
+        <span class="cap">pty</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">codeagent_delegate, file_read</div>
+    </div>
+    <div class="template-card">
+      <h4>Codex Coder</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Delegates coding tasks to the OpenAI Codex CLI via a managed PTY session.</p>
+      <div class="caps">
+        <span class="cap">code</span>
+        <span class="cap">codex</span>
+        <span class="cap">pty</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">codeagent_delegate, file_read</div>
+    </div>
+    <div class="template-card">
+      <h4>Tool Builder</h4>
+      <span class="role-badge worker">Worker</span>
+      <p>Creates custom JavaScript tools at runtime that other agents can use.</p>
+      <div class="caps">
+        <span class="cap">tools</span>
+        <span class="cap">javascript</span>
+        <span class="cap">automation</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">tool_create, file_read, file_write, shell_exec</div>
+    </div>
+  </div>
+
+  <h3>Specialized Templates</h3>
+  <div class="template-grid">
+    <div class="template-card">
+      <h4>Admin Assistant</h4>
+      <span class="role-badge admin">Admin Assistant</span>
+      <p>Personal productivity agent. Manages todos, reads/sends email, and manages calendar events.</p>
+      <div class="caps">
+        <span class="cap">todos</span>
+        <span class="cap">email</span>
+        <span class="cap">calendar</span>
+        <span class="cap">productivity</span>
+      </div>
+      <div class="tools-label">Tools</div>
+      <div class="tools-list">todo_manage, gmail_read, gmail_send, calendar_manage, memory_save</div>
+    </div>
   </div>
 
   <!-- LIFECYCLE -->
@@ -546,6 +622,41 @@ td code { font-size: 12px; white-space: nowrap; }
           <td><code>install_package</code></td>
           <td>Install apt or npm packages in the container</td>
           <td>Coder</td>
+        </tr>
+        <tr>
+          <td><code>codeagent_delegate</code></td>
+          <td>Delegate a coding task to an external CLI agent (OpenCode, Claude Code, or Codex) via PTY</td>
+          <td>OpenCode Coder, Claude Code Coder, Codex Coder</td>
+        </tr>
+        <tr>
+          <td><code>tool_create</code></td>
+          <td>Create a custom JavaScript tool at runtime, sandboxed via <code>isolated-vm</code></td>
+          <td>Tool Builder</td>
+        </tr>
+        <tr>
+          <td><code>todo_manage</code></td>
+          <td>Create, list, update, and delete personal todo items</td>
+          <td>Admin Assistant</td>
+        </tr>
+        <tr>
+          <td><code>gmail_read</code></td>
+          <td>Read, search, and list Gmail messages and labels</td>
+          <td>Admin Assistant</td>
+        </tr>
+        <tr>
+          <td><code>gmail_send</code></td>
+          <td>Send, reply, archive, and label Gmail messages</td>
+          <td>Admin Assistant</td>
+        </tr>
+        <tr>
+          <td><code>calendar_manage</code></td>
+          <td>Create, update, delete, and list Google Calendar events</td>
+          <td>Admin Assistant</td>
+        </tr>
+        <tr>
+          <td><code>memory_save</code></td>
+          <td>Save an episodic memory for later semantic retrieval</td>
+          <td>Admin Assistant, COO</td>
         </tr>
       </tbody>
     </table>

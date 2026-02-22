@@ -268,6 +268,10 @@ td code { font-size: 12px; white-space: nowrap; }
     <a href="#hierarchy">Agent Hierarchy</a>
     <a href="#message-bus">Message Bus</a>
     <a href="#workspaces">Workspace Isolation</a>
+    <a href="#memory">Memory System</a>
+    <a href="#modules">Module System</a>
+    <a href="#messaging">Messaging Bridges</a>
+    <a href="#coding-agents">Coding Agent Integration</a>
     <a href="#tech-stack">Tech Stack</a>
     <a href="#packages">Package Structure</a>
   </div>
@@ -297,11 +301,13 @@ td code { font-size: 12px; white-space: nowrap; }
 <span class="note">  |</span>                                                         <span class="note">|</span>
 <span class="note">  |</span>  Message Bus &bull; Agent Registry &bull; Tool Context           <span class="note">|</span>
 <span class="note">  |</span>  TTS/STT &bull; Search &bull; Browser Pool &bull; Package Mgr       <span class="note">|</span>
+<span class="note">  |</span>  Memory &amp; Soul &bull; Module System &bull; Scheduler            <span class="note">|</span>
 <span class="note">  +---------------------------+-----------------------------+</span>
                               <span class="arrow">|</span>
 <span class="note">  +---------------------------+-----------------------------+</span>
 <span class="note">  |</span>  <span class="role">Storage &amp; Services</span>                                     <span class="note">|</span>
 <span class="note">  |</span>  SQLite (encrypted) &bull; Workspace FS &bull; noVNC Desktop     <span class="note">|</span>
+<span class="note">  |</span>  Messaging Bridges &bull; Coding Agent PTY Sessions         <span class="note">|</span>
 <span class="note">  +---------------------------------------------------------+</span></div>
 
   <!-- AGENT HIERARCHY -->
@@ -317,6 +323,10 @@ td code { font-size: 12px; white-space: nowrap; }
  <span class="arrow">|</span>
  <span class="arrow">v</span>
 <span class="role">COO</span> <span class="note">(Single persistent AI agent)</span>
+ <span class="arrow">|</span>
+ <span class="arrow">+--&gt;</span> <span class="role">Admin Assistant</span> <span class="note">(Persistent &mdash; todos, email, calendar)</span>
+ <span class="arrow">|</span>
+ <span class="arrow">+--&gt;</span> <span class="role">Scheduler</span> <span class="note">(Background &mdash; recurring tasks)</span>
  <span class="arrow">|</span>
  <span class="arrow">|</span>  Creates projects, writes charters,
  <span class="arrow">|</span>  delegates to Team Leads
@@ -336,6 +346,8 @@ td code { font-size: 12px; white-space: nowrap; }
   <ul>
     <li><strong>CEO (Human)</strong> &mdash; You. Send goals through the chat interface.</li>
     <li><strong>COO</strong> &mdash; The primary AI agent. Maintains conversation context, creates projects, writes project charters, and delegates work to Team Leads.</li>
+    <li><strong>Admin Assistant</strong> &mdash; Persistent personal productivity agent. Manages todos, reads/sends email via Gmail, and manages Google Calendar events. Reports to the CEO alongside the COO.</li>
+    <li><strong>Scheduler</strong> &mdash; Background agent that executes recurring tasks on configurable intervals (e.g., daily standup summaries, periodic monitoring).</li>
     <li><strong>Team Lead</strong> &mdash; Manages a single project. Breaks directives into Kanban tasks, spawns workers, and monitors progress.</li>
     <li><strong>Worker</strong> &mdash; Executes a single task. Has access to tools (file read/write, shell, browser, web search, package installs) based on its template.</li>
   </ul>
@@ -394,6 +406,77 @@ td code { font-size: 12px; white-space: nowrap; }
     <li>The optional virtual desktop runs in its own X11 session</li>
   </ul>
 
+  <!-- MEMORY SYSTEM -->
+  <h2 id="memory"><span class="cyan">#</span> Memory System</h2>
+  <p>
+    OtterBot includes an episodic memory and soul document system that gives agents persistent
+    knowledge across conversations.
+  </p>
+
+  <h3>Episodic Memories</h3>
+  <ul>
+    <li>Agents can save key observations, decisions, and learnings as <strong>memories</strong></li>
+    <li>Memories are stored with vector embeddings for <strong>semantic search</strong></li>
+    <li>Relevant memories are automatically surfaced during conversations</li>
+    <li>A <strong>memory compactor</strong> periodically consolidates related memories to prevent bloat</li>
+  </ul>
+
+  <h3>Soul Documents</h3>
+  <ul>
+    <li><strong>Soul documents</strong> define an agent's identity, values, and behavioral guidelines</li>
+    <li>A <strong>soul advisor</strong> layer injects relevant identity context into agent prompts</li>
+    <li>Soul documents can be created, edited, and managed through the API</li>
+  </ul>
+
+  <!-- MODULE SYSTEM -->
+  <h2 id="modules"><span class="cyan">#</span> Module System</h2>
+  <p>
+    OtterBot supports an extensible <strong>module system</strong> that lets you install third-party
+    functionality without modifying core code.
+  </p>
+  <ul>
+    <li>Modules are installed from GitHub repositories and run in isolation</li>
+    <li>Each module can register webhook endpoints, scheduled tasks, or custom behaviors</li>
+    <li>Modules can be enabled, disabled, or uninstalled via the API</li>
+    <li>Example: the <code>github-discussions</code> module monitors GitHub Discussion activity and posts summaries to the COO</li>
+  </ul>
+
+  <!-- MESSAGING BRIDGES -->
+  <h2 id="messaging"><span class="cyan">#</span> Messaging Bridges</h2>
+  <p>
+    OtterBot can bridge conversations to external messaging platforms, allowing you to interact
+    with your agents from anywhere.
+  </p>
+  <ul>
+    <li><strong>Discord</strong> &mdash; Full bot integration via <code>discord.js</code></li>
+    <li><strong>Slack</strong> &mdash; Workspace app via <code>@slack/bolt</code></li>
+    <li><strong>Matrix</strong> &mdash; Decentralized chat via <code>matrix-js-sdk</code></li>
+    <li><strong>IRC</strong> &mdash; Classic IRC networks via <code>irc-framework</code></li>
+    <li><strong>Microsoft Teams</strong> &mdash; Teams channel integration via webhook</li>
+  </ul>
+  <p>
+    Each bridge runs independently and relays messages bidirectionally between the external
+    platform and the COO. Configuration and credentials are managed through the Settings UI.
+  </p>
+
+  <!-- CODING AGENT INTEGRATION -->
+  <h2 id="coding-agents"><span class="cyan">#</span> Coding Agent Integration</h2>
+  <p>
+    OtterBot can delegate coding tasks to external coding agent CLIs that run in
+    <strong>PTY (pseudo-terminal) sessions</strong> managed by <code>node-pty</code>.
+  </p>
+  <ul>
+    <li><strong>OpenCode</strong> &mdash; Open-source coding assistant CLI</li>
+    <li><strong>Claude Code</strong> &mdash; Anthropic's CLI coding agent</li>
+    <li><strong>Codex</strong> &mdash; OpenAI's CLI coding agent</li>
+  </ul>
+  <p>
+    Each coding agent runs in its own terminal session. OtterBot streams output back to the UI
+    in real-time, handles permission requests (e.g., file write approvals), and captures file
+    diffs when the session completes. This lets you leverage specialized coding agents while
+    keeping everything orchestrated through OtterBot's hierarchy.
+  </p>
+
   <!-- TECH STACK -->
   <h2 id="tech-stack"><span class="cyan">#</span> Tech Stack</h2>
 
@@ -412,6 +495,12 @@ td code { font-size: 12px; white-space: nowrap; }
         <tr><td><code>Playwright</code></td><td>Browser automation for agents</td></tr>
         <tr><td><code>kokoro-js</code></td><td>Local text-to-speech (Kokoro model)</td></tr>
         <tr><td><code>@huggingface/transformers</code></td><td>Local speech-to-text (Whisper)</td></tr>
+        <tr><td><code>discord.js</code></td><td>Discord messaging bridge</td></tr>
+        <tr><td><code>@slack/bolt</code></td><td>Slack messaging bridge</td></tr>
+        <tr><td><code>matrix-js-sdk</code></td><td>Matrix messaging bridge</td></tr>
+        <tr><td><code>irc-framework</code></td><td>IRC messaging bridge</td></tr>
+        <tr><td><code>node-pty</code></td><td>PTY sessions for coding agent CLIs</td></tr>
+        <tr><td><code>isolated-vm</code></td><td>Sandboxed execution for custom tools</td></tr>
       </tbody>
     </table>
   </div>
@@ -486,7 +575,7 @@ td code { font-size: 12px; white-space: nowrap; }
 <span class="fl">|  +--</span> server/            <span class="cm"># @otterbot/server</span>
 <span class="fl">|  |  +--</span> src/
 <span class="fl">|  |  |  +--</span> index.ts     <span class="cm"># Fastify app + routes</span>
-<span class="fl">|  |  |  +--</span> agents/      <span class="cm"># COO, Team Lead, Worker, BaseAgent</span>
+<span class="fl">|  |  |  +--</span> agents/      <span class="cm"># COO, Team Lead, Worker, Admin Assistant</span>
 <span class="fl">|  |  |  +--</span> socket/      <span class="cm"># Socket.IO event handlers</span>
 <span class="fl">|  |  |  +--</span> db/          <span class="cm"># Drizzle schema, migrations, seed</span>
 <span class="fl">|  |  |  +--</span> tools/       <span class="cm"># Agent tools (file, shell, browse, search)</span>
@@ -494,6 +583,13 @@ td code { font-size: 12px; white-space: nowrap; }
 <span class="fl">|  |  |  +--</span> stt/         <span class="cm"># Speech-to-text providers</span>
 <span class="fl">|  |  |  +--</span> registry/    <span class="cm"># Agent template registry</span>
 <span class="fl">|  |  |  +--</span> models3d/    <span class="cm"># 3D model/environment pack discovery</span>
+<span class="fl">|  |  |  +--</span> memory/      <span class="cm"># Episodic memory &amp; soul documents</span>
+<span class="fl">|  |  |  +--</span> coding-agents/ <span class="cm"># OpenCode, Claude Code, Codex PTY</span>
+<span class="fl">|  |  |  +--</span> messaging/   <span class="cm"># Discord, Slack, Teams bridges</span>
+<span class="fl">|  |  |  +--</span> irc/         <span class="cm"># IRC &amp; Matrix bridges</span>
+<span class="fl">|  |  |  +--</span> modules/     <span class="cm"># External module system</span>
+<span class="fl">|  |  |  +--</span> skills/      <span class="cm"># Skill/prompt fragment registry</span>
+<span class="fl">|  |  |  +--</span> scheduling/  <span class="cm"># Scheduler &amp; custom tasks</span>
 <span class="fl">|  +--</span> web/               <span class="cm"># @otterbot/web</span>
 <span class="fl">|  |  +--</span> src/
 <span class="fl">|  |  |  +--</span> components/  <span class="cm"># React components</span>

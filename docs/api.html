@@ -190,6 +190,7 @@ code {
 .method.get { background: #4a7c5933; color: var(--green-light); }
 .method.post { background: #00d4ff22; color: var(--cyan); }
 .method.put { background: #ffcb6b22; color: #ffcb6b; }
+.method.patch { background: #ffcb6b22; color: #ffcb6b; }
 .method.delete { background: #ff537022; color: #ff5370; }
 .endpoint-path {
   font-family: 'JetBrains Mono', monospace;
@@ -302,6 +303,19 @@ td code { font-size: 12px; white-space: nowrap; }
     <a href="#rest-3d">REST: 3D Models &amp; Scenes</a>
     <a href="#rest-settings">REST: Settings</a>
     <a href="#rest-other">REST: Desktop, Packages, Profile</a>
+    <a href="#rest-todos">REST: Todos</a>
+    <a href="#rest-tools">REST: Custom Tools</a>
+    <a href="#rest-skills">REST: Skills</a>
+    <a href="#rest-usage">REST: Usage Analytics</a>
+    <a href="#rest-github">REST: GitHub</a>
+    <a href="#rest-messaging">REST: Messaging</a>
+    <a href="#rest-coding">REST: Coding Agents</a>
+    <a href="#rest-google">REST: Google (Calendar &amp; Gmail)</a>
+    <a href="#rest-backup">REST: Backup &amp; Restore</a>
+    <a href="#rest-modules">REST: Modules</a>
+    <a href="#rest-world">REST: World Layout</a>
+    <a href="#rest-scheduled">REST: Scheduled Tasks</a>
+    <a href="#rest-files">REST: Files</a>
     <a href="#socket-c2s">Socket.IO: Client &rarr; Server</a>
     <a href="#socket-s2c">Socket.IO: Server &rarr; Client</a>
     <a href="#types">Data Types</a>
@@ -884,6 +898,722 @@ td code { font-size: 12px; white-space: nowrap; }
     <p class="endpoint-desc">Update the user's 3D model pack for the Live View.</p>
   </div>
 
+  <!-- REST: TODOS -->
+  <h2 id="rest-todos"><span class="cyan">#</span> REST: Todos</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/todos</span>
+    </div>
+    <p class="endpoint-desc">List all todo items.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/todos</span>
+    </div>
+    <p class="endpoint-desc">Create a new todo item.</p>
+    <div class="code-block"><span class="cm">// Request body</span>
+{
+  <span class="str">"title"</span>: <span class="str">"Review PR #42"</span>,
+  <span class="str">"description"</span>: <span class="str">"Check for security issues"</span>,
+  <span class="str">"priority"</span>: <span class="str">"high"</span>,
+  <span class="str">"dueDate"</span>: <span class="str">"2025-03-01T00:00:00Z"</span>
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/todos/:id</span>
+    </div>
+    <p class="endpoint-desc">Update a todo item (title, description, priority, status, due date).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/todos/:id</span>
+    </div>
+    <p class="endpoint-desc">Delete a todo item.</p>
+  </div>
+
+  <!-- REST: CUSTOM TOOLS -->
+  <h2 id="rest-tools"><span class="cyan">#</span> REST: Custom Tools</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/tools</span>
+    </div>
+    <p class="endpoint-desc">List all custom tools.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/tools</span>
+    </div>
+    <p class="endpoint-desc">Create a new custom tool.</p>
+    <div class="code-block"><span class="cm">// Request body</span>
+{
+  <span class="str">"name"</span>: <span class="str">"weather_lookup"</span>,
+  <span class="str">"description"</span>: <span class="str">"Get current weather for a city"</span>,
+  <span class="str">"parameters"</span>: { <span class="cm">/* JSON Schema */</span> },
+  <span class="str">"code"</span>: <span class="str">"const resp = await fetch(...);"</span>
+}</div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method patch">PATCH</span>
+      <span class="endpoint-path">/api/tools/:id</span>
+    </div>
+    <p class="endpoint-desc">Update an existing custom tool.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/tools/:id</span>
+    </div>
+    <p class="endpoint-desc">Delete a custom tool.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/tools/ai-generate</span>
+    </div>
+    <p class="endpoint-desc">AI-generate a custom tool from a natural language description.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/tools/available</span>
+    </div>
+    <p class="endpoint-desc">List all available tools (built-in + custom) that can be assigned to agents.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/tools/examples</span>
+    </div>
+    <p class="endpoint-desc">Get example custom tool definitions for reference.</p>
+  </div>
+
+  <!-- REST: SKILLS -->
+  <h2 id="rest-skills"><span class="cyan">#</span> REST: Skills</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/skills</span>
+    </div>
+    <p class="endpoint-desc">List all skills (markdown prompt fragments).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/skills</span>
+    </div>
+    <p class="endpoint-desc">Create a new skill.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/skills/:id</span>
+    </div>
+    <p class="endpoint-desc">Update a skill's content or metadata.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/skills/:id</span>
+    </div>
+    <p class="endpoint-desc">Delete a skill.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/skills/:id/clone</span>
+    </div>
+    <p class="endpoint-desc">Clone an existing skill as a new skill.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/skills/import</span>
+    </div>
+    <p class="endpoint-desc">Import skills from a JSON payload.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/skills/scan</span>
+    </div>
+    <p class="endpoint-desc">Scan a directory for skill files and auto-import them.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/skills/export</span>
+    </div>
+    <p class="endpoint-desc">Export all skills as a JSON file.</p>
+  </div>
+
+  <!-- REST: USAGE -->
+  <h2 id="rest-usage"><span class="cyan">#</span> REST: Usage Analytics</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/usage/summary</span>
+    </div>
+    <p class="endpoint-desc">Get a summary of total token usage and estimated costs.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/usage/recent</span>
+    </div>
+    <p class="endpoint-desc">List recent usage entries with timestamps.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/usage/by-model</span>
+    </div>
+    <p class="endpoint-desc">Get token usage broken down by LLM model.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/usage/by-agent</span>
+    </div>
+    <p class="endpoint-desc">Get token usage broken down by agent instance.</p>
+  </div>
+
+  <!-- REST: GITHUB -->
+  <h2 id="rest-github"><span class="cyan">#</span> REST: GitHub</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/github</span>
+    </div>
+    <p class="endpoint-desc">Get GitHub integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/github</span>
+    </div>
+    <p class="endpoint-desc">Update GitHub integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/github/ssh/generate</span>
+    </div>
+    <p class="endpoint-desc">Generate a new SSH key pair for Git authentication.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/github/ssh/import</span>
+    </div>
+    <p class="endpoint-desc">Import an existing SSH private key.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/github/ssh/test</span>
+    </div>
+    <p class="endpoint-desc">Test SSH connectivity to GitHub.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/github/ssh/public-key</span>
+    </div>
+    <p class="endpoint-desc">Get the public key for the current SSH key pair.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/settings/github/ssh</span>
+    </div>
+    <p class="endpoint-desc">Delete the current SSH key pair.</p>
+  </div>
+
+  <!-- REST: MESSAGING -->
+  <h2 id="rest-messaging"><span class="cyan">#</span> REST: Messaging</h2>
+  <p>Each messaging bridge has GET/PUT settings endpoints and a test endpoint.</p>
+
+  <h3>Discord</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/discord</span>
+    </div>
+    <p class="endpoint-desc">Get Discord bridge settings (bot token, channel ID, enabled status).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/discord</span>
+    </div>
+    <p class="endpoint-desc">Update Discord bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/discord/test</span>
+    </div>
+    <p class="endpoint-desc">Test the Discord bot connection.</p>
+  </div>
+
+  <h3>Slack</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/slack</span>
+    </div>
+    <p class="endpoint-desc">Get Slack bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/slack</span>
+    </div>
+    <p class="endpoint-desc">Update Slack bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/slack/test</span>
+    </div>
+    <p class="endpoint-desc">Test the Slack app connection.</p>
+  </div>
+
+  <h3>Matrix</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/matrix</span>
+    </div>
+    <p class="endpoint-desc">Get Matrix bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/matrix</span>
+    </div>
+    <p class="endpoint-desc">Update Matrix bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/matrix/test</span>
+    </div>
+    <p class="endpoint-desc">Test the Matrix homeserver connection.</p>
+  </div>
+
+  <h3>IRC</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/irc</span>
+    </div>
+    <p class="endpoint-desc">Get IRC bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/irc</span>
+    </div>
+    <p class="endpoint-desc">Update IRC bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/irc/test</span>
+    </div>
+    <p class="endpoint-desc">Test the IRC server connection.</p>
+  </div>
+
+  <h3>Microsoft Teams</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/teams</span>
+    </div>
+    <p class="endpoint-desc">Get Teams bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/teams</span>
+    </div>
+    <p class="endpoint-desc">Update Teams bridge settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/teams/pairing</span>
+    </div>
+    <p class="endpoint-desc">Initiate Teams webhook pairing.</p>
+  </div>
+
+  <!-- REST: CODING AGENTS -->
+  <h2 id="rest-coding"><span class="cyan">#</span> REST: Coding Agents</h2>
+
+  <h3>OpenCode</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/opencode</span>
+    </div>
+    <p class="endpoint-desc">Get OpenCode integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/opencode</span>
+    </div>
+    <p class="endpoint-desc">Update OpenCode integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/opencode/test</span>
+    </div>
+    <p class="endpoint-desc">Test the OpenCode CLI availability.</p>
+  </div>
+
+  <h3>Claude Code</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/claude-code</span>
+    </div>
+    <p class="endpoint-desc">Get Claude Code integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/claude-code</span>
+    </div>
+    <p class="endpoint-desc">Update Claude Code integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/claude-code/test</span>
+    </div>
+    <p class="endpoint-desc">Test the Claude Code CLI availability.</p>
+  </div>
+
+  <h3>Codex</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/codex</span>
+    </div>
+    <p class="endpoint-desc">Get Codex integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/settings/codex</span>
+    </div>
+    <p class="endpoint-desc">Update Codex integration settings.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/codex/test</span>
+    </div>
+    <p class="endpoint-desc">Test the Codex CLI availability.</p>
+  </div>
+
+  <!-- REST: GOOGLE -->
+  <h2 id="rest-google"><span class="cyan">#</span> REST: Google (Calendar &amp; Gmail)</h2>
+
+  <h3>Calendar</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/calendar/calendars</span>
+    </div>
+    <p class="endpoint-desc">List all calendars on the connected Google account.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/calendar/events</span>
+    </div>
+    <p class="endpoint-desc">List events, optionally filtered by calendar ID and date range.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/calendar/events</span>
+    </div>
+    <p class="endpoint-desc">Create a new calendar event.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/calendar/events/:id</span>
+    </div>
+    <p class="endpoint-desc">Update an existing calendar event.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/calendar/events/:id</span>
+    </div>
+    <p class="endpoint-desc">Delete a calendar event.</p>
+  </div>
+
+  <h3>Gmail</h3>
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/gmail/labels</span>
+    </div>
+    <p class="endpoint-desc">List all Gmail labels.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/gmail/messages</span>
+    </div>
+    <p class="endpoint-desc">List Gmail messages, optionally filtered by label or search query.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/gmail/messages/:id</span>
+    </div>
+    <p class="endpoint-desc">Get a specific Gmail message by ID.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/gmail/send</span>
+    </div>
+    <p class="endpoint-desc">Send a new email.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/gmail/messages/:id/archive</span>
+    </div>
+    <p class="endpoint-desc">Archive a Gmail message (remove from inbox).</p>
+  </div>
+
+  <!-- REST: BACKUP -->
+  <h2 id="rest-backup"><span class="cyan">#</span> REST: Backup &amp; Restore</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/settings/backup</span>
+    </div>
+    <p class="endpoint-desc">Download a full database backup.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/settings/restore</span>
+    </div>
+    <p class="endpoint-desc">Restore the database from an uploaded backup file.</p>
+  </div>
+
+  <!-- REST: MODULES -->
+  <h2 id="rest-modules"><span class="cyan">#</span> REST: Modules</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/modules</span>
+    </div>
+    <p class="endpoint-desc">List all installed modules.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/modules/install</span>
+    </div>
+    <p class="endpoint-desc">Install a module from a GitHub repository URL.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/modules/:id/toggle</span>
+    </div>
+    <p class="endpoint-desc">Enable or disable an installed module.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/modules/:id</span>
+    </div>
+    <p class="endpoint-desc">Uninstall a module.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/modules/webhooks/:moduleId/*</span>
+    </div>
+    <p class="endpoint-desc">Webhook handler for module-registered endpoints (e.g., GitHub webhooks).</p>
+  </div>
+
+  <!-- REST: WORLD LAYOUT -->
+  <h2 id="rest-world"><span class="cyan">#</span> REST: World Layout</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/world</span>
+    </div>
+    <p class="endpoint-desc">Get the current world layout (all zones).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/world</span>
+    </div>
+    <p class="endpoint-desc">Create or update a zone in the world layout.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/world/:zoneId</span>
+    </div>
+    <p class="endpoint-desc">Delete a zone from the world layout.</p>
+  </div>
+
+  <!-- REST: SCHEDULED TASKS -->
+  <h2 id="rest-scheduled"><span class="cyan">#</span> REST: Scheduled Tasks</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/scheduled-tasks</span>
+    </div>
+    <p class="endpoint-desc">List all custom scheduled tasks.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/scheduled-tasks</span>
+    </div>
+    <p class="endpoint-desc">Create a new scheduled task.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method put">PUT</span>
+      <span class="endpoint-path">/api/scheduled-tasks/:id</span>
+    </div>
+    <p class="endpoint-desc">Update a scheduled task (interval, enabled status, prompt).</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method delete">DELETE</span>
+      <span class="endpoint-path">/api/scheduled-tasks/:id</span>
+    </div>
+    <p class="endpoint-desc">Delete a scheduled task.</p>
+  </div>
+
+  <!-- REST: FILES -->
+  <h2 id="rest-files"><span class="cyan">#</span> REST: Files</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/projects/:id/files</span>
+    </div>
+    <p class="endpoint-desc">List files in a project's workspace directory.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/projects/:id/files/read</span>
+    </div>
+    <p class="endpoint-desc">Read the contents of a file in a project's workspace.</p>
+    <div class="endpoint-params">
+      <div class="label">Query Parameters</div>
+      <code>path</code> &mdash; Relative file path within the project workspace
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/projects/:id/files/git</span>
+    </div>
+    <p class="endpoint-desc">Get Git status information for a project's workspace.</p>
+  </div>
+
   <!-- SOCKET: CLIENT TO SERVER -->
   <h2 id="socket-c2s"><span class="cyan">#</span> Socket.IO: Client &rarr; Server</h2>
   <p>Events emitted by the client (browser) to the server. Most use an acknowledgment callback to return data.</p>
@@ -1035,6 +1765,92 @@ td code { font-size: 12px; white-space: nowrap; }
 
 <span class="cm">// Ack</span>
 { <span class="str">"ok"</span>: <span class="kw">true</span>, <span class="str">"error"</span>?: <span class="str">"..."</span> }</div>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">project:create-manual</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Manually create a project (bypasses COO orchestration).</p>
+  </div>
+
+  <h3>Agents &amp; Coding</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">agent:stop</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Force-stop a running agent instance.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">codeagent:respond</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Send a response to a coding agent's prompt (user input during PTY session).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">codeagent:permission-respond</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Approve or deny a coding agent's permission request (file write, shell command).</p>
+  </div>
+
+  <h3>Terminal</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">terminal:input</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Send keyboard input to a terminal PTY session.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">terminal:resize</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Resize a terminal PTY session (rows, cols).</p>
+  </div>
+
+  <h3>Memory &amp; Soul</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">memory:list</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">List episodic memories, optionally filtered by search query.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">memory:save</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Save a new episodic memory.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">soul:list</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">List all soul documents.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">soul:save</span>
+      <span class="direction c2s">Client &rarr; Server</span>
+    </div>
+    <p class="event-desc">Create or update a soul document.</p>
   </div>
 
   <!-- SOCKET: SERVER TO CLIENT -->
@@ -1213,6 +2029,128 @@ td code { font-size: 12px; white-space: nowrap; }
     <p class="event-desc">An agent invoked a tool (file_read, shell_exec, web_search, etc.).</p>
   </div>
 
+  <h3>Admin Assistant</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">admin-assistant:stream</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Token-by-token streaming from the Admin Assistant.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">admin-assistant:response</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Complete Admin Assistant response.</p>
+  </div>
+
+  <h3>Coding Agents</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">codeagent:session-start</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A coding agent PTY session has started.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">codeagent:session-end</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A coding agent PTY session has ended.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">codeagent:event</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A coding agent lifecycle event (tool call, file change, etc.).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">codeagent:message</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A message from the coding agent (output text).</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">codeagent:permission-request</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A coding agent is requesting permission for a file write or shell command.</p>
+  </div>
+
+  <h3>Terminal</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">terminal:output</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Terminal PTY output data.</p>
+  </div>
+
+  <h3>World &amp; Todos</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">world:updated</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">The world layout (zones) has been updated.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">todo:created</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A new todo item was created.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">todo:updated</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A todo item was updated.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">todo:deleted</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A todo item was deleted.</p>
+  </div>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">reminder:triggered</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">A scheduled reminder was triggered.</p>
+  </div>
+
+  <h3>Messaging Status</h3>
+
+  <div class="event">
+    <div class="event-header">
+      <span class="event-name">messaging:status</span>
+      <span class="direction s2c">Server &rarr; Client</span>
+    </div>
+    <p class="event-desc">Status update for a messaging bridge (connected, disconnected, error).</p>
+  </div>
+
   <!-- DATA TYPES -->
   <h2 id="types"><span class="cyan">#</span> Data Types</h2>
 
@@ -1220,7 +2158,7 @@ td code { font-size: 12px; white-space: nowrap; }
   <div class="code-block">{
   <span class="str">"id"</span>: <span class="fl">string</span>,
   <span class="str">"name"</span>: <span class="fl">string</span>,
-  <span class="str">"role"</span>: <span class="str">"coo"</span> | <span class="str">"team_lead"</span> | <span class="str">"worker"</span>,
+  <span class="str">"role"</span>: <span class="str">"coo"</span> | <span class="str">"team_lead"</span> | <span class="str">"worker"</span> | <span class="str">"admin_assistant"</span> | <span class="str">"scheduler"</span>,
   <span class="str">"status"</span>: <span class="str">"idle"</span> | <span class="str">"thinking"</span> | <span class="str">"acting"</span> | <span class="str">"done"</span> | <span class="str">"error"</span>,
   <span class="str">"registryId"</span>: <span class="fl">string</span>,
   <span class="str">"projectId"</span>: <span class="fl">string</span> | <span class="kw">null</span>
@@ -1238,7 +2176,7 @@ td code { font-size: 12px; white-space: nowrap; }
   <span class="str">"defaultProvider"</span>: <span class="fl">string</span>,
   <span class="str">"tools"</span>: <span class="fl">string</span>[],
   <span class="str">"builtIn"</span>: <span class="fl">boolean</span>,
-  <span class="str">"role"</span>: <span class="str">"coo"</span> | <span class="str">"team_lead"</span> | <span class="str">"worker"</span>,
+  <span class="str">"role"</span>: <span class="str">"coo"</span> | <span class="str">"team_lead"</span> | <span class="str">"worker"</span> | <span class="str">"admin_assistant"</span> | <span class="str">"scheduler"</span>,
   <span class="str">"modelPackId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
   <span class="str">"gearConfig"</span>: <span class="fl">GearConfig</span> | <span class="kw">null</span>,
   <span class="str">"clonedFromId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
@@ -1291,6 +2229,59 @@ td code { font-size: 12px; white-space: nowrap; }
   <span class="str">"conversationId"</span>: <span class="fl">string</span>,
   <span class="str">"projectId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
   <span class="str">"timestamp"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>Todo</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"title"</span>: <span class="fl">string</span>,
+  <span class="str">"description"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"status"</span>: <span class="str">"pending"</span> | <span class="str">"in_progress"</span> | <span class="str">"done"</span>,
+  <span class="str">"priority"</span>: <span class="str">"low"</span> | <span class="str">"medium"</span> | <span class="str">"high"</span>,
+  <span class="str">"dueDate"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>,
+  <span class="str">"updatedAt"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>CustomTool</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"name"</span>: <span class="fl">string</span>,
+  <span class="str">"description"</span>: <span class="fl">string</span>,
+  <span class="str">"parameters"</span>: <span class="fl">object</span>,  <span class="cm">// JSON Schema</span>
+  <span class="str">"code"</span>: <span class="fl">string</span>,
+  <span class="str">"enabled"</span>: <span class="fl">boolean</span>,
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>,
+  <span class="str">"updatedAt"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>Skill</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"name"</span>: <span class="fl">string</span>,
+  <span class="str">"description"</span>: <span class="fl">string</span>,
+  <span class="str">"content"</span>: <span class="fl">string</span>,  <span class="cm">// Markdown prompt fragment</span>
+  <span class="str">"tags"</span>: <span class="fl">string</span>[],
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>,
+  <span class="str">"updatedAt"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>Memory</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"content"</span>: <span class="fl">string</span>,
+  <span class="str">"agentId"</span>: <span class="fl">string</span> | <span class="kw">null</span>,
+  <span class="str">"embedding"</span>: <span class="fl">number</span>[],  <span class="cm">// Vector embedding</span>
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>
+}</div>
+
+  <h3>SoulDocument</h3>
+  <div class="code-block">{
+  <span class="str">"id"</span>: <span class="fl">string</span>,
+  <span class="str">"title"</span>: <span class="fl">string</span>,
+  <span class="str">"content"</span>: <span class="fl">string</span>,
+  <span class="str">"createdAt"</span>: <span class="fl">string</span>,
+  <span class="str">"updatedAt"</span>: <span class="fl">string</span>
 }</div>
 
 </main>

@@ -263,6 +263,20 @@ td code { font-size: 12px; white-space: nowrap; }
     <a href="#desktop">Desktop Environment</a>
     <a href="#room-builder">Room Builder</a>
     <a href="#packages">Package Management</a>
+    <a href="#admin-assistant">Admin Assistant</a>
+    <a href="#gmail">Gmail Integration</a>
+    <a href="#calendar">Google Calendar</a>
+    <a href="#custom-tools">Custom Tools</a>
+    <a href="#skills">Skills System</a>
+    <a href="#memory">Memory &amp; Soul</a>
+    <a href="#coding-agents">Coding Agents</a>
+    <a href="#messaging">Messaging Integrations</a>
+    <a href="#scheduled-tasks">Scheduled Tasks</a>
+    <a href="#usage-analytics">Usage Analytics</a>
+    <a href="#backup">Backup &amp; Restore</a>
+    <a href="#github">GitHub Integration</a>
+    <a href="#modules">Module System</a>
+    <a href="#world-layout">World Layout</a>
   </div>
 
   <!-- VOICE -->
@@ -396,7 +410,7 @@ td code { font-size: 12px; white-space: nowrap; }
   <!-- WEB SEARCH -->
   <h2 id="search"><span class="cyan">#</span> Web Search Providers</h2>
   <p>
-    Agents with the <code>web_search</code> tool can search the web. OtterBot supports three
+    Agents with the <code>web_search</code> tool can search the web. OtterBot supports four
     search providers:
   </p>
 
@@ -422,6 +436,14 @@ td code { font-size: 12px; white-space: nowrap; }
       <p>
         AI-optimized search API designed for LLM agents. Requires a Tavily API key.
         Config: <code>search:tavily:api_key</code>.
+      </p>
+    </div>
+    <div class="provider-card">
+      <h4>SearXNG</h4>
+      <span class="tag local">Self-Hosted</span>
+      <p>
+        Privacy-respecting metasearch engine. Connect to your own SearXNG instance.
+        Config: <code>search:searxng:base_url</code>.
       </p>
     </div>
   </div>
@@ -566,6 +588,298 @@ td code { font-size: 12px; white-space: nowrap; }
       when the container stops. Mount a volume to persist installed tools across sessions.
     </p>
   </div>
+
+  <!-- ADMIN ASSISTANT -->
+  <h2 id="admin-assistant"><span class="cyan">#</span> Admin Assistant</h2>
+  <p>
+    The Admin Assistant is a persistent personal productivity agent that handles everyday tasks
+    alongside the COO. It reports directly to the CEO (you) and manages:
+  </p>
+  <ul>
+    <li><strong>Todos</strong> &mdash; Create, list, update, and complete personal todo items with priorities and due dates</li>
+    <li><strong>Email</strong> &mdash; Read, search, send, reply, archive, and label Gmail messages</li>
+    <li><strong>Calendar</strong> &mdash; Create, update, delete, and list Google Calendar events across multiple calendars</li>
+  </ul>
+  <p>
+    The Admin Assistant runs as its own agent role (<code>admin_assistant</code>) with a dedicated
+    system prompt optimized for productivity tasks. It can save memories to remember your
+    preferences across sessions.
+  </p>
+
+  <!-- GMAIL -->
+  <h2 id="gmail"><span class="cyan">#</span> Gmail Integration</h2>
+  <p>
+    OtterBot integrates with Gmail via Google OAuth, giving the Admin Assistant full email
+    capabilities.
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Capability</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Read messages</strong></td><td>Fetch and read email messages by ID or search query</td></tr>
+        <tr><td><strong>Send messages</strong></td><td>Compose and send new emails</td></tr>
+        <tr><td><strong>Reply</strong></td><td>Reply to existing email threads</td></tr>
+        <tr><td><strong>Archive</strong></td><td>Archive messages to remove them from the inbox</td></tr>
+        <tr><td><strong>Label</strong></td><td>Apply or remove Gmail labels for organization</td></tr>
+        <tr><td><strong>List labels</strong></td><td>Retrieve all available Gmail labels</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Gmail access requires configuring Google OAuth credentials in the Settings UI. All
+    email operations go through Google's official API.
+  </p>
+
+  <!-- CALENDAR -->
+  <h2 id="calendar"><span class="cyan">#</span> Google Calendar</h2>
+  <p>
+    The Admin Assistant can manage your Google Calendar, creating and organizing events
+    through natural language requests.
+  </p>
+  <ul>
+    <li><strong>List calendars</strong> &mdash; See all available calendars on your account</li>
+    <li><strong>List events</strong> &mdash; Query events by date range or calendar</li>
+    <li><strong>Create events</strong> &mdash; Schedule new events with title, time, location, and description</li>
+    <li><strong>Update events</strong> &mdash; Modify existing event details</li>
+    <li><strong>Delete events</strong> &mdash; Remove events from your calendar</li>
+  </ul>
+  <p>
+    Calendar access shares the same Google OAuth credentials as Gmail.
+  </p>
+
+  <!-- CUSTOM TOOLS -->
+  <h2 id="custom-tools"><span class="cyan">#</span> Custom Tools</h2>
+  <p>
+    OtterBot lets you create <strong>custom JavaScript tools</strong> that agents can use at
+    runtime. Tools are sandboxed using <code>isolated-vm</code> for security.
+  </p>
+  <ul>
+    <li><strong>Create tools manually</strong> &mdash; Write a tool with a name, description, JSON schema for parameters, and JavaScript implementation</li>
+    <li><strong>AI-generate tools</strong> &mdash; Describe what you need and OtterBot will generate the tool code for you</li>
+    <li><strong>Sandboxed execution</strong> &mdash; Tools run in an isolated V8 context with controlled access to <code>fetch</code> and environment variables</li>
+    <li><strong>Tool examples</strong> &mdash; Browse built-in example tools for inspiration</li>
+  </ul>
+  <p>
+    Custom tools appear in the <code>/api/tools/available</code> endpoint and can be assigned
+    to any agent template.
+  </p>
+
+  <!-- SKILLS -->
+  <h2 id="skills"><span class="cyan">#</span> Skills System</h2>
+  <p>
+    Skills are reusable <strong>markdown prompt fragments</strong> that can be attached to agents
+    to give them specialized knowledge or behavior patterns.
+  </p>
+  <ul>
+    <li><strong>Create skills</strong> &mdash; Write markdown content that gets injected into agent system prompts</li>
+    <li><strong>Clone skills</strong> &mdash; Duplicate existing skills as a starting point</li>
+    <li><strong>Import/export</strong> &mdash; Share skills between OtterBot instances as JSON</li>
+    <li><strong>Scan</strong> &mdash; Auto-discover skills from a directory structure</li>
+  </ul>
+
+  <!-- MEMORY -->
+  <h2 id="memory"><span class="cyan">#</span> Memory &amp; Soul</h2>
+  <p>
+    OtterBot's memory system gives agents persistent knowledge that carries across conversations.
+  </p>
+
+  <h3>Episodic Memories</h3>
+  <p>
+    Agents can save important observations, decisions, and learnings as episodic memories. These
+    are stored with vector embeddings and retrieved via <strong>semantic search</strong> when
+    relevant to the current conversation.
+  </p>
+  <ul>
+    <li>Memories are automatically extracted from significant conversations</li>
+    <li>A <strong>memory compactor</strong> consolidates similar memories to prevent bloat</li>
+    <li>Memories can be listed, saved, and managed via the API and Socket.IO</li>
+  </ul>
+
+  <h3>Soul Documents</h3>
+  <p>
+    Soul documents define an agent's identity, values, and long-term behavioral guidelines.
+    They provide a stable foundation that persists regardless of conversation context.
+  </p>
+  <ul>
+    <li>Create and edit soul documents through the API</li>
+    <li>A <strong>soul advisor</strong> injects relevant identity context into agent prompts</li>
+    <li>Useful for defining company culture, communication style, or domain expertise</li>
+  </ul>
+
+  <!-- CODING AGENTS -->
+  <h2 id="coding-agents"><span class="cyan">#</span> Coding Agents</h2>
+  <p>
+    OtterBot can delegate coding tasks to external coding agent CLIs, running them in managed
+    <strong>PTY (pseudo-terminal) sessions</strong>.
+  </p>
+
+  <div class="provider-grid">
+    <div class="provider-card">
+      <h4>OpenCode</h4>
+      <span class="tag free">Open Source</span>
+      <p>
+        Open-source coding assistant. Configure the CLI path in Settings.
+      </p>
+    </div>
+    <div class="provider-card">
+      <h4>Claude Code</h4>
+      <span class="tag api">API Key</span>
+      <p>
+        Anthropic's CLI coding agent. Requires Claude Code CLI installed and an Anthropic API key.
+      </p>
+    </div>
+    <div class="provider-card">
+      <h4>Codex</h4>
+      <span class="tag api">API Key</span>
+      <p>
+        OpenAI's CLI coding agent. Requires Codex CLI installed and an OpenAI API key.
+      </p>
+    </div>
+  </div>
+
+  <ul>
+    <li><strong>PTY sessions</strong> &mdash; Each coding agent runs in its own terminal, streamed to the UI in real-time</li>
+    <li><strong>Permission handling</strong> &mdash; File write and shell command permissions are relayed to the user for approval</li>
+    <li><strong>File diffs</strong> &mdash; Changes made by the coding agent are captured and displayed</li>
+    <li><strong>Session management</strong> &mdash; Start, monitor, and stop coding agent sessions via Socket.IO</li>
+  </ul>
+
+  <!-- MESSAGING -->
+  <h2 id="messaging"><span class="cyan">#</span> Messaging Integrations</h2>
+  <p>
+    OtterBot can bridge conversations to five external messaging platforms, letting you chat
+    with your agents from anywhere.
+  </p>
+
+  <div class="provider-grid">
+    <div class="provider-card">
+      <h4>Discord</h4>
+      <span class="tag api">Bot Token</span>
+      <p>
+        Full Discord bot integration. Configure a bot token and channel in Settings.
+      </p>
+    </div>
+    <div class="provider-card">
+      <h4>Slack</h4>
+      <span class="tag api">App Token</span>
+      <p>
+        Slack workspace app via Bolt framework. Requires app and bot tokens.
+      </p>
+    </div>
+    <div class="provider-card">
+      <h4>Matrix</h4>
+      <span class="tag free">Self-Hosted</span>
+      <p>
+        Decentralized chat protocol. Connect to any Matrix homeserver.
+      </p>
+    </div>
+    <div class="provider-card">
+      <h4>IRC</h4>
+      <span class="tag free">Open Protocol</span>
+      <p>
+        Classic IRC networks. Configure server, channel, and nickname.
+      </p>
+    </div>
+    <div class="provider-card">
+      <h4>Microsoft Teams</h4>
+      <span class="tag api">Webhook</span>
+      <p>
+        Teams channel integration via incoming/outgoing webhooks.
+      </p>
+    </div>
+  </div>
+
+  <p>
+    Each bridge relays messages bidirectionally between the external platform and the COO.
+    Configure credentials and channels through the Settings UI.
+  </p>
+
+  <!-- SCHEDULED TASKS -->
+  <h2 id="scheduled-tasks"><span class="cyan">#</span> Scheduled Tasks</h2>
+  <p>
+    OtterBot supports <strong>custom recurring tasks</strong> that run automatically on
+    configurable intervals. Use these for:
+  </p>
+  <ul>
+    <li>Daily standup summaries</li>
+    <li>Periodic monitoring or health checks</li>
+    <li>Automated report generation</li>
+    <li>Regular data collection tasks</li>
+  </ul>
+  <p>
+    Scheduled tasks are managed through the API with configurable intervals and can be
+    enabled or disabled individually.
+  </p>
+
+  <!-- USAGE ANALYTICS -->
+  <h2 id="usage-analytics"><span class="cyan">#</span> Usage Analytics</h2>
+  <p>
+    OtterBot tracks token usage and costs across all LLM interactions, giving you visibility
+    into resource consumption.
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>View</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Summary</strong></td><td>Total tokens and estimated costs across all models</td></tr>
+        <tr><td><strong>Recent</strong></td><td>Recent usage entries with timestamps</td></tr>
+        <tr><td><strong>By Model</strong></td><td>Token usage broken down by LLM model</td></tr>
+        <tr><td><strong>By Agent</strong></td><td>Token usage broken down by agent instance</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BACKUP -->
+  <h2 id="backup"><span class="cyan">#</span> Backup &amp; Restore</h2>
+  <p>
+    OtterBot supports full <strong>database backup and restore</strong> through the Settings UI
+    and API.
+  </p>
+  <ul>
+    <li><strong>Backup</strong> &mdash; Download a complete backup of the encrypted database</li>
+    <li><strong>Restore</strong> &mdash; Upload a previous backup to restore all data (settings, conversations, agents, projects)</li>
+  </ul>
+
+  <!-- GITHUB -->
+  <h2 id="github"><span class="cyan">#</span> GitHub Integration</h2>
+  <p>
+    OtterBot includes built-in GitHub integration for managing repositories and monitoring activity.
+  </p>
+  <ul>
+    <li><strong>SSH key management</strong> &mdash; Generate, import, test, and delete SSH keys for Git authentication</li>
+    <li><strong>Issue monitoring</strong> &mdash; Track GitHub issues and discussions</li>
+    <li><strong>Auto-project creation</strong> &mdash; Automatically create OtterBot projects from GitHub issues</li>
+    <li><strong>GitHub CLI</strong> &mdash; The <code>gh</code> CLI is pre-installed for agents to use</li>
+  </ul>
+
+  <!-- MODULES -->
+  <h2 id="modules"><span class="cyan">#</span> Module System</h2>
+  <p>
+    The module system provides an <strong>extensible architecture</strong> for adding third-party
+    functionality without modifying core code.
+  </p>
+  <ul>
+    <li><strong>Install</strong> &mdash; Install modules from GitHub repositories</li>
+    <li><strong>Toggle</strong> &mdash; Enable or disable modules without uninstalling</li>
+    <li><strong>Webhooks</strong> &mdash; Modules can register webhook endpoints for external integrations</li>
+    <li><strong>Example:</strong> The <code>github-discussions</code> module monitors GitHub Discussion activity</li>
+  </ul>
+
+  <!-- WORLD LAYOUT -->
+  <h2 id="world-layout"><span class="cyan">#</span> World Layout</h2>
+  <p>
+    The World Layout system manages <strong>zones</strong> for 3D scene organization in the
+    Live View.
+  </p>
+  <ul>
+    <li><strong>Create zones</strong> &mdash; Define named areas in the 3D world with position and size</li>
+    <li><strong>Manage zones</strong> &mdash; Update or delete zones via the API</li>
+    <li><strong>Agent placement</strong> &mdash; Agents can be positioned within zones for spatial organization</li>
+  </ul>
 </main>
 
 </body>
