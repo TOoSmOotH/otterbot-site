@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oranges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-light: #0f2240;
+  --navy-mid: #132d54;
+  --cyan: #00d4ff;
+  --cyan-glow: #00d4ff55;
+  --cyan-dim: #00d4ff22;
+  --teal: #0891b2;
+  --green: #4a7c59;
+  --green-light: #5fa872;
+  --white: #e8f4f8;
+  --foam: #c8e6ec;
+  --grey: #7b9eb8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); overflow-x: hidden; font-family: 'IBM Plex Sans', sans-serif; color: var(--foam); }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+.content {
+  background: linear-gradient(135deg, #0f2240cc, #132d5488);
+  border: 1px solid #00d4ff18;
+  border-radius: 16px;
+  padding: 48px 36px;
+  backdrop-filter: blur(12px);
+}
+
+.content h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.content p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--grey);
+  margin-bottom: 24px;
+}
+
+.content img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  border: 1px solid #00d4ff20;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+.nav.scrolled {
+  background: #0a1628ee;
+  backdrop-filter: blur(16px);
+  border-bottom-color: #00d4ff10;
+}
+
+.nav-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-brand .cyan {
+  color: var(--cyan);
+}
+
+.badge {
+  background: #4a7c5933;
+  color: var(--green-light);
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  color: var(--grey);
+  text-decoration: none;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.nav-link:hover {
+  color: var(--cyan);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 13px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--cyan), var(--teal));
+  color: var(--navy);
+  box-shadow: 0 4px 24px var(--cyan-glow);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 32px #00d4ff66;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cyan);
+  border: 1.5px solid #00d4ff44;
+}
+
+.btn-outline:hover {
+  border-color: var(--cyan);
+  background: #00d4ff10;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-brand">
+    <span><span class="cyan">Otter</span>Bot</span>
+    <span class="badge">OPEN SOURCE</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="#oranges" class="nav-link">Oranges</a>
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#quickstart" class="nav-link">Quick Start</a>
+    <a href="/docs" class="nav-link">Docs</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#quickstart" class="btn btn-outline btn-sm">&#9889; Get Started</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="content" id="oranges">
+    <h1>Oranges</h1>
+    <img src="https://placehold.co/600x400/orange/white?text=Oranges" alt="Oranges">
+    <p>
+      Oranges are a citrus fruit known for their bright orange color, juicy flesh, and tangy-sweet flavor. 
+      They are rich in vitamin C, fiber, and antioxidants, making them a nutritious and refreshing choice. 
+      Oranges are enjoyed fresh, juiced, or used in a variety of culinary applications around the world.
+    </p>
+    <p>
+      Originating in Southeast Asia, oranges have been cultivated for thousands of years and are now 
+      grown in warm climates across the globe. There are many varieties, including Navel, Valencia, 
+      Blood orange, and mandarins, each with unique characteristics and uses.
+    </p>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+</script>
+
+</body>
+</html>
