@@ -331,6 +331,16 @@ td code {
     </p>
   </div>
 
+  <div class="callout info">
+    <span class="icon">&#127760;</span>
+    <p>
+      <strong>Accessing remotely?</strong> If you&rsquo;re connecting from a different origin (e.g. behind
+      a reverse proxy or on a different host), you must set the <code>OTTERBOT_ALLOWED_ORIGIN</code>
+      environment variable so CORS works properly. Pass a comma-separated list of allowed origins:
+      <code>-e OTTERBOT_ALLOWED_ORIGIN=https://otterbot.example.com</code>
+    </p>
+  </div>
+
   <h3>Full Docker command with all options</h3>
   <div class="code-block">
     <span class="kw">$</span> docker run <span class="fl">-d</span> \<br>
@@ -344,6 +354,7 @@ td code {
     &nbsp;&nbsp;<span class="fl">-e</span> <span class="str">OTTERBOT_GID=$(id -g)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># Match host group</span><br>
     &nbsp;&nbsp;<span class="fl">-e</span> <span class="str">ENABLE_DESKTOP=true</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># Virtual XFCE desktop</span><br>
     &nbsp;&nbsp;<span class="fl">-e</span> <span class="str">SUDO_MODE=restricted</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># Sudo policy</span><br>
+    &nbsp;&nbsp;<span class="fl">-e</span> <span class="str">OTTERBOT_ALLOWED_ORIGIN=https://otterbot.example.com</span> <span class="cm"># CORS (if remote)</span><br>
     &nbsp;&nbsp;ghcr.io/toosmooth/otterbot:latest
   </div>
 
