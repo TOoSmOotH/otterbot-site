@@ -1,0 +1,2579 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive documentation for OtterBot, a free open-source AI assistant running in Docker.">
+      
+      
+      
+        <link rel="canonical" href="https://otterbot.ai/docs/features/">
+      
+      
+        <link rel="prev" href="../agents/">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Features - OtterBot Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#features-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="OtterBot Documentation" class="md-header__button md-logo" aria-label="OtterBot Documentation" data-md-component="logo">
+      
+  <img src="/favicon-32.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OtterBot Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Features
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TOoSmOotH/otterbot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TOoSmOotH/otterbot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../getting-started/" class="md-tabs__link">
+          
+  
+  
+  Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OtterBot Documentation" class="md-nav__button md-logo" aria-label="OtterBot Documentation" data-md-component="logo">
+      
+  <img src="/favicon-32.png" alt="logo">
+
+    </a>
+    OtterBot Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TOoSmOotH/otterbot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TOoSmOotH/otterbot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#voice-tts-stt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voice (TTS &amp; STT)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Voice (TTS &amp; STT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-to-speech-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text-to-Speech Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Text-to-Speech Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kokoro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kokoro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge TTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai-compatible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI-Compatible
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tts-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TTS Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speech-to-text-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speech-to-Text Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speech-to-Text Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whisper-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Whisper Local
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai-compatible_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI-Compatible
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stt-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STT Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d-live-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3D Live View
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3D Live View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Packs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Packs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scene-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-search-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Search Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Search Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duckduckgo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DuckDuckGo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brave-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brave Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tavily" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tavily
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searxng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SearXNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#browser-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Browser Automation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-management-kanban" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Management &amp; Kanban
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Management &amp; Kanban">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kanban-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kanban Board
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desktop-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desktop Environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Desktop Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-included" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Included
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#room-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Room Builder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Assistant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gmail-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gmail Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-calendar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Calendar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-soul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory &amp; Soul
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory &amp; Soul">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#episodic-memories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Episodic Memories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soul-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soul Documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coding Agents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Coding Agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opencode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codex
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messaging-integrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging Integrations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Messaging Integrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discord" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discord
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IRC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microsoft-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microsoft Teams
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scheduled-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Analytics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup &amp; Restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#world-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        World Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#voice-tts-stt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voice (TTS &amp; STT)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Voice (TTS &amp; STT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-to-speech-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text-to-Speech Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Text-to-Speech Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kokoro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kokoro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge TTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai-compatible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI-Compatible
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tts-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TTS Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speech-to-text-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speech-to-Text Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speech-to-Text Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whisper-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Whisper Local
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai-compatible_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI-Compatible
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stt-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STT Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d-live-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3D Live View
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3D Live View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Packs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Packs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scene-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scene Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-search-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Search Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web Search Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duckduckgo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DuckDuckGo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brave-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brave Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tavily" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tavily
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searxng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SearXNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#browser-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Browser Automation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-management-kanban" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Management &amp; Kanban
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Management &amp; Kanban">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kanban-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kanban Board
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desktop-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desktop Environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Desktop Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-included" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Included
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#room-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Room Builder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Assistant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gmail-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gmail Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-calendar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Calendar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-soul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory &amp; Soul
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory &amp; Soul">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#episodic-memories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Episodic Memories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soul-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soul Documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coding Agents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Coding Agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opencode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codex
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messaging-integrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging Integrations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Messaging Integrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discord" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discord
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IRC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microsoft-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microsoft Teams
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scheduled-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Analytics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup &amp; Restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#world-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        World Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="features-guide">Features Guide<a class="headerlink" href="#features-guide" title="Permanent link">&para;</a></h1>
+<p>A deep dive into OtterBot's capabilities -- from voice interaction and 3D visualization
+to web search, browser automation, and project management.</p>
+<h2 id="voice-tts-stt">Voice (TTS &amp; STT)<a class="headerlink" href="#voice-tts-stt" title="Permanent link">&para;</a></h2>
+<p>OtterBot supports both text-to-speech (reading responses aloud) and speech-to-text
+(voice input). Both can run locally without any API keys.</p>
+<h3 id="text-to-speech-providers">Text-to-Speech Providers<a class="headerlink" href="#text-to-speech-providers" title="Permanent link">&para;</a></h3>
+<h4 id="kokoro">Kokoro<a class="headerlink" href="#kokoro" title="Permanent link">&para;</a></h4>
+<p><strong>Local</strong></p>
+<p>High-quality local TTS using the Kokoro 82M ONNX model. Runs entirely on CPU inside
+the container. Default voice: <code>af_heart</code>.</p>
+<h4 id="edge-tts">Edge TTS<a class="headerlink" href="#edge-tts" title="Permanent link">&para;</a></h4>
+<p><strong>Free Cloud</strong></p>
+<p>Microsoft's neural TTS voices. Free, no API key needed. Wide variety of voices and
+languages available.</p>
+<h4 id="openai-compatible">OpenAI-Compatible<a class="headerlink" href="#openai-compatible" title="Permanent link">&para;</a></h4>
+<p><strong>API Key</strong></p>
+<p>Any provider with an OpenAI-compatible TTS endpoint (<code>/v1/audio/speech</code>).
+Configure the base URL and optional API key.</p>
+<h3 id="tts-configuration">TTS Configuration<a class="headerlink" href="#tts-configuration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting Key</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tts:enabled</code></td>
+<td>Enable or disable TTS</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>tts:active_provider</code></td>
+<td>Active provider: <code>kokoro</code>, <code>edge-tts</code>, or <code>openai-compatible</code></td>
+<td><code>kokoro</code></td>
+</tr>
+<tr>
+<td><code>tts:voice</code></td>
+<td>Voice name</td>
+<td><code>af_heart</code></td>
+</tr>
+<tr>
+<td><code>tts:speed</code></td>
+<td>Playback speed (0.5 -- 2.0)</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>tts:openai-compatible:base_url</code></td>
+<td>Base URL for OpenAI-compatible provider</td>
+<td>--</td>
+</tr>
+<tr>
+<td><code>tts:openai-compatible:api_key</code></td>
+<td>API key (optional)</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<h3 id="speech-to-text-providers">Speech-to-Text Providers<a class="headerlink" href="#speech-to-text-providers" title="Permanent link">&para;</a></h3>
+<h4 id="whisper-local">Whisper Local<a class="headerlink" href="#whisper-local" title="Permanent link">&para;</a></h4>
+<p><strong>Local</strong></p>
+<p>OpenAI Whisper ONNX model running locally. Default model:
+<code>onnx-community/whisper-base</code>. Configurable model ID.</p>
+<h4 id="openai-compatible_1">OpenAI-Compatible<a class="headerlink" href="#openai-compatible_1" title="Permanent link">&para;</a></h4>
+<p><strong>API Key</strong></p>
+<p>Any provider with an OpenAI-compatible transcription endpoint
+(<code>/v1/audio/transcriptions</code>).</p>
+<h3 id="stt-configuration">STT Configuration<a class="headerlink" href="#stt-configuration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting Key</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stt:enabled</code></td>
+<td>Enable or disable STT</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>stt:active_provider</code></td>
+<td>Active provider: <code>whisper-local</code> or <code>openai-compatible</code></td>
+<td><code>whisper-local</code></td>
+</tr>
+<tr>
+<td><code>stt:whisper:model_id</code></td>
+<td>HuggingFace model ID for local Whisper</td>
+<td><code>onnx-community/whisper-base</code></td>
+</tr>
+<tr>
+<td><code>stt:openai-compatible:base_url</code></td>
+<td>Base URL for OpenAI-compatible provider</td>
+<td>--</td>
+</tr>
+<tr>
+<td><code>stt:openai-compatible:api_key</code></td>
+<td>API key (optional)</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3d-live-view">3D Live View<a class="headerlink" href="#3d-live-view" title="Permanent link">&para;</a></h2>
+<p>The Live View renders your agents as animated 3D characters in a virtual scene using
+Three.js and React Three Fiber. Each agent can have its own character model with idle and
+action animations.</p>
+<h3 id="model-packs">Model Packs<a class="headerlink" href="#model-packs" title="Permanent link">&para;</a></h3>
+<p>Character models are GLB files organized into <strong>model packs</strong>. OtterBot
+auto-discovers packs from the <code>assets/workers/</code> directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>assets/workers/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>+-- MyCharacter/
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|  +-- characters/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>|  |  +-- character.glb        # 3D character model
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>|  +-- Animations/
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>|  |  +-- gltf/
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>|  |     +-- Rig_Medium/        # Medium rig animations
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>|  |     +-- Rig_Large/         # Large rig animations
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>|  +-- artwork.png              # Thumbnail
+</code></pre></div>
+<p>Each model pack includes idle and action animations. Agents assigned a model pack will
+appear as that character in the Live View, with animations reflecting their current status.</p>
+<h3 id="environment-packs">Environment Packs<a class="headerlink" href="#environment-packs" title="Permanent link">&para;</a></h3>
+<p>Environment models (GLTF) are loaded from <code>assets/environments/</code> and define the
+3D scene backdrop. Multiple environment assets can be placed in a scene.</p>
+<h3 id="scene-configurations">Scene Configurations<a class="headerlink" href="#scene-configurations" title="Permanent link">&para;</a></h3>
+<p>JSON files in <code>assets/scenes/</code> define camera position, lighting, and layout.
+The Room Builder (below) lets you create and edit scene configurations visually.</p>
+<h2 id="web-search-providers">Web Search Providers<a class="headerlink" href="#web-search-providers" title="Permanent link">&para;</a></h2>
+<p>Agents with the <code>web_search</code> tool can search the web. OtterBot supports four
+search providers:</p>
+<h4 id="duckduckgo">DuckDuckGo<a class="headerlink" href="#duckduckgo" title="Permanent link">&para;</a></h4>
+<p><strong>Free -- No API Key</strong></p>
+<p>Default provider. Searches via DuckDuckGo HTML interface. No configuration needed.</p>
+<h4 id="brave-search">Brave Search<a class="headerlink" href="#brave-search" title="Permanent link">&para;</a></h4>
+<p><strong>API Key</strong></p>
+<p>Brave's independent search index. Requires a Brave Search API key.
+Config: <code>search:brave:api_key</code>.</p>
+<h4 id="tavily">Tavily<a class="headerlink" href="#tavily" title="Permanent link">&para;</a></h4>
+<p><strong>API Key</strong></p>
+<p>AI-optimized search API designed for LLM agents. Requires a Tavily API key.
+Config: <code>search:tavily:api_key</code>.</p>
+<h4 id="searxng">SearXNG<a class="headerlink" href="#searxng" title="Permanent link">&para;</a></h4>
+<p><strong>Self-Hosted</strong></p>
+<p>Privacy-respecting metasearch engine. Connect to your own SearXNG instance.
+Config: <code>search:searxng:base_url</code>.</p>
+<p>Set the active provider with the <code>search:active_provider</code> setting. All providers
+return results in a unified format with title, URL, and snippet.</p>
+<h2 id="browser-automation">Browser Automation<a class="headerlink" href="#browser-automation" title="Permanent link">&para;</a></h2>
+<p>Agents with the <code>web_browse</code> tool can navigate web pages, extract content, and
+interact with websites using <strong>Playwright</strong>. A browser pool manages Chromium
+instances efficiently.</p>
+<ul>
+<li>Navigate to URLs and extract page content as text</li>
+<li>Managed browser pool prevents resource exhaustion</li>
+<li>Runs headless Chromium inside the Docker container</li>
+<li>Browser binaries path configurable via <code>PLAYWRIGHT_BROWSERS_PATH</code></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Researcher agents</strong> have both <code>web_search</code> and
+<code>web_browse</code> -- search for results, then browse specific pages for
+detailed information.</p>
+</div>
+<h2 id="project-management-kanban">Project Management &amp; Kanban<a class="headerlink" href="#project-management-kanban" title="Permanent link">&para;</a></h2>
+<p>OtterBot organizes complex work into <strong>Projects</strong>, each with a Kanban board
+for task tracking. Projects are created by the COO when you give it a multi-step goal.</p>
+<h3 id="project-lifecycle">Project Lifecycle<a class="headerlink" href="#project-lifecycle" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Creation</strong> -- COO creates a project with a name and description</li>
+<li><strong>Charter Gathering</strong> -- COO writes a project charter (specification/requirements)</li>
+<li><strong>Charter Finalized</strong> -- Charter is locked, Team Lead is spawned</li>
+<li><strong>Execution</strong> -- Team Lead creates Kanban tasks and assigns workers</li>
+<li><strong>Completion</strong> -- Project status set to <code>completed</code>, <code>failed</code>, or <code>cancelled</code></li>
+</ul>
+<h3 id="kanban-board">Kanban Board<a class="headerlink" href="#kanban-board" title="Permanent link">&para;</a></h3>
+<p>Each project has a Kanban board with three columns:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backlog</code></td>
+<td>Tasks planned but not yet started</td>
+</tr>
+<tr>
+<td><code>in_progress</code></td>
+<td>Tasks currently being worked on by an agent</td>
+</tr>
+<tr>
+<td><code>done</code></td>
+<td>Completed tasks with optional completion reports</td>
+</tr>
+</tbody>
+</table>
+<p>Tasks can have labels, blocking dependencies, and agent assignments. Workers automatically
+move tasks to <code>in_progress</code> when they start and <code>done</code> when they finish.
+The frontend displays the Kanban board in real-time via Socket.IO events.</p>
+<h2 id="desktop-environment">Desktop Environment<a class="headerlink" href="#desktop-environment" title="Permanent link">&para;</a></h2>
+<p>OtterBot includes an optional full <strong>XFCE desktop environment</strong> running inside
+the container, accessible via <strong>noVNC</strong> in your browser. This gives agents (and
+you) access to a complete Linux desktop with GUI applications.</p>
+<h3 id="whats-included">What's Included<a class="headerlink" href="#whats-included" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>XFCE4</strong> -- Lightweight desktop environment</li>
+<li><strong>File manager</strong> -- Browse the workspace filesystem</li>
+<li><strong>Terminal</strong> -- Full shell access</li>
+<li><strong>Web browser</strong> -- Chromium for agents' browser automation</li>
+<li><strong>noVNC</strong> -- Browser-based VNC client (no VNC client needed)</li>
+</ul>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_DESKTOP</code></td>
+<td>Enable or disable the virtual desktop</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>DESKTOP_RESOLUTION</code></td>
+<td>Screen resolution (WxHxDepth)</td>
+<td><code>1280x720x24</code></td>
+</tr>
+<tr>
+<td><code>VNC_PORT</code></td>
+<td>Internal VNC server port</td>
+<td><code>5900</code></td>
+</tr>
+<tr>
+<td><code>SUDO_MODE</code></td>
+<td>Privilege level: <code>restricted</code> (safe) or <code>full</code></td>
+<td><code>restricted</code></td>
+</tr>
+</tbody>
+</table>
+<p>The desktop status can be checked via the <code>GET /api/desktop/status</code> endpoint.
+noVNC files are served directly from the server at <code>/novnc/*</code>.</p>
+<h2 id="room-builder">Room Builder<a class="headerlink" href="#room-builder" title="Permanent link">&para;</a></h2>
+<p>The Room Builder is a visual 3D scene editor in the web UI. It lets you place environment
+assets, position the camera, and configure the Live View scene without editing JSON files.</p>
+<ul>
+<li>Drag and drop environment assets from available packs</li>
+<li>Position, rotate, and scale objects in 3D space</li>
+<li>Configure lighting and camera angles</li>
+<li>Save scene configurations for the Live View</li>
+</ul>
+<h2 id="package-management">Package Management<a class="headerlink" href="#package-management" title="Permanent link">&para;</a></h2>
+<p>Agents with the <code>install_package</code> tool can install software packages inside
+the container. This supports both:</p>
+<ul>
+<li><strong>apt packages</strong> -- System-level packages (e.g., build tools, libraries)</li>
+<li><strong>npm packages</strong> -- Node.js packages installed globally to <code>/otterbot/tools</code></li>
+</ul>
+<p>Installed packages can be listed via the <code>GET /api/packages</code> REST endpoint.
+The <code>NPM_CONFIG_PREFIX</code> environment variable controls where npm global packages
+are installed.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Ephemeral by default:</strong> Packages installed inside the container are lost
+when the container stops. Mount a volume to persist installed tools across sessions.</p>
+</div>
+<h2 id="admin-assistant">Admin Assistant<a class="headerlink" href="#admin-assistant" title="Permanent link">&para;</a></h2>
+<p>The Admin Assistant is a persistent personal productivity agent that handles everyday tasks
+alongside the COO. It reports directly to the CEO (you) and manages:</p>
+<ul>
+<li><strong>Todos</strong> -- Create, list, update, and complete personal todo items with priorities and due dates</li>
+<li><strong>Email</strong> -- Read, search, send, reply, archive, and label Gmail messages</li>
+<li><strong>Calendar</strong> -- Create, update, delete, and list Google Calendar events across multiple calendars</li>
+</ul>
+<p>The Admin Assistant runs as its own agent role (<code>admin_assistant</code>) with a dedicated
+system prompt optimized for productivity tasks. It can save memories to remember your
+preferences across sessions.</p>
+<h2 id="gmail-integration">Gmail Integration<a class="headerlink" href="#gmail-integration" title="Permanent link">&para;</a></h2>
+<p>OtterBot integrates with Gmail via Google OAuth, giving the Admin Assistant full email
+capabilities.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Read messages</strong></td>
+<td>Fetch and read email messages by ID or search query</td>
+</tr>
+<tr>
+<td><strong>Send messages</strong></td>
+<td>Compose and send new emails</td>
+</tr>
+<tr>
+<td><strong>Reply</strong></td>
+<td>Reply to existing email threads</td>
+</tr>
+<tr>
+<td><strong>Archive</strong></td>
+<td>Archive messages to remove them from the inbox</td>
+</tr>
+<tr>
+<td><strong>Label</strong></td>
+<td>Apply or remove Gmail labels for organization</td>
+</tr>
+<tr>
+<td><strong>List labels</strong></td>
+<td>Retrieve all available Gmail labels</td>
+</tr>
+</tbody>
+</table>
+<p>Gmail access requires configuring Google OAuth credentials in the Settings UI. All
+email operations go through Google's official API.</p>
+<h2 id="google-calendar">Google Calendar<a class="headerlink" href="#google-calendar" title="Permanent link">&para;</a></h2>
+<p>The Admin Assistant can manage your Google Calendar, creating and organizing events
+through natural language requests.</p>
+<ul>
+<li><strong>List calendars</strong> -- See all available calendars on your account</li>
+<li><strong>List events</strong> -- Query events by date range or calendar</li>
+<li><strong>Create events</strong> -- Schedule new events with title, time, location, and description</li>
+<li><strong>Update events</strong> -- Modify existing event details</li>
+<li><strong>Delete events</strong> -- Remove events from your calendar</li>
+</ul>
+<p>Calendar access shares the same Google OAuth credentials as Gmail.</p>
+<h2 id="custom-tools">Custom Tools<a class="headerlink" href="#custom-tools" title="Permanent link">&para;</a></h2>
+<p>OtterBot lets you create <strong>custom JavaScript tools</strong> that agents can use at
+runtime. Tools are sandboxed using <code>isolated-vm</code> for security.</p>
+<ul>
+<li><strong>Create tools manually</strong> -- Write a tool with a name, description, JSON schema for parameters, and JavaScript implementation</li>
+<li><strong>AI-generate tools</strong> -- Describe what you need and OtterBot will generate the tool code for you</li>
+<li><strong>Sandboxed execution</strong> -- Tools run in an isolated V8 context with controlled access to <code>fetch</code> and environment variables</li>
+<li><strong>Tool examples</strong> -- Browse built-in example tools for inspiration</li>
+</ul>
+<p>Custom tools appear in the <code>/api/tools/available</code> endpoint and can be assigned
+to any agent template.</p>
+<h2 id="skills-system">Skills System<a class="headerlink" href="#skills-system" title="Permanent link">&para;</a></h2>
+<p>Skills are reusable <strong>markdown prompt fragments</strong> that can be attached to agents
+to give them specialized knowledge or behavior patterns.</p>
+<ul>
+<li><strong>Create skills</strong> -- Write markdown content that gets injected into agent system prompts</li>
+<li><strong>Clone skills</strong> -- Duplicate existing skills as a starting point</li>
+<li><strong>Import/export</strong> -- Share skills between OtterBot instances as JSON</li>
+<li><strong>Scan</strong> -- Auto-discover skills from a directory structure</li>
+</ul>
+<h2 id="memory-soul">Memory &amp; Soul<a class="headerlink" href="#memory-soul" title="Permanent link">&para;</a></h2>
+<p>OtterBot's memory system gives agents persistent knowledge that carries across conversations.</p>
+<h3 id="episodic-memories">Episodic Memories<a class="headerlink" href="#episodic-memories" title="Permanent link">&para;</a></h3>
+<p>Agents can save important observations, decisions, and learnings as episodic memories. These
+are stored with vector embeddings and retrieved via <strong>semantic search</strong> when
+relevant to the current conversation.</p>
+<ul>
+<li>Memories are automatically extracted from significant conversations</li>
+<li>A <strong>memory compactor</strong> consolidates similar memories to prevent bloat</li>
+<li>Memories can be listed, saved, and managed via the API and Socket.IO</li>
+</ul>
+<h3 id="soul-documents">Soul Documents<a class="headerlink" href="#soul-documents" title="Permanent link">&para;</a></h3>
+<p>Soul documents define an agent's identity, values, and long-term behavioral guidelines.
+They provide a stable foundation that persists regardless of conversation context.</p>
+<ul>
+<li>Create and edit soul documents through the API</li>
+<li>A <strong>soul advisor</strong> injects relevant identity context into agent prompts</li>
+<li>Useful for defining company culture, communication style, or domain expertise</li>
+</ul>
+<h2 id="coding-agents">Coding Agents<a class="headerlink" href="#coding-agents" title="Permanent link">&para;</a></h2>
+<p>OtterBot can delegate coding tasks to external coding agent CLIs, running them in managed
+<strong>PTY (pseudo-terminal) sessions</strong>.</p>
+<h4 id="opencode">OpenCode<a class="headerlink" href="#opencode" title="Permanent link">&para;</a></h4>
+<p><strong>Open Source</strong></p>
+<p>Open-source coding assistant. Configure the CLI path in Settings.</p>
+<h4 id="claude-code">Claude Code<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h4>
+<p><strong>API Key</strong></p>
+<p>Anthropic's CLI coding agent. Requires Claude Code CLI installed and an Anthropic API key.</p>
+<h4 id="codex">Codex<a class="headerlink" href="#codex" title="Permanent link">&para;</a></h4>
+<p><strong>API Key</strong></p>
+<p>OpenAI's CLI coding agent. Requires Codex CLI installed and an OpenAI API key.</p>
+<ul>
+<li><strong>PTY sessions</strong> -- Each coding agent runs in its own terminal, streamed to the UI in real-time</li>
+<li><strong>Permission handling</strong> -- File write and shell command permissions are relayed to the user for approval</li>
+<li><strong>File diffs</strong> -- Changes made by the coding agent are captured and displayed</li>
+<li><strong>Session management</strong> -- Start, monitor, and stop coding agent sessions via Socket.IO</li>
+</ul>
+<h2 id="messaging-integrations">Messaging Integrations<a class="headerlink" href="#messaging-integrations" title="Permanent link">&para;</a></h2>
+<p>OtterBot can bridge conversations to five external messaging platforms, letting you chat
+with your agents from anywhere.</p>
+<h4 id="discord">Discord<a class="headerlink" href="#discord" title="Permanent link">&para;</a></h4>
+<p><strong>Bot Token</strong></p>
+<p>Full Discord bot integration. Configure a bot token and channel in Settings.</p>
+<h4 id="slack">Slack<a class="headerlink" href="#slack" title="Permanent link">&para;</a></h4>
+<p><strong>App Token</strong></p>
+<p>Slack workspace app via Bolt framework. Requires app and bot tokens.</p>
+<h4 id="matrix">Matrix<a class="headerlink" href="#matrix" title="Permanent link">&para;</a></h4>
+<p><strong>Self-Hosted</strong></p>
+<p>Decentralized chat protocol. Connect to any Matrix homeserver.</p>
+<h4 id="irc">IRC<a class="headerlink" href="#irc" title="Permanent link">&para;</a></h4>
+<p><strong>Open Protocol</strong></p>
+<p>Classic IRC networks. Configure server, channel, and nickname.</p>
+<h4 id="microsoft-teams">Microsoft Teams<a class="headerlink" href="#microsoft-teams" title="Permanent link">&para;</a></h4>
+<p><strong>Webhook</strong></p>
+<p>Teams channel integration via incoming/outgoing webhooks.</p>
+<p>Each bridge relays messages bidirectionally between the external platform and the COO.
+Configure credentials and channels through the Settings UI.</p>
+<h2 id="scheduled-tasks">Scheduled Tasks<a class="headerlink" href="#scheduled-tasks" title="Permanent link">&para;</a></h2>
+<p>OtterBot supports <strong>custom recurring tasks</strong> that run automatically on
+configurable intervals. Use these for:</p>
+<ul>
+<li>Daily standup summaries</li>
+<li>Periodic monitoring or health checks</li>
+<li>Automated report generation</li>
+<li>Regular data collection tasks</li>
+</ul>
+<p>Scheduled tasks are managed through the API with configurable intervals and can be
+enabled or disabled individually.</p>
+<h2 id="usage-analytics">Usage Analytics<a class="headerlink" href="#usage-analytics" title="Permanent link">&para;</a></h2>
+<p>OtterBot tracks token usage and costs across all LLM interactions, giving you visibility
+into resource consumption.</p>
+<table>
+<thead>
+<tr>
+<th>View</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Total tokens and estimated costs across all models</td>
+</tr>
+<tr>
+<td><strong>Recent</strong></td>
+<td>Recent usage entries with timestamps</td>
+</tr>
+<tr>
+<td><strong>By Model</strong></td>
+<td>Token usage broken down by LLM model</td>
+</tr>
+<tr>
+<td><strong>By Agent</strong></td>
+<td>Token usage broken down by agent instance</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backup-restore">Backup &amp; Restore<a class="headerlink" href="#backup-restore" title="Permanent link">&para;</a></h2>
+<p>OtterBot supports full <strong>database backup and restore</strong> through the Settings UI
+and API.</p>
+<ul>
+<li><strong>Backup</strong> -- Download a complete backup of the encrypted database</li>
+<li><strong>Restore</strong> -- Upload a previous backup to restore all data (settings, conversations, agents, projects)</li>
+</ul>
+<h2 id="github-integration">GitHub Integration<a class="headerlink" href="#github-integration" title="Permanent link">&para;</a></h2>
+<p>OtterBot includes built-in GitHub integration for managing repositories and monitoring activity.</p>
+<ul>
+<li><strong>SSH key management</strong> -- Generate, import, test, and delete SSH keys for Git authentication</li>
+<li><strong>Issue monitoring</strong> -- Track GitHub issues and discussions</li>
+<li><strong>Auto-project creation</strong> -- Automatically create OtterBot projects from GitHub issues</li>
+<li><strong>GitHub CLI</strong> -- The <code>gh</code> CLI is pre-installed for agents to use</li>
+</ul>
+<h2 id="module-system">Module System<a class="headerlink" href="#module-system" title="Permanent link">&para;</a></h2>
+<p>The module system provides an <strong>extensible architecture</strong> for adding third-party
+functionality without modifying core code.</p>
+<ul>
+<li><strong>Install</strong> -- Install modules from GitHub repositories</li>
+<li><strong>Toggle</strong> -- Enable or disable modules without uninstalling</li>
+<li><strong>Webhooks</strong> -- Modules can register webhook endpoints for external integrations</li>
+<li><strong>Example:</strong> The <code>github-discussions</code> module monitors GitHub Discussion activity</li>
+</ul>
+<h2 id="world-layout">World Layout<a class="headerlink" href="#world-layout" title="Permanent link">&para;</a></h2>
+<p>The World Layout system manages <strong>zones</strong> for 3D scene organization in the
+Live View.</p>
+<ul>
+<li><strong>Create zones</strong> -- Define named areas in the 3D world with position and size</li>
+<li><strong>Manage zones</strong> -- Update or delete zones via the API</li>
+<li><strong>Agent placement</strong> -- Agents can be positioned within zones for spatial organization</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../agents/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Agent System">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Agent System
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: API Reference">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                API Reference
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/TOoSmOotH/otterbot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.join"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
