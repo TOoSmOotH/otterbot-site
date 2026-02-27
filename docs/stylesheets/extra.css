@@ -1,0 +1,28 @@
+/* OtterBot brand color overrides for Material for MkDocs */
+
+:root {
+  --md-primary-fg-color: #0a1628;
+  --md-primary-fg-color--light: #0f2240;
+  --md-primary-fg-color--dark: #060e1a;
+  --md-accent-fg-color: #00d4ff;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0a1628;
+  --md-default-fg-color: #c8e6ec;
+  --md-default-fg-color--light: #7b9eb8;
+  --md-primary-fg-color: #0f2240;
+  --md-primary-fg-color--light: #132d54;
+  --md-accent-fg-color: #00d4ff;
+  --md-typeset-a-color: #00d4ff;
+  --md-code-bg-color: #0f224088;
+}
+
+/* Accent color for links, highlights */
+.md-header {
+  background-color: #0a1628;
+}
+
+.md-tabs {
+  background-color: #0f2240;
+}
