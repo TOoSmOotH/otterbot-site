@@ -25,3 +25,30 @@ No build or install step. Open `index.html` in a browser to preview. Push to `ma
 **Design system**: Navy/cyan color palette with CSS custom properties (defined in `:root`). Uses IBM Plex Sans (body) and JetBrains Mono (headings/code) from Google Fonts. Visual effects include glassmorphism cards, SVG wave backgrounds, a JS-generated starfield, and CSS keyframe animations.
 
 **JavaScript** (~20 lines): Starfield particle generation and scroll-triggered nav background blur. No state management or routing logic.
+
+## Documentation
+
+Documentation is built with [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
+
+- **Source files**: `docs-src/` (Markdown)
+- **Config**: `mkdocs.yml`
+- **Custom styles**: `docs-src/stylesheets/extra.css`
+
+### Local preview
+
+```bash
+pip install mkdocs-material
+mkdocs serve
+```
+
+Opens at `http://localhost:8000`. Changes to `docs-src/` hot-reload automatically.
+
+### Build
+
+```bash
+mkdocs build
+```
+
+### Deployment
+
+CI auto-deploys on push to `main` when `docs-src/**` or `mkdocs.yml` changes (see `.github/workflows/docs.yml`). The workflow builds the docs and copies the root `index.html` landing page so both coexist on GitHub Pages.

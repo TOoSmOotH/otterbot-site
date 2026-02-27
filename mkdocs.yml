@@ -1,0 +1,70 @@
+site_name: OtterBot Documentation
+site_url: https://otterbot.ai/docs/
+site_description: Comprehensive documentation for OtterBot, a free open-source AI assistant running in Docker.
+repo_url: https://github.com/TOoSmOotH/otterbot
+repo_name: TOoSmOotH/otterbot
+
+docs_dir: docs-src
+
+theme:
+  name: material
+  favicon: /favicon.ico
+  logo: /favicon-32.png
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  font:
+    text: IBM Plex Sans
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.join
+
+nav:
+  - Home: index.md
+  - Guide:
+    - Getting Started: getting-started.md
+    - Architecture: architecture.md
+    - Agent System: agents.md
+    - Features: features.md
+  - Reference:
+    - API Reference: api.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/TOoSmOotH/otterbot
