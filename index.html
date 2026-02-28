@@ -247,35 +247,92 @@ body { background: var(--navy); overflow-x: hidden; font-family: 'IBM Plex Sans'
 
 /* QUICKSTART */
 .quickstart { padding: 100px 40px; max-width: 780px; margin: 0 auto; }
-.step-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; font-weight: 600;
-  color: var(--cyan); letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 10px; margin-left: 4px;
-}
-.step-label .num { opacity: 0.5; }
 .code-block {
-  background: var(--navy);
-  border: 1px solid #00d4ff20;
-  border-radius: 12px; padding: 20px 24px;
+  background: #0c1a2e;
+  border: 1px solid #00d4ff18;
+  border-radius: 14px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px; line-height: 1.7;
-  color: var(--foam); position: relative; overflow: hidden;
+  color: var(--foam); overflow: hidden;
 }
-.code-dots {
-  position: absolute; top: 12px; left: 14px;
-  display: flex; gap: 6px;
+.code-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 18px;
+  background: #0a1628;
+  border-bottom: 1px solid #00d4ff12;
+  flex-wrap: wrap;
 }
-.code-dots span { width: 10px; height: 10px; border-radius: 50%; display: block; }
-.dot-red { background: #ff5f57; }
-.dot-yellow { background: #ffbd2e; }
-.dot-green { background: #28ca42; }
-.code-content { margin-top: 16px; }
-.kw { color: #c792ea; }
-.str { color: #c3e88d; }
-.fl { color: var(--cyan); }
-.cm { color: #546e7a; }
+.code-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.code-dot:nth-child(1) { background: #ff5f57; }
+.code-dot:nth-child(2) { background: #ffbd2e; margin-left: -4px; }
+.code-dot:nth-child(3) { background: #28ca42; margin-left: -4px; }
+.mode-switch {
+  display: flex; gap: 2px; margin-left: 12px;
+  background: #0f2240; border-radius: 8px; padding: 3px;
+}
+.mode-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  padding: 5px 14px; border-radius: 6px;
+  border: none; cursor: pointer;
+  color: var(--grey); background: transparent;
+  transition: all 0.2s;
+}
+.mode-btn:hover { color: var(--foam); }
+.mode-btn.active { background: var(--cyan); color: var(--navy); }
+.os-indicator {
+  margin-left: auto; display: flex; align-items: center; gap: 8px;
+  font-size: 11px; color: var(--grey);
+}
+.os-change-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--cyan); background: none;
+  border: 1px solid #00d4ff30; border-radius: 4px;
+  padding: 2px 8px; cursor: pointer; transition: all 0.2s;
+}
+.os-change-btn:hover { background: #00d4ff15; }
+.os-switch {
+  display: flex; gap: 2px; margin-left: auto;
+  background: #0f2240; border-radius: 6px; padding: 2px;
+}
+.os-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  padding: 4px 12px; border-radius: 5px;
+  border: none; cursor: pointer;
+  color: var(--grey); background: transparent; transition: all 0.2s;
+}
+.os-btn:hover { color: var(--foam); }
+.os-btn.active { background: var(--cyan); color: var(--navy); }
+.code-content { padding: 16px 20px; }
+.code-line { display: flex; align-items: center; gap: 10px; padding: 2px 0; }
+.code-line.comment {
+  color: #546e7a; font-size: 12.5px; font-style: italic;
+}
+.code-line.cmd { position: relative; }
+.code-line.cmd:hover .copy-line-btn { opacity: 1; }
+.code-prompt {
+  color: #c792ea; font-weight: 600;
+  user-select: none; -webkit-user-select: none; flex-shrink: 0;
+}
+.copy-line-btn {
+  margin-left: auto; flex-shrink: 0;
+  width: 28px; height: 28px; border-radius: 6px;
+  border: 1px solid #00d4ff20; background: #0f224080;
+  color: var(--grey); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: all 0.2s;
+}
+.copy-line-btn:hover { background: #00d4ff15; color: var(--cyan); border-color: #00d4ff40; }
+.copy-line-btn.copied { opacity: 1; color: var(--green-light); border-color: #4a7c5960; }
+.copy-line-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 600px) {
+  .mode-switch { margin-left: 0; width: 100%; order: 10; }
+  .mode-btn { flex: 1; text-align: center; font-size: 10px; padding: 5px 8px; }
+  .os-indicator, .os-switch { margin-left: auto; }
+  .code-content { padding: 14px 14px; }
+  .copy-line-btn { opacity: 1; }
+}
 
 .pro-tip {
   margin-top: 40px; padding: 20px 24px;
@@ -544,33 +601,91 @@ footer {
     <h2 class="section-title">Up and running in <span style="color:var(--green-light)">one command</span></h2>
   </div>
 
-  <div style="display:flex;flex-direction:column;gap:20px;">
-    <div>
-      <div class="step-label"><span class="num">01</span> &nbsp;Install (Linux / macOS)</div>
-      <div class="code-block">
-        <div class="code-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-        <div class="code-content">
-          <div><span class="kw">$</span> curl <span class="fl">-fsSL</span> <span class="str">https://otterbot.ai/install.sh</span> | sh</div>
-        </div>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
+      <div class="mode-switch">
+        <button class="mode-btn active" data-mode="installer">Install Script</button>
+        <button class="mode-btn" data-mode="docker">Docker</button>
+        <button class="mode-btn" data-mode="compose">Compose File</button>
       </div>
-      <div style="margin-top:12px;">
-        <div class="step-label" style="font-size:13px;color:var(--grey);"><span class="num" style="background:var(--green);color:var(--navy);">&#x1F4BB;</span> &nbsp;Windows (PowerShell):</div>
-        <div class="code-block">
-          <div class="code-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-          <div class="code-content">
-            <div><span class="kw">PS&gt;</span> irm <span class="str">https://otterbot.ai/install.ps1</span> | iex</div>
-          </div>
-        </div>
+      <div class="os-indicator" id="os-indicator">
+        <span id="os-detected">macOS/Linux</span>
+        <button class="os-change-btn" id="os-change-btn">change</button>
+      </div>
+      <div class="os-switch" id="os-switch" style="display:none;">
+        <button class="os-btn active" data-os="unix">macOS/Linux</button>
+        <button class="os-btn" data-os="windows">Windows</button>
       </div>
     </div>
-    <div>
-      <div class="step-label"><span class="num">02</span> &nbsp;Start chatting</div>
-      <div class="code-block">
-        <div class="code-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-        <div class="code-content">
-          <div><span class="kw">$</span> open <span class="str">https://localhost:62626</span></div>
-          <div><span class="cm"># &#x1F389; That&rsquo;s it. You&rsquo;re live.</span></div>
-        </div>
+
+    <!-- Tab: Install Script (unix) -->
+    <div id="code-installer" class="code-content" data-os="unix">
+      <div class="code-line comment"># Checks for Docker, generates config, pulls image, starts container</div>
+      <div class="code-line cmd">
+        <span class="code-prompt">$</span>
+        <span>curl -fsSL https://otterbot.ai/install.sh | sh</span>
+        <button class="copy-line-btn" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Tab: Install Script (windows) -->
+    <div id="code-installer-win" class="code-content" data-os="windows" style="display:none;">
+      <div class="code-line comment"># Checks for Docker, generates config, pulls image, starts container</div>
+      <div class="code-line cmd">
+        <span class="code-prompt">PS&gt;</span>
+        <span>irm https://otterbot.ai/install.ps1 | iex</span>
+        <button class="copy-line-btn" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Tab: Docker (unix) -->
+    <div id="code-docker" class="code-content" data-os="unix" style="display:none;">
+      <div class="code-line comment"># Pull and run directly</div>
+      <div class="code-line cmd">
+        <span class="code-prompt">$</span>
+        <span>docker run -d -p 62626:62626 otterbot/otterbot</span>
+        <button class="copy-line-btn" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Tab: Docker (windows) -->
+    <div id="code-docker-win" class="code-content" data-os="windows" style="display:none;">
+      <div class="code-line comment"># Pull and run directly</div>
+      <div class="code-line cmd">
+        <span class="code-prompt">PS&gt;</span>
+        <span>docker run -d -p 62626:62626 otterbot/otterbot</span>
+        <button class="copy-line-btn" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Tab: Compose File (unix) -->
+    <div id="code-compose" class="code-content" data-os="unix" style="display:none;">
+      <div class="code-line comment"># Download and start with docker compose</div>
+      <div class="code-line cmd">
+        <span class="code-prompt">$</span>
+        <span>curl -fsSL https://otterbot.ai/docker-compose.yml -o docker-compose.yml</span>
+        <button class="copy-line-btn" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div class="code-line cmd">
+        <span class="code-prompt">$</span>
+        <span>docker compose up -d</span>
+        <button class="copy-line-btn" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Tab: Compose File (windows) -->
+    <div id="code-compose-win" class="code-content" data-os="windows" style="display:none;">
+      <div class="code-line comment"># Download and start with docker compose</div>
+      <div class="code-line cmd">
+        <span class="code-prompt">PS&gt;</span>
+        <span>irm https://otterbot.ai/docker-compose.yml -OutFile docker-compose.yml</span>
+        <button class="copy-line-btn" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+      </div>
+      <div class="code-line cmd">
+        <span class="code-prompt">PS&gt;</span>
+        <span>docker compose up -d</span>
+        <button class="copy-line-btn" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
       </div>
     </div>
   </div>
@@ -676,7 +791,68 @@ footer {
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-<script>
+// --- Quickstart tabbed interface ---
+(function() {
+  const modeBtns = document.querySelectorAll('.mode-btn');
+  const osBtns = document.querySelectorAll('.os-btn');
+  const osIndicator = document.getElementById('os-indicator');
+  const osSwitch = document.getElementById('os-switch');
+  const osChangeBtn = document.getElementById('os-change-btn');
+  const osDetected = document.getElementById('os-detected');
+  let currentMode = 'installer';
+  let currentOS = /Win/.test(navigator.platform) ? 'windows' : 'unix';
+
+  function updateView() {
+    // Hide all code-content panels
+    document.querySelectorAll('.code-content').forEach(el => el.style.display = 'none');
+    // Show the one matching current mode + OS
+    const suffix = currentOS === 'windows' ? '-win' : '';
+    const target = document.getElementById('code-' + currentMode + suffix);
+    if (target) target.style.display = 'block';
+    // Update OS indicator text
+    osDetected.textContent = currentOS === 'windows' ? 'Windows' : 'macOS/Linux';
+    // Update active states
+    modeBtns.forEach(b => b.classList.toggle('active', b.dataset.mode === currentMode));
+    osBtns.forEach(b => b.classList.toggle('active', b.dataset.os === currentOS));
+  }
+
+  // Tab switching
+  modeBtns.forEach(btn => btn.addEventListener('click', () => {
+    currentMode = btn.dataset.mode;
+    updateView();
+  }));
+
+  // OS toggle
+  osChangeBtn.addEventListener('click', () => {
+    osIndicator.style.display = 'none';
+    osSwitch.style.display = 'flex';
+  });
+  osBtns.forEach(btn => btn.addEventListener('click', () => {
+    currentOS = btn.dataset.os;
+    osSwitch.style.display = 'none';
+    osIndicator.style.display = 'flex';
+    updateView();
+  }));
+
+  // Copy to clipboard
+  document.querySelectorAll('.copy-line-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cmdSpan = btn.parentElement.querySelector('span:not(.code-prompt)');
+      if (!cmdSpan) return;
+      navigator.clipboard.writeText(cmdSpan.textContent.trim());
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+      }, 2000);
+    });
+  });
+
+  // Init
+  updateView();
+})();
+
 // Generate starfield
 const starfield = document.getElementById('starfield');
 for (let i = 0; i < 40; i++) {
