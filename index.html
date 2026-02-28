@@ -476,7 +476,7 @@ footer {
 
   <div class="hero-buttons">
     <a href="#quickstart" class="btn btn-primary">
-      <span>&#x1F433;</span> docker pull otterbot
+      <span>&#x1F9A6;</span> Install OtterBot
     </a>
     <a href="https://github.com/TOoSmOotH/otterbot" class="btn btn-outline" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -541,53 +541,34 @@ footer {
 <section class="quickstart" id="quickstart">
   <div style="text-align:center;margin-bottom:48px;">
     <span class="section-label green">Get Started</span>
-    <h2 class="section-title">Up and running in <span style="color:var(--green-light)">3 commands</span></h2>
+    <h2 class="section-title">Up and running in <span style="color:var(--green-light)">one command</span></h2>
   </div>
 
   <div style="display:flex;flex-direction:column;gap:20px;">
     <div>
-      <div class="step-label"><span class="num">01</span> &nbsp;Pull the image</div>
+      <div class="step-label"><span class="num">01</span> &nbsp;Install (Linux / macOS)</div>
       <div class="code-block">
         <div class="code-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
         <div class="code-content">
-          <div><span class="kw">$</span> docker pull <span class="str">ghcr.io/toosmooth/otterbot:latest</span></div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="step-label"><span class="num">02</span> &nbsp;Run the container</div>
-      <div class="code-block">
-        <div class="code-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-        <div class="code-content">
-          <div><span class="kw">$</span> docker run <span class="fl">-d</span> <span class="fl">-p</span> <span class="str">62626:62626</span> \</div>
-          <div>&nbsp;&nbsp;<span class="fl">--name</span> <span class="str">otterbot</span> \</div>
-          <div>&nbsp;&nbsp;<span class="fl">-e</span> <span class="str">OTTERBOT_DB_KEY=change-me-to-something-secret</span> \</div>
-          <div>&nbsp;&nbsp;<span class="fl">--shm-size</span> <span class="str">256m</span> \</div>
-          <div>&nbsp;&nbsp;ghcr.io/toosmooth/otterbot:latest</div>
+          <div><span class="kw">$</span> curl <span class="fl">-fsSL</span> <span class="str">https://otterbot.ai/install.sh</span> | sh</div>
         </div>
       </div>
       <div style="margin-top:12px;">
-        <div class="step-label" style="font-size:13px;color:var(--grey);"><span class="num" style="background:var(--green);color:var(--navy);">&#x1F4BE;</span> &nbsp;Want persistence? Add a volume:</div>
+        <div class="step-label" style="font-size:13px;color:var(--grey);"><span class="num" style="background:var(--green);color:var(--navy);">&#x1F4BB;</span> &nbsp;Windows (PowerShell):</div>
         <div class="code-block">
           <div class="code-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
           <div class="code-content">
-            <div><span class="kw">$</span> docker run <span class="fl">-d</span> <span class="fl">-p</span> <span class="str">62626:62626</span> \</div>
-            <div>&nbsp;&nbsp;<span class="fl">--name</span> <span class="str">otterbot</span> \</div>
-            <div>&nbsp;&nbsp;<span class="fl">-e</span> <span class="str">OTTERBOT_DB_KEY=change-me-to-something-secret</span> \</div>
-            <div>&nbsp;&nbsp;<span class="fl">--shm-size</span> <span class="str">256m</span> \</div>
-            <div>&nbsp;&nbsp;<span class="fl">-v</span> <span class="str">~/otterbot:/otterbot</span> \</div>
-            <div>&nbsp;&nbsp;ghcr.io/toosmooth/otterbot:latest</div>
-            <div><span class="cm"># Data persists in ~/otterbot between restarts</span></div>
+            <div><span class="kw">PS&gt;</span> irm <span class="str">https://otterbot.ai/install.ps1</span> | iex</div>
           </div>
         </div>
       </div>
     </div>
     <div>
-      <div class="step-label"><span class="num">03</span> &nbsp;Start chatting</div>
+      <div class="step-label"><span class="num">02</span> &nbsp;Start chatting</div>
       <div class="code-block">
         <div class="code-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
         <div class="code-content">
-          <div><span class="kw">$</span> open <span class="str">http://localhost:62626</span></div>
+          <div><span class="kw">$</span> open <span class="str">https://localhost:62626</span></div>
           <div><span class="cm"># &#x1F389; That&rsquo;s it. You&rsquo;re live.</span></div>
         </div>
       </div>
@@ -597,9 +578,8 @@ footer {
   <div class="pro-tip">
     <span style="font-size:20px;flex-shrink:0;">&#x1F9A6;</span>
     <p>
-      <strong>Pro tip:</strong> Set your <code>OTTERBOT_DB_KEY</code> to a unique secret &mdash; it encrypts your database.
-      Add <code>-v ~/otterbot:/otterbot</code> if you want data to persist between container restarts.
-      See the <a href="/docs/getting-started/" style="color:var(--green-light);">docs</a> for all runtime options.
+      <strong>What does the installer do?</strong> It checks for Docker (and offers to install it), generates a <code>docker-compose.yml</code> and <code>.env</code> with a secure random DB key, pulls the image, and starts the container. All data lives in <code>~/otterbot</code>.
+      See the <a href="/docs/getting-started/" style="color:var(--green-light);">docs</a> for manual Docker setup and all runtime options.
     </p>
   </div>
 </section>

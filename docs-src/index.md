@@ -27,19 +27,21 @@ multi-agent AI assistant that runs entirely in Docker.
 
 ## Quick Start
 
-Get OtterBot running in seconds with Docker:
+Get OtterBot running with a single command:
 
-```bash
-# Pull & run
-$ docker pull ghcr.io/toosmooth/otterbot:latest
-$ docker run -d -p 62626:62626 --name otterbot \
-  -e OTTERBOT_DB_KEY=change-me-to-something-secret \
-  --shm-size 256m \
-  ghcr.io/toosmooth/otterbot:latest
+=== "Linux / macOS"
 
-# Open in your browser
-$ open http://localhost:62626
-```
+    ```bash
+    curl -fsSL https://otterbot.ai/install.sh | sh
+    ```
 
-For detailed setup instructions including development mode and environment configuration,
+=== "Windows (PowerShell)"
+
+    ```powershell
+    irm https://otterbot.ai/install.ps1 | iex
+    ```
+
+The installer checks for Docker, generates config files, pulls the image, and starts the container. Open **https://localhost:62626** when it finishes.
+
+For manual Docker setup, development mode, and environment configuration,
 see the [Getting Started](getting-started.md) guide.

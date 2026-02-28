@@ -1,53 +1,96 @@
 # Getting Started
 
-Get OtterBot up and running in minutes. Docker is the recommended approach — one command and you're live.
+Get OtterBot up and running in minutes. The install script is the fastest path — one command and you're live.
 
 ## Prerequisites
 
-OtterBot has minimal requirements depending on how you run it:
-
-### Docker (recommended)
-
-- **Docker** 20.10+ (or Docker Desktop)
+- **Docker** 20.10+ (or Docker Desktop) — the installer can set this up for you
 - At least **2 GB RAM** available for the container
 - An **LLM API key** (Anthropic, OpenAI, or any OpenAI-compatible provider)
 
-### From Source
+## Quick Start (Recommended)
 
-- **Node.js** 20+ and **pnpm** 9+
-- **Git**
-- An **LLM API key**
-- Optional: **Playwright** browsers (for web automation features)
+The install script detects your OS, checks for Docker, generates a `docker-compose.yml` and `.env` with a secure random DB key, then pulls and starts the container.
 
-## Quick Start with Docker
+=== "Linux / macOS"
 
-### Step 1 — Pull the image
+    ```bash
+    curl -fsSL https://otterbot.ai/install.sh | sh
+    ```
+
+=== "Windows (PowerShell)"
+
+    ```powershell
+    irm https://otterbot.ai/install.ps1 | iex
+    ```
+
+That's it. Open **https://localhost:62626** in your browser. The first-run setup wizard will guide you through configuring your LLM provider and API key.
+
+### Installer options
+
+| Flag | Description |
+|------|-------------|
+| `--dir <path>` / `-Dir <path>` | Install directory (default: `~/otterbot`) |
+| `--beta` / `-Beta` | Use the `:beta` image tag |
+| `--no-start` / `-NoStart` | Generate files but don't start the container |
 
 ```bash
-$ docker pull ghcr.io/toosmooth/otterbot:latest
+# Example: install beta channel to a custom directory
+curl -fsSL https://otterbot.ai/install.sh | sh -s -- --beta --dir /opt/otterbot
 ```
 
-### Step 2 — Run the container
+### What the installer creates
+
+```
+~/otterbot/
+├── docker-compose.yml   # Container configuration
+├── .env                 # Environment (auto-generated DB key, UID/GID)
+└── data/                # Persistent volume mount
+```
+
+!!! tip "Idempotent"
+    Running the installer again will update `docker-compose.yml` but **never overwrite your `.env`** — your DB encryption key and settings are preserved.
+
+### Managing your installation
+
+```bash
+cd ~/otterbot
+
+# Stop
+docker compose down
+
+# Start
+docker compose up -d
+
+# View logs
+docker compose logs -f
+
+# Update to latest
+docker compose pull && docker compose up -d
+```
+
+!!! warning "Important"
+    Your `OTTERBOT_DB_KEY` in `.env` encrypts the database (which stores API keys and settings). Back it up — losing this key means losing access to stored data.
+
+!!! info "Accessing remotely?"
+    If you're connecting from a different origin (e.g. behind a reverse proxy or on a different host), set `OTTERBOT_ALLOWED_ORIGIN` in your `.env` file to a comma-separated list of allowed origins.
+
+## Docker (Manual Setup)
+
+If you prefer to set things up yourself rather than using the install script:
+
+### Quick run
 
 ```bash
 $ docker run -d -p 62626:62626 \
   --name otterbot \
-  -e OTTERBOT_DB_KEY=change-me-to-something-secret \
+  -e OTTERBOT_DB_KEY=$(openssl rand -hex 16) \
+  -v ~/otterbot:/otterbot \
   --shm-size 256m \
   ghcr.io/toosmooth/otterbot:latest
 ```
 
-**Want persistent data?** Add `-v ~/otterbot:/otterbot` to keep installed packages, projects, and settings between container restarts. Without it, OtterBot runs fully ephemeral — everything resets when the container is removed. See [Volume & Persistent Data](#volume-persistent-data) for details.
-
-### Step 3 — Open the UI
-
-Navigate to `http://localhost:62626` in your browser. The first-run setup wizard will guide you through configuring your LLM provider and API key.
-
-!!! warning "Important"
-    Set `OTTERBOT_DB_KEY` to a unique secret. This encrypts your database (which stores API keys and settings). Losing this key means losing access to stored data.
-
-!!! info "Accessing remotely?"
-    If you're connecting from a different origin (e.g. behind a reverse proxy or on a different host), you must set the `OTTERBOT_ALLOWED_ORIGIN` environment variable so CORS works properly. Pass a comma-separated list of allowed origins: `-e OTTERBOT_ALLOWED_ORIGIN=https://otterbot.example.com`
+Without `-v ~/otterbot:/otterbot`, OtterBot runs fully ephemeral — everything resets when the container is removed. See [Volume & Persistent Data](#volume-persistent-data) for details.
 
 ### Full Docker command with all options
 
@@ -133,7 +176,7 @@ Agents can install packages at runtime. These are recorded in `config/packages.j
 
 ## Development Setup
 
-To run OtterBot from source for development or contribution:
+Requires **Node.js 20+**, **pnpm 9+**, and **Git**. To run OtterBot from source for development or contribution:
 
 ```bash
 # Clone the repository
