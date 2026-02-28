@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — OtterBot</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-light: #0f2240;
+  --cyan: #00d4ff;
+  --white: #e8f4f8;
+  --foam: #c8e6ec;
+  --grey: #7b9eb8;
+  --border: #ffffff10;
+  --surface: #0c1a2e;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(circle, #ffffff06 1px, transparent 1px),
+    var(--navy);
+  background-size: 24px 24px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--foam);
+  overflow-x: hidden;
+}
+::selection { background: #00d4ff33; color: var(--white); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: #00d4ff33; border-radius: 3px; }
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 800; color: var(--white);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-brand .cyan { color: var(--cyan); }
+.nav-back {
+  color: var(--grey); text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; transition: color 0.2s;
+}
+.nav-back:hover { color: var(--cyan); }
+
+.content {
+  max-width: 720px; margin: 0 auto;
+  padding: 120px 40px 80px;
+}
+.content h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800; color: var(--white);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.content .date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--grey);
+  margin-bottom: 40px;
+}
+.content h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 700; color: var(--cyan);
+  margin-top: 40px; margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.content p {
+  font-size: 16px; line-height: 1.75; color: var(--grey);
+  margin-bottom: 16px;
+}
+.content ul {
+  margin-bottom: 16px; padding-left: 24px;
+}
+.content li {
+  font-size: 16px; line-height: 1.75; color: var(--grey);
+  margin-bottom: 8px;
+}
+.content a { color: var(--cyan); text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; background: var(--surface);
+  padding: 2px 6px; border-radius: 4px;
+}
+
+footer {
+  background: var(--navy-light);
+  padding: 32px 40px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+footer p {
+  font-size: 13px; color: var(--grey);
+}
+footer a { color: var(--cyan); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .nav { padding: 14px 20px; }
+  .content { padding: 100px 20px 60px; }
+  footer { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-brand"><span class="cyan">Otter</span>Bot</a>
+  <a href="/" class="nav-back">&larr; Back to home</a>
+</nav>
+
+<div class="content">
+  <h1>Privacy Policy</h1>
+  <p class="date">Effective: February 28, 2026</p>
+
+  <h2>The Short Version</h2>
+  <p>
+    OtterBot does not collect, store, or transmit any personal data. The website has no analytics,
+    no cookies, and no tracking. The software runs entirely on your own hardware.
+  </p>
+
+  <h2>Website</h2>
+  <p>
+    The OtterBot website (<a href="https://otterbot.ai">otterbot.ai</a>) is a static site hosted on
+    GitHub Pages. We do not use cookies, analytics services, tracking pixels, or any form of user
+    monitoring. We do not collect IP addresses, browser fingerprints, or any other identifying information.
+  </p>
+  <p>
+    GitHub Pages may collect basic server logs as part of their infrastructure. This is governed by
+    <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's Privacy Statement</a>.
+  </p>
+
+  <h2>OtterBot Software</h2>
+  <p>
+    OtterBot runs entirely in a Docker container on your own machine. It does not phone home, send
+    telemetry, or transmit any data to us or any third party. All conversations, configurations, and
+    data remain on your hardware under your full control.
+  </p>
+  <p>
+    If you configure OtterBot to use third-party AI providers (such as OpenAI, Anthropic, or Google),
+    your interactions with those services are governed by their respective privacy policies. OtterBot
+    itself does not intermediate or log those communications.
+  </p>
+
+  <h2>Data Storage</h2>
+  <p>
+    By default, OtterBot is ephemeral &mdash; data is lost when the container stops. If you opt in to
+    persistent storage via a volume mount, all data is stored locally in the directory you specify
+    (typically <code>~/otterbot</code>). No data leaves your machine.
+  </p>
+
+  <h2>Third-Party Services</h2>
+  <p>
+    The website loads fonts from Google Fonts. Google may collect limited data as described in their
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a>.
+    No other third-party services are used on the website.
+  </p>
+
+  <h2>Children's Privacy</h2>
+  <p>
+    OtterBot does not knowingly collect any information from anyone, including children under 13.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    If this policy changes, we will update this page with a new effective date. Since we don't collect
+    any contact information, we cannot notify you directly &mdash; please check back periodically.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this policy can be raised via
+    <a href="https://github.com/TOoSmOotH/otterbot/discussions" target="_blank" rel="noopener">GitHub Discussions</a>.
+  </p>
+</div>
+
+<footer>
+  <p>&copy; <script>document.write(new Date().getFullYear())</script> OtterBot &middot; <a href="/">Home</a> &middot; <a href="/terms-of-service">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>

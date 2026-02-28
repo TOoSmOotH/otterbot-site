@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — OtterBot</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-light: #0f2240;
+  --cyan: #00d4ff;
+  --white: #e8f4f8;
+  --foam: #c8e6ec;
+  --grey: #7b9eb8;
+  --border: #ffffff10;
+  --surface: #0c1a2e;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(circle, #ffffff06 1px, transparent 1px),
+    var(--navy);
+  background-size: 24px 24px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--foam);
+  overflow-x: hidden;
+}
+::selection { background: #00d4ff33; color: var(--white); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: #00d4ff33; border-radius: 3px; }
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 800; color: var(--white);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-brand .cyan { color: var(--cyan); }
+.nav-back {
+  color: var(--grey); text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; transition: color 0.2s;
+}
+.nav-back:hover { color: var(--cyan); }
+
+.content {
+  max-width: 720px; margin: 0 auto;
+  padding: 120px 40px 80px;
+}
+.content h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800; color: var(--white);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.content .date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--grey);
+  margin-bottom: 40px;
+}
+.content h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 700; color: var(--cyan);
+  margin-top: 40px; margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.content p {
+  font-size: 16px; line-height: 1.75; color: var(--grey);
+  margin-bottom: 16px;
+}
+.content ul, .content ol {
+  margin-bottom: 16px; padding-left: 24px;
+}
+.content li {
+  font-size: 16px; line-height: 1.75; color: var(--grey);
+  margin-bottom: 8px;
+}
+.content a { color: var(--cyan); text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; background: var(--surface);
+  padding: 2px 6px; border-radius: 4px;
+}
+
+footer {
+  background: var(--navy-light);
+  padding: 32px 40px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+footer p {
+  font-size: 13px; color: var(--grey);
+}
+footer a { color: var(--cyan); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .nav { padding: 14px 20px; }
+  .content { padding: 100px 20px 60px; }
+  footer { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-brand"><span class="cyan">Otter</span>Bot</a>
+  <a href="/" class="nav-back">&larr; Back to home</a>
+</nav>
+
+<div class="content">
+  <h1>Terms of Service</h1>
+  <p class="date">Effective: February 28, 2026</p>
+
+  <h2>1. Acceptance</h2>
+  <p>
+    By using the OtterBot website or software, you agree to these terms. If you don't agree,
+    please don't use OtterBot.
+  </p>
+
+  <h2>2. What OtterBot Is</h2>
+  <p>
+    OtterBot is a free, open-source AI assistant distributed as a Docker container. The source code
+    is available under the <a href="https://github.com/TOoSmOotH/otterbot/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.
+    Your use of the source code is governed by that license.
+  </p>
+
+  <h2>3. No Warranty</h2>
+  <p>
+    OtterBot is provided <strong style="color:var(--foam)">"as is"</strong> without warranty of any kind, express or implied.
+    This includes, but is not limited to, warranties of merchantability, fitness for a particular purpose,
+    and non-infringement. Use it at your own risk.
+  </p>
+
+  <h2>4. Your Responsibility</h2>
+  <p>You are solely responsible for:</p>
+  <ul>
+    <li>How you use OtterBot and any output it generates</li>
+    <li>Securing your own infrastructure, API keys, and data</li>
+    <li>Complying with the terms of any third-party AI providers you connect (OpenAI, Anthropic, Google, etc.)</li>
+    <li>Any content generated through your use of OtterBot</li>
+  </ul>
+
+  <h2>5. Limitation of Liability</h2>
+  <p>
+    To the maximum extent permitted by law, OtterBot and its contributors shall not be liable for any
+    indirect, incidental, special, consequential, or punitive damages, or any loss of profits or data,
+    arising from your use of the software or website.
+  </p>
+
+  <h2>6. Third-Party Services</h2>
+  <p>
+    OtterBot can integrate with third-party AI providers. These integrations are optional and configured
+    by you. We have no control over, and assume no responsibility for, any third-party services. Your
+    use of those services is subject to their own terms and policies.
+  </p>
+
+  <h2>7. No Guarantees of Availability</h2>
+  <p>
+    OtterBot is a community-driven open-source project. We do not guarantee uptime, updates,
+    bug fixes, or continued development. Container images are provided via
+    <a href="https://github.com/TOoSmOotH/otterbot/pkgs/container/otterbot" target="_blank" rel="noopener">GitHub Container Registry</a>
+    and may be updated or removed at any time.
+  </p>
+
+  <h2>8. Modifications</h2>
+  <p>
+    We may update these terms at any time. Changes take effect when posted to this page with a new
+    effective date. Continued use of OtterBot after changes constitutes acceptance of the updated terms.
+  </p>
+
+  <h2>9. Governing Law</h2>
+  <p>
+    These terms are governed by applicable law. Any disputes shall be resolved in the jurisdiction
+    where the project maintainer resides.
+  </p>
+
+  <h2>10. Contact</h2>
+  <p>
+    Questions about these terms can be raised via
+    <a href="https://github.com/TOoSmOotH/otterbot/discussions" target="_blank" rel="noopener">GitHub Discussions</a>.
+  </p>
+</div>
+
+<footer>
+  <p>&copy; <script>document.write(new Date().getFullYear())</script> OtterBot &middot; <a href="/">Home</a> &middot; <a href="/privacy-policy">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>
