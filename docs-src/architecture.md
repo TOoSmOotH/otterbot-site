@@ -160,9 +160,15 @@ with your agents from anywhere.
 
 - **Discord** — Full bot integration via `discord.js`
 - **Slack** — Workspace app via `@slack/bolt`
-- **Matrix** — Decentralized chat via `matrix-js-sdk`
+- **Matrix** — Decentralized chat via `matrix-js-sdk` (E2EE support)
 - **IRC** — Classic IRC networks via `irc-framework`
 - **Microsoft Teams** — Teams channel integration via webhook
+- **Telegram** — Telegram bot integration
+- **WhatsApp** — WhatsApp messaging bridge
+- **Signal** — Signal messenger bridge
+- **Mattermost** — Mattermost chat integration
+- **Nextcloud Talk** — Nextcloud Talk integration
+- **Tlon** — Tlon (Urbit) chat integration
 
 Each bridge runs independently and relays messages bidirectionally between the external
 platform and the COO. Configuration and credentials are managed through the Settings UI.
@@ -189,7 +195,7 @@ keeping everything orchestrated through OtterBot's hierarchy.
 | --- | --- |
 | `Fastify` | HTTP server for REST API |
 | `Socket.IO` | Real-time bidirectional communication |
-| `Vercel AI SDK` | Unified LLM interface (Anthropic, OpenAI, compatible providers) |
+| `Vercel AI SDK` | Unified LLM interface (18 providers: Anthropic, OpenAI, Gemini, Ollama, OpenRouter, and more) |
 | `Drizzle ORM` | Type-safe database access |
 | `better-sqlite3` | SQLite with encryption support |
 | `Playwright` | Browser automation for agents |
@@ -208,8 +214,11 @@ keeping everything orchestrated through OtterBot's hierarchy.
 | --- | --- |
 | `React 19` | UI framework |
 | `Vite` | Build tool and dev server |
+| `Tailwind CSS + shadcn/ui` | Styling and component library |
+| `Zustand` | State management |
 | `Three.js / R3F` | 3D agent visualization (Live View) |
 | `@xyflow/react` | Agent graph visualization |
+| `React Markdown` | Markdown rendering with Mermaid diagrams |
 | `Socket.IO Client` | Real-time event handling |
 
 ### Infrastructure
@@ -263,7 +272,9 @@ otterbot/
 |  |  |  +-- models3d/    # 3D model/environment pack discovery
 |  |  |  +-- memory/      # Episodic memory & soul documents
 |  |  |  +-- coding-agents/ # OpenCode, Claude Code, Codex PTY
-|  |  |  +-- messaging/   # Discord, Slack, Teams bridges
+|  |  |  +-- messaging/   # Discord, Slack, Teams, Telegram,
+|  |  |  |               # WhatsApp, Signal, Mattermost,
+|  |  |  |               # Nextcloud Talk, Tlon bridges
 |  |  |  +-- irc/         # IRC & Matrix bridges
 |  |  |  +-- modules/     # External module system
 |  |  |  +-- skills/      # Skill/prompt fragment registry

@@ -14,7 +14,7 @@ OtterBot has minimal requirements depending on how you run it:
 
 ### From Source
 
-- **Node.js** 20+ and **npm** 10+
+- **Node.js** 20+ and **pnpm** 9+
 - **Git**
 - An **LLM API key**
 - Optional: **Playwright** browsers (for web automation features)
@@ -143,6 +143,13 @@ $ cd otterbot
 # Install dependencies (monorepo via pnpm workspaces)
 $ pnpm install
 
+# Configure environment
+$ cp .env.example .env
+# Edit .env and set OTTERBOT_DB_KEY to a unique secret
+
+# Apply the database schema
+$ pnpm db:push
+
 # Start the dev server (server + web concurrently)
 $ pnpm dev
 ```
@@ -167,8 +174,23 @@ When you first open OtterBot, the setup wizard walks you through the essential c
 Choose your AI provider and enter your API key. Supported providers:
 
 - **Anthropic** — Claude models (recommended)
-- **OpenAI** — GPT models
-- **OpenAI-Compatible** — Any provider with an OpenAI-compatible API (Ollama, LM Studio, etc.)
+- **OpenAI** — GPT-4o, o3, and more
+- **Google Gemini** — Gemini 2.5, 2.0 models
+- **OpenRouter** — 200+ models from multiple providers
+- **Ollama** — Local models (no API key needed)
+- **DeepSeek** — DeepSeek Chat and Reasoner
+- **xAI** — Grok models
+- **Mistral** — Mistral Large, Small, Codestral
+- **Perplexity** — Sonar search-grounded models
+- **AWS Bedrock** — Managed AWS AI service
+- **GitHub Copilot** — GitHub-hosted models
+- **Hugging Face** — Open-source models
+- **NVIDIA** — NVIDIA-hosted models
+- **MiniMax** — MiniMax models
+- **Z.AI** — GLM models
+- **Deepgram** — Deepgram models
+- **LM Studio** — Local models (no API key needed)
+- **OpenAI-Compatible** — Any provider with an OpenAI-compatible API
 
 The wizard probes available models from your provider so you can select which model to use for the COO agent and worker agents.
 

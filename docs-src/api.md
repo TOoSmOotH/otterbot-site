@@ -603,6 +603,90 @@ Update Teams bridge settings.
 
 Initiate Teams webhook pairing.
 
+### Telegram
+
+### GET /api/settings/telegram
+
+Get Telegram bridge settings (bot token, enabled status).
+
+### PUT /api/settings/telegram
+
+Update Telegram bridge settings.
+
+### POST /api/settings/telegram/test
+
+Test the Telegram bot connection.
+
+### WhatsApp
+
+### GET /api/settings/whatsapp
+
+Get WhatsApp bridge settings.
+
+### PUT /api/settings/whatsapp
+
+Update WhatsApp bridge settings.
+
+### POST /api/settings/whatsapp/test
+
+Test the WhatsApp bridge connection.
+
+### Signal
+
+### GET /api/settings/signal
+
+Get Signal bridge settings.
+
+### PUT /api/settings/signal
+
+Update Signal bridge settings.
+
+### POST /api/settings/signal/test
+
+Test the Signal bridge connection.
+
+### Mattermost
+
+### GET /api/settings/mattermost
+
+Get Mattermost bridge settings.
+
+### PUT /api/settings/mattermost
+
+Update Mattermost bridge settings.
+
+### POST /api/settings/mattermost/test
+
+Test the Mattermost connection.
+
+### Nextcloud Talk
+
+### GET /api/settings/nextcloud-talk
+
+Get Nextcloud Talk bridge settings.
+
+### PUT /api/settings/nextcloud-talk
+
+Update Nextcloud Talk bridge settings.
+
+### POST /api/settings/nextcloud-talk/test
+
+Test the Nextcloud Talk connection.
+
+### Tlon
+
+### GET /api/settings/tlon
+
+Get Tlon bridge settings.
+
+### PUT /api/settings/tlon
+
+Update Tlon bridge settings.
+
+### POST /api/settings/tlon/test
+
+Test the Tlon connection.
+
 ## REST: Coding Agents
 
 ### OpenCode
@@ -692,6 +776,78 @@ Send a new email.
 ### POST /api/gmail/messages/:id/archive
 
 Archive a Gmail message (remove from inbox).
+
+## REST: MCP Servers
+
+### GET /api/settings/mcp-servers
+
+List all configured MCP servers.
+
+```json
+// Response
+[
+  {
+    "id": "mcp_abc",
+    "name": "My MCP Server",
+    "transport": "stdio",
+    "command": "/usr/local/bin/mcp-server",
+    "args": ["--port", "3000"],
+    "status": "running",
+    "tools": ["tool_a", "tool_b"]
+  }
+]
+```
+
+### POST /api/settings/mcp-servers
+
+Create a new MCP server configuration.
+
+```json
+// Request body
+{
+  "name": "My MCP Server",
+  "transport": "stdio",
+  "command": "/usr/local/bin/mcp-server",
+  "args": ["--port", "3000"],
+  "env": {}
+}
+```
+
+### GET /api/settings/mcp-servers/:id
+
+Get a specific MCP server's configuration and status.
+
+### PUT /api/settings/mcp-servers/:id
+
+Update an MCP server's configuration.
+
+### DELETE /api/settings/mcp-servers/:id
+
+Delete an MCP server configuration.
+
+### POST /api/settings/mcp-servers/:id/start
+
+Start an MCP server process.
+
+### POST /api/settings/mcp-servers/:id/stop
+
+Stop a running MCP server process.
+
+### POST /api/settings/mcp-servers/:id/restart
+
+Restart an MCP server process.
+
+### POST /api/settings/mcp-servers/:id/test
+
+Test connectivity to an MCP server.
+
+### POST /api/settings/mcp-servers/:id/discover
+
+Discover available tools from a connected MCP server.
+
+### PUT /api/settings/mcp-servers/:id/tools
+
+Update the list of allowed tools from an MCP server.
 
 ## REST: Backup & Restore
 
@@ -1244,8 +1400,8 @@ Status update for a messaging bridge (connected, disconnected, error).
 {
   "id": string,
   "name": string,
-  "role": "coo" | "team_lead" | "worker" | "admin_assistant" | "scheduler",
-  "status": "idle" | "thinking" | "acting" | "done" | "error",
+  "role": "coo" | "team_lead" | "worker" | "admin_assistant" | "scheduler" | "module_agent",
+  "status": "idle" | "thinking" | "acting" | "awaiting_input" | "done" | "error",
   "registryId": string,
   "projectId": string | null
 }
@@ -1265,7 +1421,7 @@ Status update for a messaging bridge (connected, disconnected, error).
   "defaultProvider": string,
   "tools": string[],
   "builtIn": boolean,
-  "role": "coo" | "team_lead" | "worker" | "admin_assistant" | "scheduler",
+  "role": "coo" | "team_lead" | "worker" | "admin_assistant" | "scheduler" | "module_agent",
   "modelPackId": string | null,
   "gearConfig": GearConfig | null,
   "clonedFromId": string | null,

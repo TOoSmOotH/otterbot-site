@@ -58,6 +58,13 @@ OpenAI Whisper ONNX model running locally. Default model:
 Any provider with an OpenAI-compatible transcription endpoint
 (`/v1/audio/transcriptions`).
 
+#### Browser Web Speech API
+
+**Built-in**
+
+Uses the browser's native Web Speech API for speech recognition. No setup or API key
+required — works directly in supported browsers (Chrome, Edge).
+
 ### STT Configuration
 
 | Setting Key | Description | Default |
@@ -355,7 +362,7 @@ OpenAI's CLI coding agent. Requires Codex CLI installed and an OpenAI API key.
 
 ## Messaging Integrations
 
-OtterBot can bridge conversations to five external messaging platforms, letting you chat
+OtterBot can bridge conversations to eleven external messaging platforms, letting you chat
 with your agents from anywhere.
 
 #### Discord
@@ -368,13 +375,13 @@ Full Discord bot integration. Configure a bot token and channel in Settings.
 
 **App Token**
 
-Slack workspace app via Bolt framework. Requires app and bot tokens.
+Slack workspace app via Bolt framework. Requires app and bot tokens. Supports threaded conversations.
 
 #### Matrix
 
 **Self-Hosted**
 
-Decentralized chat protocol. Connect to any Matrix homeserver.
+Decentralized chat protocol with end-to-end encryption (E2EE) support. Connect to any Matrix homeserver.
 
 #### IRC
 
@@ -387,6 +394,42 @@ Classic IRC networks. Configure server, channel, and nickname.
 **Webhook**
 
 Teams channel integration via incoming/outgoing webhooks.
+
+#### Telegram
+
+**Bot Token**
+
+Telegram bot integration. Create a bot via BotFather and configure the token in Settings.
+
+#### WhatsApp
+
+**Bridge**
+
+WhatsApp messaging bridge integration.
+
+#### Signal
+
+**Bridge**
+
+Signal messenger bridge for secure messaging.
+
+#### Mattermost
+
+**Webhook/Bot**
+
+Mattermost team chat integration.
+
+#### Nextcloud Talk
+
+**Integration**
+
+Nextcloud Talk chat integration.
+
+#### Tlon
+
+**Integration**
+
+Tlon (Urbit) communication platform integration.
 
 Each bridge relays messages bidirectionally between the external platform and the COO.
 Configure credentials and channels through the Settings UI.
@@ -433,15 +476,228 @@ OtterBot includes built-in GitHub integration for managing repositories and moni
 - **Auto-project creation** -- Automatically create OtterBot projects from GitHub issues
 - **GitHub CLI** -- The `gh` CLI is pre-installed for agents to use
 
-## Module System
+## Specialist Agents
 
-The module system provides an **extensible architecture** for adding third-party
-functionality without modifying core code.
+Specialist Agents are OtterBot's primary extension point for connecting to external data
+sources. Each specialist is an autonomous agent with its own isolated knowledge store,
+data ingestion pipeline, configuration, and custom tools.
 
-- **Install** -- Install modules from GitHub repositories
-- **Toggle** -- Enable or disable modules without uninstalling
-- **Webhooks** -- Modules can register webhook endpoints for external integrations
-- **Example:** The `github-discussions` module monitors GitHub Discussion activity
+!!! info
+    Specialists were formerly called "modules." The internal implementation still uses module
+    naming for backward compatibility — `defineSpecialist()` and `defineModule()` are aliases.
+
+### Capabilities
+
+| Capability | Description |
+|---|---|
+| **Knowledge Store** | Isolated SQLite database with hybrid FTS5 + vector search per specialist |
+| **Data Ingestion** | Automated polling on configurable intervals and/or webhook listeners |
+| **Custom Tools** | Specialist-specific tools available to the specialist's agent |
+| **AI Agent** | Optional reasoning layer — an LLM agent that can query and synthesize from the knowledge store |
+| **Config Schema** | Typed settings (string, number, boolean, secret, select) managed through the Settings UI |
+| **Migrations** | Versioned database schema migrations for custom tables |
+
+### Knowledge Store
+
+Each specialist gets its own SQLite database with **hybrid search** combining:
+
+- **FTS5 full-text search** for keyword matching (BM25 ranking)
+- **Vector embeddings** for semantic similarity (cosine similarity)
+- **Reciprocal rank fusion** to merge both result sets
+
+```typescript
+// Available via ctx.knowledge in all handlers
+ctx.knowledge.upsert("doc-1", "Document content", { url: "..." });
+const results = await ctx.knowledge.search("query", 10);
+const doc = ctx.knowledge.get("doc-1");
+const count = ctx.knowledge.count();
+```
+
+### Triggers & Data Pipeline
+
+Specialists ingest data through two trigger types:
+
+#### Poll Trigger
+
+Runs on a configurable interval. Items returned from the `onPoll` handler are automatically
+upserted into the knowledge store.
+
+```typescript
+triggers: [
+  { type: "poll", intervalMs: 300_000, minIntervalMs: 60_000 }  // 5 min poll, 1 min minimum
+]
+```
+
+A `onFullSync` handler can also be defined for comprehensive reindexing of all data.
+
+#### Webhook Trigger
+
+Registers a webhook endpoint at `POST /api/modules/:moduleId/webhook`. Supports GitHub
+signature verification (`X-Hub-Signature-256`) and secret-based auth.
+
+```typescript
+triggers: [
+  { type: "webhook", path: "/webhook" }
+]
+```
+
+### Custom Tools
+
+Specialists can expose tools to their agent. Every specialist agent also automatically
+receives a `knowledge_search` tool for hybrid search over its knowledge store.
+
+```typescript
+tools: [
+  {
+    name: "search_discussions",
+    description: "Search discussions with filters",
+    parameters: {
+      query: { type: "string", description: "Search text" },
+      category: { type: "string", description: "Filter by category" },
+    },
+    async execute(args, ctx) {
+      // Can use raw DB access: ctx.knowledge.db.prepare(sql)
+      return JSON.stringify(results);
+    },
+  },
+]
+```
+
+### Agent Configuration
+
+Specialists can declare an AI agent that reasons over the indexed knowledge:
+
+```typescript
+agent: {
+  defaultName: "Discussions Agent",
+  defaultPrompt: "You are a GitHub Discussions specialist...",
+  defaultModel: "claude-sonnet-4-5-20250929",  // optional
+  defaultProvider: "anthropic",                  // optional
+}
+```
+
+Agent behavior is controlled by a **posting mode**:
+
+| Mode | Behavior |
+|---|---|
+| `respond` | Always respond to queries (default) |
+| `lurk` | Index only — respond only to direct queries from COO/CEO |
+| `new_chats` | Respond to new conversations, then lurk |
+| `permission` | Ask COO for permission before responding |
+
+### Installation
+
+Specialists can be installed from three sources:
+
+| Source | Description |
+|---|---|
+| **Git** | Cloned from a GitHub repository, built with `pnpm install && pnpm build` |
+| **npm** | Installed from an npm registry |
+| **Local** | Symlinked from a local path (for development) |
+
+Install via the REST API, the COO's `module_install` tool, or the Settings UI. Multiple
+instances of the same specialist type can be installed with different configurations.
+
+### Management
+
+- **Enable/disable** -- Toggle specialists without uninstalling
+- **Configure** -- Update settings through the UI (config schema fields appear automatically)
+- **Reload** -- Unload and reload a specialist to pick up changes
+- **Query** -- The COO can query any specialist's knowledge via the `module_query` tool
+
+### Defining a Specialist
+
+Create a package with an entry point that exports a specialist definition:
+
+```typescript
+import { defineSpecialist } from "@otterbot/shared";
+
+export default defineSpecialist({
+  manifest: {
+    id: "my-specialist",
+    name: "My Specialist",
+    version: "1.0.0",
+    description: "Monitors an external data source",
+  },
+  configSchema: { /* typed settings */ },
+  agent: { /* optional AI agent config */ },
+  tools: [ /* custom tools */ ],
+  triggers: [ /* poll and/or webhook triggers */ ],
+  migrations: [ /* database schema versions */ ],
+  onPoll: async (ctx) => { /* fetch and return items */ },
+  onWebhook: async (req, ctx) => { /* handle webhook events */ },
+  onQuery: async (query, ctx) => { /* custom search logic */ },
+  onLoad: async (ctx) => { /* startup logic */ },
+  onUnload: async (ctx) => { /* cleanup logic */ },
+});
+```
+
+### Example: GitHub Discussions
+
+The built-in `github-discussions` specialist demonstrates the full system:
+
+- **Polls** GitHub's GraphQL API every 5 minutes for new discussions
+- **Indexes** discussions and comments into its knowledge store with structured metadata
+- **Handles webhooks** from GitHub for real-time updates on discussion/comment events
+- **Exposes** a `search_discussions` tool for structured filtering by category, author, and answered status
+- **Provides** an AI agent that synthesizes answers with discussion numbers and URLs
+
+## MCP Integration
+
+OtterBot supports the **Model Context Protocol (MCP)**, letting you connect external
+MCP servers that provide additional tools for your agents.
+
+### Server Management
+
+- **Add MCP servers** — Configure stdio or SSE-based MCP servers with command, args, and environment variables
+- **Start/stop servers** — Manage MCP server lifecycles at runtime
+- **Tool discovery** — Automatically discover available tools from connected MCP servers
+- **Tool filtering** — Select which discovered tools to make available to agents
+- **Security** — Command validation, URL validation, and secret masking built in
+
+### Transport Types
+
+| Transport | Description |
+|---|---|
+| `stdio` | Runs the MCP server as a local child process (command + args) |
+| `sse` | Connects to a remote MCP server via Server-Sent Events (HTTPS required) |
+
+MCP servers are configured through the Settings UI or REST API. Discovered tools appear
+alongside built-in tools and can be assigned to agent templates.
+
+## Code Review Pipeline
+
+OtterBot includes an automated **code review pipeline** that orchestrates multi-stage
+review and implementation workflows for pull requests.
+
+### Pipeline Stages
+
+| Stage | Description |
+|---|---|
+| `Triage` | LLM-based classification of the issue or PR |
+| `Implementation` | Spawns coding agents to implement changes |
+| `Testing` | Validates changes and runs checks |
+| `Integration` | Final review with optional kickback to earlier stages |
+
+The pipeline integrates with the Merge Queue for end-to-end automation: issues flow
+through triage and implementation, PRs are opened automatically, and validated changes
+are queued for merge.
+
+## Merge Queue
+
+The **merge queue** automates the process of merging approved pull requests safely
+and sequentially.
+
+### Merge Flow
+
+- **Queued** — PR is approved and added to the merge queue
+- **Rebasing** — Automatically rebased onto the target branch
+- **Re-review** — Optional pipeline check after rebase to verify changes still pass
+- **Merging** — PR is merged after all checks pass
+
+Features include automatic conflict detection, sequential processing to prevent
+race conditions, position-based queue reordering, and real-time status updates via
+Socket.IO events.
 
 ## World Layout
 

@@ -15,6 +15,7 @@ template defines a role, which determines the agent's position in the hierarchy:
 | `admin_assistant` | Exactly 1 | Personal productivity agent. Manages todos, reads/sends email via Gmail, and manages Google Calendar events. Reports to the CEO alongside the COO. |
 | `scheduler` | Exactly 1 | Background agent that runs recurring tasks on configurable intervals (e.g., daily summaries, periodic monitoring). Operates autonomously. |
 | `worker` | 1 per task | Individual contributor. Executes a single task using its assigned tools. Reports completion back to its Team Lead. |
+| `specialist_agent` | 1 per specialist | Extension agent spawned by a [Specialist](features.md#specialist-agents). Has access to an isolated knowledge store, custom tools, and data ingestion pipelines. Queries are routed through the COO. |
 
 !!! info
     **The CEO is you.** The human user is always the CEO -- the top of the
@@ -187,9 +188,9 @@ Every agent instance transitions through a defined set of statuses:
 
 ```text
 Idle -----> Thinking -----> Acting -----> Done
-|                                  |
-|          (on error)              |
-+---------> Error <----------------+
+|                             |  |
+|          (on error)         |  +--> Awaiting Input
++---------> Error <-----------+
 ```
 
 | Status | Description |
@@ -197,6 +198,7 @@ Idle -----> Thinking -----> Acting -----> Done
 | `Idle` | Agent is created but not yet processing. Waiting for a message or task. |
 | `Thinking` | Running LLM inference. Streaming tokens to the frontend via `agent:stream` or `coo:stream`. |
 | `Acting` | Executing a tool call (file I/O, shell command, web browse, etc.). Tool invocations are broadcast via `agent:tool-call`. |
+| `Awaiting Input` | Agent is waiting for user input (e.g., coding agent permission request or interactive prompt). |
 | `Done` | Task completed successfully. Results reported to parent agent. |
 | `Error` | An error occurred during thinking or acting. Error details logged. |
 
