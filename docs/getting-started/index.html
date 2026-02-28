@@ -484,14 +484,25 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Prerequisites">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start (Recommended)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start (Recommended)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#docker-recommended" class="md-nav__link">
+  <a href="#installer-options" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Docker (recommended)
+        Installer options
       
     </span>
   </a>
@@ -499,10 +510,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#from-source" class="md-nav__link">
+  <a href="#what-the-installer-creates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        From Source
+        What the installer creates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-your-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing your installation
       
     </span>
   </a>
@@ -515,44 +537,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-start-with-docker" class="md-nav__link">
+  <a href="#docker-manual-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Start with Docker
+        Docker (Manual Setup)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Quick Start with Docker">
+    <nav class="md-nav" aria-label="Docker (Manual Setup)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-pull-the-image" class="md-nav__link">
+  <a href="#quick-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1 — Pull the image
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-run-the-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2 — Run the container
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-open-the-ui" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3 — Open the UI
+        Quick run
       
     </span>
   </a>
@@ -1085,14 +1085,25 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Prerequisites">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start (Recommended)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start (Recommended)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#docker-recommended" class="md-nav__link">
+  <a href="#installer-options" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Docker (recommended)
+        Installer options
       
     </span>
   </a>
@@ -1100,10 +1111,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#from-source" class="md-nav__link">
+  <a href="#what-the-installer-creates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        From Source
+        What the installer creates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-your-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing your installation
       
     </span>
   </a>
@@ -1116,44 +1138,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-start-with-docker" class="md-nav__link">
+  <a href="#docker-manual-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Start with Docker
+        Docker (Manual Setup)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Quick Start with Docker">
+    <nav class="md-nav" aria-label="Docker (Manual Setup)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-pull-the-image" class="md-nav__link">
+  <a href="#quick-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1 — Pull the image
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-run-the-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2 — Run the container
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-open-the-ui" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3 — Open the UI
+        Quick run
       
     </span>
   </a>
@@ -1485,86 +1485,140 @@
 
 
 <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<p>Get OtterBot up and running in minutes. Docker is the recommended approach — one command and you're live.</p>
+<p>Get OtterBot up and running in minutes. The install script is the fastest path — one command and you're live.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<p>OtterBot has minimal requirements depending on how you run it:</p>
-<h3 id="docker-recommended">Docker (recommended)<a class="headerlink" href="#docker-recommended" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Docker</strong> 20.10+ (or Docker Desktop)</li>
+<li><strong>Docker</strong> 20.10+ (or Docker Desktop) — the installer can set this up for you</li>
 <li>At least <strong>2 GB RAM</strong> available for the container</li>
 <li>An <strong>LLM API key</strong> (Anthropic, OpenAI, or any OpenAI-compatible provider)</li>
 </ul>
-<h3 id="from-source">From Source<a class="headerlink" href="#from-source" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Node.js</strong> 20+ and <strong>pnpm</strong> 9+</li>
-<li><strong>Git</strong></li>
-<li>An <strong>LLM API key</strong></li>
-<li>Optional: <strong>Playwright</strong> browsers (for web automation features)</li>
-</ul>
-<h2 id="quick-start-with-docker">Quick Start with Docker<a class="headerlink" href="#quick-start-with-docker" title="Permanent link">&para;</a></h2>
-<h3 id="step-1-pull-the-image">Step 1 — Pull the image<a class="headerlink" href="#step-1-pull-the-image" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/toosmooth/otterbot:latest
+<h2 id="quick-start-recommended">Quick Start (Recommended)<a class="headerlink" href="#quick-start-recommended" title="Permanent link">&para;</a></h2>
+<p>The install script detects your OS, checks for Docker, generates a <code>docker-compose.yml</code> and <code>.env</code> with a secure random DB key, then pulls and starts the container.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux / macOS</label><label for="__tabbed_1_2">Windows (PowerShell)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://otterbot.ai/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div>
-<h3 id="step-2-run-the-container">Step 2 — Run the container<a class="headerlink" href="#step-2-run-the-container" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">62626</span>:62626<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--name<span class="w"> </span>otterbot<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_DB_KEY</span><span class="o">=</span>change-me-to-something-secret<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--shm-size<span class="w"> </span>256m<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>ghcr.io/toosmooth/otterbot:latest
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">irm </span><span class="n">https</span><span class="p">://</span><span class="n">otterbot</span><span class="p">.</span><span class="n">ai</span><span class="p">/</span><span class="n">install</span><span class="p">.</span><span class="n">ps1</span> <span class="p">|</span> <span class="nb">iex</span>
 </code></pre></div>
-<p><strong>Want persistent data?</strong> Add <code>-v ~/otterbot:/otterbot</code> to keep installed packages, projects, and settings between container restarts. Without it, OtterBot runs fully ephemeral — everything resets when the container is removed. See <a href="#volume-persistent-data">Volume &amp; Persistent Data</a> for details.</p>
-<h3 id="step-3-open-the-ui">Step 3 — Open the UI<a class="headerlink" href="#step-3-open-the-ui" title="Permanent link">&para;</a></h3>
-<p>Navigate to <code>http://localhost:62626</code> in your browser. The first-run setup wizard will guide you through configuring your LLM provider and API key.</p>
+</div>
+</div>
+</div>
+<p>That's it. Open <strong>https://localhost:62626</strong> in your browser. The first-run setup wizard will guide you through configuring your LLM provider and API key.</p>
+<h3 id="installer-options">Installer options<a class="headerlink" href="#installer-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--dir &lt;path&gt;</code> / <code>-Dir &lt;path&gt;</code></td>
+<td>Install directory (default: <code>~/otterbot</code>)</td>
+</tr>
+<tr>
+<td><code>--beta</code> / <code>-Beta</code></td>
+<td>Use the <code>:beta</code> image tag</td>
+</tr>
+<tr>
+<td><code>--no-start</code> / <code>-NoStart</code></td>
+<td>Generate files but don't start the container</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Example: install beta channel to a custom directory</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://otterbot.ai/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>--beta<span class="w"> </span>--dir<span class="w"> </span>/opt/otterbot
+</code></pre></div>
+<h3 id="what-the-installer-creates">What the installer creates<a class="headerlink" href="#what-the-installer-creates" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>~/otterbot/
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── docker-compose.yml   # Container configuration
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── .env                 # Environment (auto-generated DB key, UID/GID)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>└── data/                # Persistent volume mount
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Idempotent</p>
+<p>Running the installer again will update <code>docker-compose.yml</code> but <strong>never overwrite your <code>.env</code></strong> — your DB encryption key and settings are preserved.</p>
+</div>
+<h3 id="managing-your-installation">Managing your installation<a class="headerlink" href="#managing-your-installation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>~/otterbot
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Stop</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># Start</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># View logs</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># Update to latest</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>docker<span class="w"> </span>compose<span class="w"> </span>pull<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
-<p>Set <code>OTTERBOT_DB_KEY</code> to a unique secret. This encrypts your database (which stores API keys and settings). Losing this key means losing access to stored data.</p>
+<p>Your <code>OTTERBOT_DB_KEY</code> in <code>.env</code> encrypts the database (which stores API keys and settings). Back it up — losing this key means losing access to stored data.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Accessing remotely?</p>
-<p>If you're connecting from a different origin (e.g. behind a reverse proxy or on a different host), you must set the <code>OTTERBOT_ALLOWED_ORIGIN</code> environment variable so CORS works properly. Pass a comma-separated list of allowed origins: <code>-e OTTERBOT_ALLOWED_ORIGIN=https://otterbot.example.com</code></p>
+<p>If you're connecting from a different origin (e.g. behind a reverse proxy or on a different host), set <code>OTTERBOT_ALLOWED_ORIGIN</code> in your <code>.env</code> file to a comma-separated list of allowed origins.</p>
 </div>
+<h2 id="docker-manual-setup">Docker (Manual Setup)<a class="headerlink" href="#docker-manual-setup" title="Permanent link">&para;</a></h2>
+<p>If you prefer to set things up yourself rather than using the install script:</p>
+<h3 id="quick-run">Quick run<a class="headerlink" href="#quick-run" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">62626</span>:62626<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--name<span class="w"> </span>otterbot<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_DB_KEY</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">16</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-v<span class="w"> </span>~/otterbot:/otterbot<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>--shm-size<span class="w"> </span>256m<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>ghcr.io/toosmooth/otterbot:latest
+</code></pre></div>
+<p>Without <code>-v ~/otterbot:/otterbot</code>, OtterBot runs fully ephemeral — everything resets when the container is removed. See <a href="#volume-persistent-data">Volume &amp; Persistent Data</a> for details.</p>
 <h3 id="full-docker-command-with-all-options">Full Docker command with all options<a class="headerlink" href="#full-docker-command-with-all-options" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--name<span class="w"> </span>otterbot<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">62626</span>:62626<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--shm-size<span class="w"> </span>256m<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>-v<span class="w"> </span>~/otterbot:/otterbot<span class="w">            </span><span class="c1"># Persistent storage</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_DB_KEY</span><span class="o">=</span>my-secret-key<span class="w">   </span><span class="c1"># Required: DB encryption key</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_UID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="w">           </span><span class="c1"># Match host user</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_GID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w">           </span><span class="c1"># Match host group</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">ENABLE_DESKTOP</span><span class="o">=</span><span class="nb">true</span><span class="w">             </span><span class="c1"># Virtual XFCE desktop</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">SUDO_MODE</span><span class="o">=</span>restricted<span class="w">            </span><span class="c1"># Sudo policy</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_ALLOWED_ORIGIN</span><span class="o">=</span>https://otterbot.example.com<span class="w"> </span><span class="c1"># CORS (if remote)</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span>ghcr.io/toosmooth/otterbot:latest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--name<span class="w"> </span>otterbot<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">62626</span>:62626<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--shm-size<span class="w"> </span>256m<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span>-v<span class="w"> </span>~/otterbot:/otterbot<span class="w">            </span><span class="c1"># Persistent storage</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_DB_KEY</span><span class="o">=</span>my-secret-key<span class="w">   </span><span class="c1"># Required: DB encryption key</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_UID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="w">           </span><span class="c1"># Match host user</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_GID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w">           </span><span class="c1"># Match host group</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">ENABLE_DESKTOP</span><span class="o">=</span><span class="nb">true</span><span class="w">             </span><span class="c1"># Virtual XFCE desktop</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">SUDO_MODE</span><span class="o">=</span>restricted<span class="w">            </span><span class="c1"># Sudo policy</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_ALLOWED_ORIGIN</span><span class="o">=</span>https://otterbot.example.com<span class="w"> </span><span class="c1"># CORS (if remote)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span>ghcr.io/toosmooth/otterbot:latest
 </code></pre></div>
 <h3 id="docker-compose">Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h3>
 <p>The repository includes a <code>docker-compose.yml</code> for easier management. Create a <code>.env</code> file alongside it:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># .env</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">OTTERBOT_DB_KEY</span><span class="o">=</span>change-me-to-something-secret
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">OTTERBOT_UID</span><span class="o">=</span><span class="m">1000</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">OTTERBOT_GID</span><span class="o">=</span><span class="m">1000</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nv">OTTERBOT_DATA_DIR</span><span class="o">=</span>./docker/otterbot
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># .env</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">OTTERBOT_DB_KEY</span><span class="o">=</span>change-me-to-something-secret
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">OTTERBOT_UID</span><span class="o">=</span><span class="m">1000</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">OTTERBOT_GID</span><span class="o">=</span><span class="m">1000</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nv">OTTERBOT_DATA_DIR</span><span class="o">=</span>./docker/otterbot
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <h2 id="volume-persistent-data">Volume &amp; Persistent Data<a class="headerlink" href="#volume-persistent-data" title="Permanent link">&para;</a></h2>
 <p>OtterBot uses a single bind mount at <code>/otterbot</code> inside the container. All persistent data lives here:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>~/otterbot/                  # or your OTTERBOT_DATA_DIR
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>+-- config/
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>|  +-- packages.json        # Auto-restored apt/npm packages
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>|  +-- bootstrap.sh         # Custom startup script (optional)
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>+-- data/
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>|  +-- otterbot.db          # Encrypted SQLite database
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>+-- home/
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>|  +-- .ssh/                # SSH keys (auto-chmod 700/600)
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>|  +-- .gitconfig           # Git configuration
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>|  +-- .npmrc               # npm configuration
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>|  +-- .venv/               # Python venv (auto-created)
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>|  +-- go/                  # Go workspace (GOPATH)
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>+-- projects/               # Agent workspaces (per project)
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>+-- tools/                  # npm global installs (persist)
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>+-- logs/                   # Application logs
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>~/otterbot/                  # or your OTTERBOT_DATA_DIR
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>+-- config/
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>|  +-- packages.json        # Auto-restored apt/npm packages
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>|  +-- bootstrap.sh         # Custom startup script (optional)
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>+-- data/
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>|  +-- otterbot.db          # Encrypted SQLite database
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>+-- home/
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>|  +-- .ssh/                # SSH keys (auto-chmod 700/600)
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>|  +-- .gitconfig           # Git configuration
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>|  +-- .npmrc               # npm configuration
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>|  +-- .venv/               # Python venv (auto-created)
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>|  +-- go/                  # Go workspace (GOPATH)
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>+-- projects/               # Agent workspaces (per project)
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>+-- tools/                  # npm global installs (persist)
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>+-- logs/                   # Application logs
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Persistent home</p>
@@ -1572,37 +1626,37 @@
 </div>
 <h3 id="bootstrap-script">Bootstrap Script<a class="headerlink" href="#bootstrap-script" title="Permanent link">&para;</a></h3>
 <p>To run custom setup on every container start, create a <code>config/bootstrap.sh</code> file in your data directory. It runs as root before the application starts:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/sh</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># ~/otterbot/config/bootstrap.sh</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>python3
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@anthropic-ai/claude-code
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="ch">#!/bin/sh</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># ~/otterbot/config/bootstrap.sh</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>python3
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@anthropic-ai/claude-code
 </code></pre></div>
 <h3 id="package-manifest">Package Manifest<a class="headerlink" href="#package-manifest" title="Permanent link">&para;</a></h3>
 <p>Agents can install packages at runtime. These are recorded in <code>config/packages.json</code> and automatically restored on container restart:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;repos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&quot;apt&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python3&quot;</span><span class="w"> </span><span class="p">}],</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">&quot;npm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;typescript&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;latest&quot;</span><span class="w"> </span><span class="p">}]</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">&quot;repos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nt">&quot;apt&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python3&quot;</span><span class="w"> </span><span class="p">}],</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nt">&quot;npm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;typescript&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;latest&quot;</span><span class="w"> </span><span class="p">}]</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="development-setup">Development Setup<a class="headerlink" href="#development-setup" title="Permanent link">&para;</a></h2>
-<p>To run OtterBot from source for development or contribution:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Clone the repository</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/TOoSmOotH/otterbot.git
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>otterbot
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Install dependencies (monorepo via pnpm workspaces)</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>$<span class="w"> </span>pnpm<span class="w"> </span>install
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># Configure environment</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>$<span class="w"> </span>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Edit .env and set OTTERBOT_DB_KEY to a unique secret</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1"># Apply the database schema</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>$<span class="w"> </span>pnpm<span class="w"> </span>db:push
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="c1"># Start the dev server (server + web concurrently)</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>$<span class="w"> </span>pnpm<span class="w"> </span>dev
+<p>Requires <strong>Node.js 20+</strong>, <strong>pnpm 9+</strong>, and <strong>Git</strong>. To run OtterBot from source for development or contribution:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Clone the repository</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/TOoSmOotH/otterbot.git
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>otterbot
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># Install dependencies (monorepo via pnpm workspaces)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>$<span class="w"> </span>pnpm<span class="w"> </span>install
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># Configure environment</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>$<span class="w"> </span>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># Edit .env and set OTTERBOT_DB_KEY to a unique secret</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="c1"># Apply the database schema</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>$<span class="w"> </span>pnpm<span class="w"> </span>db:push
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="c1"># Start the dev server (server + web concurrently)</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>$<span class="w"> </span>pnpm<span class="w"> </span>dev
 </code></pre></div>
 <p>The development server starts on <code>http://localhost:62626</code> (server) and <code>http://localhost:5173</code> (Vite frontend with hot-reload).</p>
 <div class="admonition info">
@@ -1610,7 +1664,7 @@
 <p>OtterBot uses pnpm workspaces with three packages: <code>@otterbot/server</code>, <code>@otterbot/web</code>, and <code>@otterbot/shared</code>. See <a href="../architecture/">Architecture</a> for details.</p>
 </div>
 <p>You can also develop inside Docker with hot-reload:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>pnpm<span class="w"> </span>docker:dev
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$<span class="w"> </span>pnpm<span class="w"> </span>docker:dev
 </code></pre></div>
 <h2 id="first-run-setup-wizard">First-Run Setup Wizard<a class="headerlink" href="#first-run-setup-wizard" title="Permanent link">&para;</a></h2>
 <p>When you first open OtterBot, the setup wizard walks you through the essential configuration:</p>
@@ -1814,13 +1868,13 @@
 <h3 id="bootstrap-passphrase">Bootstrap Passphrase<a class="headerlink" href="#bootstrap-passphrase" title="Permanent link">&para;</a></h3>
 <p>Set the <code>OTTER_PASSPHRASE</code> environment variable to a temporary passphrase before starting the container. This passphrase is marked as temporary — the client will be required to change it on first login.</p>
 <p>For Docker secrets, use <code>OTTER_PASSPHRASE_FILE</code> instead, pointing to a file containing the passphrase.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">62626</span>:62626<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>--name<span class="w"> </span>otterbot<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>-v<span class="w"> </span>~/otterbot:/otterbot<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_DB_KEY</span><span class="o">=</span>my-secret-key<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTER_PASSPHRASE</span><span class="o">=</span>temp-pass-for-client<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>--shm-size<span class="w"> </span>256m<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span>ghcr.io/toosmooth/otterbot:latest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">62626</span>:62626<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span>--name<span class="w"> </span>otterbot<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span>-v<span class="w"> </span>~/otterbot:/otterbot<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTERBOT_DB_KEY</span><span class="o">=</span>my-secret-key<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">OTTER_PASSPHRASE</span><span class="o">=</span>temp-pass-for-client<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span>--shm-size<span class="w"> </span>256m<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span>ghcr.io/toosmooth/otterbot:latest
 </code></pre></div>
 <h3 id="client-setup-flow">Client Setup Flow<a class="headerlink" href="#client-setup-flow" title="Permanent link">&para;</a></h3>
 <h3 id="step-1-log-in">Step 1 — Log in<a class="headerlink" href="#step-1-log-in" title="Permanent link">&para;</a></h3>
@@ -1831,7 +1885,7 @@
 <p>The client walks through the standard setup wizard — configuring their LLM provider and API key, profile, voice, and search preferences.</p>
 <h3 id="cors-remote-access">CORS / Remote Access<a class="headerlink" href="#cors-remote-access" title="Permanent link">&para;</a></h3>
 <p>If your OtterBot instance is behind a reverse proxy or accessed from a different origin, set <code>OTTERBOT_ALLOWED_ORIGIN</code> to the origin(s) that need access:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>-e<span class="w"> </span><span class="nv">OTTERBOT_ALLOWED_ORIGIN</span><span class="o">=</span>https://otterbot.example.com
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>-e<span class="w"> </span><span class="nv">OTTERBOT_ALLOWED_ORIGIN</span><span class="o">=</span>https://otterbot.example.com
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">HTTPS &amp; Microphone</p>
