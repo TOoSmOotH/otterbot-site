@@ -1339,9 +1339,15 @@ with your agents from anywhere.</p>
 <ul>
 <li><strong>Discord</strong> — Full bot integration via <code>discord.js</code></li>
 <li><strong>Slack</strong> — Workspace app via <code>@slack/bolt</code></li>
-<li><strong>Matrix</strong> — Decentralized chat via <code>matrix-js-sdk</code></li>
+<li><strong>Matrix</strong> — Decentralized chat via <code>matrix-js-sdk</code> (E2EE support)</li>
 <li><strong>IRC</strong> — Classic IRC networks via <code>irc-framework</code></li>
 <li><strong>Microsoft Teams</strong> — Teams channel integration via webhook</li>
+<li><strong>Telegram</strong> — Telegram bot integration</li>
+<li><strong>WhatsApp</strong> — WhatsApp messaging bridge</li>
+<li><strong>Signal</strong> — Signal messenger bridge</li>
+<li><strong>Mattermost</strong> — Mattermost chat integration</li>
+<li><strong>Nextcloud Talk</strong> — Nextcloud Talk integration</li>
+<li><strong>Tlon</strong> — Tlon (Urbit) chat integration</li>
 </ul>
 <p>Each bridge runs independently and relays messages bidirectionally between the external
 platform and the COO. Configuration and credentials are managed through the Settings UI.</p>
@@ -1377,7 +1383,7 @@ keeping everything orchestrated through OtterBot's hierarchy.</p>
 </tr>
 <tr>
 <td><code>Vercel AI SDK</code></td>
-<td>Unified LLM interface (Anthropic, OpenAI, compatible providers)</td>
+<td>Unified LLM interface (18 providers: Anthropic, OpenAI, Gemini, Ollama, OpenRouter, and more)</td>
 </tr>
 <tr>
 <td><code>Drizzle ORM</code></td>
@@ -1443,12 +1449,24 @@ keeping everything orchestrated through OtterBot's hierarchy.</p>
 <td>Build tool and dev server</td>
 </tr>
 <tr>
+<td><code>Tailwind CSS + shadcn/ui</code></td>
+<td>Styling and component library</td>
+</tr>
+<tr>
+<td><code>Zustand</code></td>
+<td>State management</td>
+</tr>
+<tr>
 <td><code>Three.js / R3F</code></td>
 <td>3D agent visualization (Live View)</td>
 </tr>
 <tr>
 <td><code>@xyflow/react</code></td>
 <td>Agent graph visualization</td>
+</tr>
+<tr>
+<td><code>React Markdown</code></td>
+<td>Markdown rendering with Mermaid diagrams</td>
 </tr>
 <tr>
 <td><code>Socket.IO Client</code></td>
@@ -1513,21 +1531,23 @@ Project, KanbanTask, BusMessage, Socket.IO event interfaces.</p>
 <a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>|  |  |  +-- models3d/    # 3D model/environment pack discovery
 <a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>|  |  |  +-- memory/      # Episodic memory &amp; soul documents
 <a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>|  |  |  +-- coding-agents/ # OpenCode, Claude Code, Codex PTY
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>|  |  |  +-- messaging/   # Discord, Slack, Teams bridges
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>|  |  |  +-- irc/         # IRC &amp; Matrix bridges
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>|  |  |  +-- modules/     # External module system
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>|  |  |  +-- skills/      # Skill/prompt fragment registry
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>|  |  |  +-- scheduling/  # Scheduler &amp; custom tasks
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>|  +-- web/               # @otterbot/web
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>|  |  +-- src/
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>|  |  |  +-- components/  # React components
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>|  |  |  +-- stores/      # State management
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>|  +-- shared/            # @otterbot/shared
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>|     +-- src/types/     # TypeScript interfaces &amp; enums
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>+-- assets/
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>   +-- workers/           # 3D character models (GLB)
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>   +-- environments/      # 3D environment models (GLTF)
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>   +-- scenes/            # Scene configuration JSON
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>|  |  |  +-- messaging/   # Discord, Slack, Teams, Telegram,
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>|  |  |  |               # WhatsApp, Signal, Mattermost,
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>|  |  |  |               # Nextcloud Talk, Tlon bridges
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>|  |  |  +-- irc/         # IRC &amp; Matrix bridges
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>|  |  |  +-- modules/     # External module system
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>|  |  |  +-- skills/      # Skill/prompt fragment registry
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>|  |  |  +-- scheduling/  # Scheduler &amp; custom tasks
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>|  +-- web/               # @otterbot/web
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>|  |  +-- src/
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>|  |  |  +-- components/  # React components
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>|  |  |  +-- stores/      # State management
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>|  +-- shared/            # @otterbot/shared
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>|     +-- src/types/     # TypeScript interfaces &amp; enums
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>+-- assets/
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>   +-- workers/           # 3D character models (GLB)
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>   +-- environments/      # 3D environment models (GLTF)
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>   +-- scenes/            # Scene configuration JSON
 </code></pre></div>
 
 

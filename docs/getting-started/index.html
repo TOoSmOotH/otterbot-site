@@ -1496,7 +1496,7 @@
 </ul>
 <h3 id="from-source">From Source<a class="headerlink" href="#from-source" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Node.js</strong> 20+ and <strong>npm</strong> 10+</li>
+<li><strong>Node.js</strong> 20+ and <strong>pnpm</strong> 9+</li>
 <li><strong>Git</strong></li>
 <li>An <strong>LLM API key</strong></li>
 <li>Optional: <strong>Playwright</strong> browsers (for web automation features)</li>
@@ -1594,8 +1594,15 @@
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Install dependencies (monorepo via pnpm workspaces)</span>
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>$<span class="w"> </span>pnpm<span class="w"> </span>install
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># Start the dev server (server + web concurrently)</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>$<span class="w"> </span>pnpm<span class="w"> </span>dev
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># Configure environment</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>$<span class="w"> </span>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Edit .env and set OTTERBOT_DB_KEY to a unique secret</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1"># Apply the database schema</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>$<span class="w"> </span>pnpm<span class="w"> </span>db:push
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="c1"># Start the dev server (server + web concurrently)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>$<span class="w"> </span>pnpm<span class="w"> </span>dev
 </code></pre></div>
 <p>The development server starts on <code>http://localhost:62626</code> (server) and <code>http://localhost:5173</code> (Vite frontend with hot-reload).</p>
 <div class="admonition info">
@@ -1611,8 +1618,23 @@
 <p>Choose your AI provider and enter your API key. Supported providers:</p>
 <ul>
 <li><strong>Anthropic</strong> — Claude models (recommended)</li>
-<li><strong>OpenAI</strong> — GPT models</li>
-<li><strong>OpenAI-Compatible</strong> — Any provider with an OpenAI-compatible API (Ollama, LM Studio, etc.)</li>
+<li><strong>OpenAI</strong> — GPT-4o, o3, and more</li>
+<li><strong>Google Gemini</strong> — Gemini 2.5, 2.0 models</li>
+<li><strong>OpenRouter</strong> — 200+ models from multiple providers</li>
+<li><strong>Ollama</strong> — Local models (no API key needed)</li>
+<li><strong>DeepSeek</strong> — DeepSeek Chat and Reasoner</li>
+<li><strong>xAI</strong> — Grok models</li>
+<li><strong>Mistral</strong> — Mistral Large, Small, Codestral</li>
+<li><strong>Perplexity</strong> — Sonar search-grounded models</li>
+<li><strong>AWS Bedrock</strong> — Managed AWS AI service</li>
+<li><strong>GitHub Copilot</strong> — GitHub-hosted models</li>
+<li><strong>Hugging Face</strong> — Open-source models</li>
+<li><strong>NVIDIA</strong> — NVIDIA-hosted models</li>
+<li><strong>MiniMax</strong> — MiniMax models</li>
+<li><strong>Z.AI</strong> — GLM models</li>
+<li><strong>Deepgram</strong> — Deepgram models</li>
+<li><strong>LM Studio</strong> — Local models (no API key needed)</li>
+<li><strong>OpenAI-Compatible</strong> — Any provider with an OpenAI-compatible API</li>
 </ul>
 <p>The wizard probes available models from your provider so you can select which model to use for the COO agent and worker agents.</p>
 <h3 id="2-voice-setup-optional">2. Voice Setup (optional)<a class="headerlink" href="#2-voice-setup-optional" title="Permanent link">&para;</a></h3>
