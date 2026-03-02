@@ -616,6 +616,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#deepgram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deepgram
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -671,6 +682,17 @@
     <span class="md-ellipsis">
       
         Browser Web Speech API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deepgram_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deepgram
       
     </span>
   </a>
@@ -1053,6 +1075,17 @@
     <span class="md-ellipsis">
       
         Codex
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gemini-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gemini CLI
       
     </span>
   </a>
@@ -1682,6 +1715,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#deepgram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deepgram
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1737,6 +1781,17 @@
     <span class="md-ellipsis">
       
         Browser Web Speech API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deepgram_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deepgram
       
     </span>
   </a>
@@ -2119,6 +2174,17 @@
     <span class="md-ellipsis">
       
         Codex
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gemini-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gemini CLI
       
     </span>
   </a>
@@ -2601,6 +2667,9 @@ languages available.</p>
 <p><strong>API Key</strong></p>
 <p>Any provider with an OpenAI-compatible TTS endpoint (<code>/v1/audio/speech</code>).
 Configure the base URL and optional API key.</p>
+<h4 id="deepgram">Deepgram<a class="headerlink" href="#deepgram" title="Permanent link">&para;</a></h4>
+<p><strong>API Key</strong></p>
+<p>Deepgram's Aura neural TTS voices. Requires a Deepgram API key. Voices include asteria, luna, stella, athena, hera, orion, arcas, perseus, angus, orpheus, helios, and zeus.</p>
 <h3 id="tts-configuration">TTS Configuration<a class="headerlink" href="#tts-configuration" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2618,7 +2687,7 @@ Configure the base URL and optional API key.</p>
 </tr>
 <tr>
 <td><code>tts:active_provider</code></td>
-<td>Active provider: <code>kokoro</code>, <code>edge-tts</code>, or <code>openai-compatible</code></td>
+<td>Active provider: <code>kokoro</code>, <code>edge-tts</code>, <code>openai-compatible</code>, or <code>deepgram</code></td>
 <td><code>kokoro</code></td>
 </tr>
 <tr>
@@ -2641,6 +2710,11 @@ Configure the base URL and optional API key.</p>
 <td>API key (optional)</td>
 <td>--</td>
 </tr>
+<tr>
+<td><code>tts:deepgram:api_key</code></td>
+<td>Deepgram API key</td>
+<td>--</td>
+</tr>
 </tbody>
 </table>
 <h3 id="speech-to-text-providers">Speech-to-Text Providers<a class="headerlink" href="#speech-to-text-providers" title="Permanent link">&para;</a></h3>
@@ -2656,6 +2730,9 @@ Configure the base URL and optional API key.</p>
 <p><strong>Built-in</strong></p>
 <p>Uses the browser's native Web Speech API for speech recognition. No setup or API key
 required — works directly in supported browsers (Chrome, Edge).</p>
+<h4 id="deepgram_1">Deepgram<a class="headerlink" href="#deepgram_1" title="Permanent link">&para;</a></h4>
+<p><strong>API Key</strong></p>
+<p>Deepgram's real-time speech recognition API. Requires a Deepgram API key.</p>
 <h3 id="stt-configuration">STT Configuration<a class="headerlink" href="#stt-configuration" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2673,7 +2750,7 @@ required — works directly in supported browsers (Chrome, Edge).</p>
 </tr>
 <tr>
 <td><code>stt:active_provider</code></td>
-<td>Active provider: <code>whisper-local</code> or <code>openai-compatible</code></td>
+<td>Active provider: <code>whisper-local</code>, <code>openai-compatible</code>, <code>browser</code>, or <code>deepgram</code></td>
 <td><code>whisper-local</code></td>
 </tr>
 <tr>
@@ -2689,6 +2766,11 @@ required — works directly in supported browsers (Chrome, Edge).</p>
 <tr>
 <td><code>stt:openai-compatible:api_key</code></td>
 <td>API key (optional)</td>
+<td>--</td>
+</tr>
+<tr>
+<td><code>stt:deepgram:api_key</code></td>
+<td>Deepgram API key</td>
 <td>--</td>
 </tr>
 </tbody>
@@ -2974,6 +3056,9 @@ They provide a stable foundation that persists regardless of conversation contex
 <h4 id="codex">Codex<a class="headerlink" href="#codex" title="Permanent link">&para;</a></h4>
 <p><strong>API Key</strong></p>
 <p>OpenAI's CLI coding agent. Requires Codex CLI installed and an OpenAI API key.</p>
+<h4 id="gemini-cli">Gemini CLI<a class="headerlink" href="#gemini-cli" title="Permanent link">&para;</a></h4>
+<p><strong>API Key or OAuth</strong></p>
+<p>Google's CLI coding agent. Requires Gemini CLI installed and a Google API key, or OAuth via <code>gemini login</code>.</p>
 <ul>
 <li><strong>PTY sessions</strong> -- Each coding agent runs in its own terminal, streamed to the UI in real-time</li>
 <li><strong>Permission handling</strong> -- File write and shell command permissions are relayed to the user for approval</li>
