@@ -731,6 +731,110 @@ Update Codex integration settings.
 
 Test the Codex CLI availability.
 
+### Gemini CLI
+
+### GET /api/settings/gemini-cli
+
+Get Gemini CLI integration settings.
+
+### PUT /api/settings/gemini-cli
+
+Update Gemini CLI integration settings.
+
+### POST /api/settings/gemini-cli/test
+
+Test the Gemini CLI availability.
+
+### Coding Agent Sessions
+
+### DELETE /api/codeagent/sessions
+
+Clear all completed coding agent sessions.
+
+### Claude Code Usage
+
+### GET /api/settings/claude-code/usage
+
+Get Claude Code token usage statistics.
+
+## REST: SSH
+
+### SSH Keys
+
+### GET /api/settings/ssh/keys
+
+List all SSH keys.
+
+### GET /api/settings/ssh/keys/:id
+
+Get a specific SSH key by ID.
+
+### POST /api/settings/ssh/keys/generate
+
+Generate a new SSH key pair.
+
+### POST /api/settings/ssh/keys/import
+
+Import an existing SSH private key.
+
+### PUT /api/settings/ssh/keys/:id
+
+Update an SSH key's metadata (name, allowed hosts).
+
+### DELETE /api/settings/ssh/keys/:id
+
+Delete an SSH key.
+
+### GET /api/settings/ssh/keys/:id/public-key
+
+Get the public key for a specific SSH key pair.
+
+### POST /api/settings/ssh/test
+
+Test SSH connectivity to a remote host.
+
+### SSH Sessions
+
+### GET /api/ssh/sessions
+
+List all SSH sessions. Supports an optional `limit` query parameter.
+
+### GET /api/ssh/sessions/:id
+
+Get a specific SSH session by ID.
+
+### DELETE /api/ssh/sessions/:id
+
+Delete/close an SSH session.
+
+## REST: Agent Model Overrides
+
+### GET /api/settings/agent-model-overrides
+
+List all agent-specific model overrides.
+
+### PUT /api/settings/agent-model-overrides/:registryEntryId
+
+Set a model override for a specific agent template. Allows using a different model/provider than the default.
+
+### DELETE /api/settings/agent-model-overrides/:registryEntryId
+
+Clear the model override for an agent template, reverting to the default.
+
+## REST: Custom Models
+
+### GET /api/settings/custom-models
+
+List custom model definitions. Supports an optional `providerId` query parameter to filter by provider.
+
+### POST /api/settings/custom-models
+
+Create a new custom model definition.
+
+### DELETE /api/settings/custom-models/:id
+
+Delete a custom model definition.
+
 ## REST: Google (Calendar & Gmail)
 
 ### Calendar
@@ -962,6 +1066,25 @@ Start a new conversation, resetting the COO's context.
 { "ok": true }
 ```
 
+### ceo:cancel-tts
+
+Client --> Server
+
+Cancel any in-progress text-to-speech playback.
+
+### ceo:find-agent-conversation
+
+Client --> Server
+
+Find the conversation associated with a specific agent.
+
+```json
+// Payload
+{ "agentId": "worker-abc" }
+
+// Ack: Conversation | null
+```
+
 ### Conversations
 
 ### ceo:list-conversations
@@ -1096,11 +1219,68 @@ Delete a project and cascade-delete all related data (tasks, conversations, agen
 { "ok": true, "error"?: "..." }
 ```
 
+### project:recover
+
+Client --> Server
+
+Recover a previously deleted project.
+
+```json
+// Payload
+{ "projectId": "proj_1" }
+```
+
 ### project:create-manual
 
 Client --> Server
 
 Manually create a project (bypasses COO orchestration).
+
+### project:get-agent-assignments
+
+Client --> Server
+
+Get agent template assignments for a project.
+
+```json
+// Payload
+{ "projectId": "proj_1" }
+```
+
+### project:set-agent-assignments
+
+Client --> Server
+
+Set agent template assignments for a project (which templates are used for team lead, workers).
+
+```json
+// Payload
+{ "projectId": "proj_1", "assignments": { ... } }
+```
+
+### project:get-branch
+
+Client --> Server
+
+Get the target Git branch for a project.
+
+### project:set-branch
+
+Client --> Server
+
+Set the target Git branch for a project.
+
+### project:get-pipeline-config
+
+Client --> Server
+
+Get the code review pipeline configuration for a project.
+
+### project:set-pipeline-config
+
+Client --> Server
+
+Set the code review pipeline configuration for a project.
 
 ### Agents & Coding
 
@@ -1136,6 +1316,18 @@ Client --> Server
 
 Resize a terminal PTY session (rows, cols).
 
+### terminal:subscribe
+
+Client --> Server
+
+Subscribe to output from a specific terminal session.
+
+### terminal:end
+
+Client --> Server
+
+End a terminal PTY session.
+
 ### Memory & Soul
 
 ### memory:list
@@ -1161,6 +1353,104 @@ List all soul documents.
 Client --> Server
 
 Create or update a soul document.
+
+### soul:get
+
+Client --> Server
+
+Get a soul document for a specific agent role.
+
+### soul:delete
+
+Client --> Server
+
+Delete a soul document.
+
+### soul:suggest
+
+Client --> Server
+
+Get soul advisor suggestions for an agent.
+
+### memory:delete
+
+Client --> Server
+
+Delete a specific episodic memory.
+
+### memory:clear-all
+
+Client --> Server
+
+Clear all episodic memories.
+
+### memory:search
+
+Client --> Server
+
+Search memories by semantic query.
+
+```json
+// Payload
+{ "query": "search text", "limit"?: 10 }
+```
+
+### Merge Queue
+
+### merge-queue:list
+
+Client --> Server
+
+List all entries in the merge queue.
+
+### merge-queue:approve
+
+Client --> Server
+
+Approve a merge queue entry for merging.
+
+### merge-queue:remove
+
+Client --> Server
+
+Remove an entry from the merge queue.
+
+### merge-queue:reorder
+
+Client --> Server
+
+Reorder entries in the merge queue.
+
+### SSH
+
+### ssh:connect
+
+Client --> Server
+
+Initiate an SSH connection to a remote host.
+
+```json
+// Payload
+{ "keyId": "key_abc", "host": "example.com" }
+```
+
+### ssh:disconnect
+
+Client --> Server
+
+Close an active SSH connection.
+
+### ssh:chat
+
+Client --> Server
+
+Send a message to the SSH chat interface (natural language command assistance).
+
+### ssh:chat-confirm
+
+Client --> Server
+
+Confirm execution of a suggested SSH command.
 
 ## Socket.IO: Server --> Client
 
@@ -1298,6 +1588,12 @@ Server --> Client
 
 An agent invoked a tool (file_read, shell_exec, web_search, etc.).
 
+### agent:move
+
+Server --> Client
+
+An agent moved between zones in the 3D world.
+
 ### Admin Assistant
 
 ### admin-assistant:stream
@@ -1311,6 +1607,18 @@ Token-by-token streaming from the Admin Assistant.
 Server --> Client
 
 Complete Admin Assistant response.
+
+### admin-assistant:thinking
+
+Server --> Client
+
+Extended thinking tokens from the Admin Assistant.
+
+### admin-assistant:thinking-end
+
+Server --> Client
+
+End of the Admin Assistant's thinking block.
 
 ### Coding Agents
 
@@ -1338,6 +1646,18 @@ Server --> Client
 
 A message from the coding agent (output text).
 
+### codeagent:part-delta
+
+Server --> Client
+
+Streaming delta for code generation output.
+
+### codeagent:awaiting-input
+
+Server --> Client
+
+A coding agent is waiting for user input.
+
 ### codeagent:permission-request
 
 Server --> Client
@@ -1346,19 +1666,39 @@ A coding agent is requesting permission for a file write or shell command.
 
 ### Terminal
 
-### terminal:output
+### terminal:data
 
 Server --> Client
 
-Terminal PTY output data.
+Terminal PTY output data from an agent session.
+
+### terminal:replay
+
+Server --> Client
+
+Terminal session replay data for late-joining clients.
+
+### Conversations
+
+### conversation:switched
+
+Server --> Client
+
+The active conversation was switched, includes message history.
 
 ### World & Todos
 
-### world:updated
+### world:zone-added
 
 Server --> Client
 
-The world layout (zones) has been updated.
+A new zone was added to the world layout.
+
+### world:zone-removed
+
+Server --> Client
+
+A zone was removed from the world layout.
 
 ### todo:created
 
@@ -1378,19 +1718,82 @@ Server --> Client
 
 A todo item was deleted.
 
-### reminder:triggered
+### reminder:fired
 
 Server --> Client
 
 A scheduled reminder was triggered.
 
-### Messaging Status
+### Messaging Platform Events
 
-### messaging:status
+Each messaging platform emits status and pairing events:
+
+| Platform | Status Event | Pairing Event |
+|----------|-------------|---------------|
+| Discord | `discord:status` | `discord:pairing-request` |
+| Slack | `slack:status` | `slack:pairing-request` |
+| Matrix | `matrix:status` | `matrix:pairing-request` |
+| IRC | `irc:status` | `irc:pairing-request` |
+| Teams | `teams:status` | `teams:pairing-request` |
+| Telegram | `telegram:status` | `telegram:pairing-request` |
+| WhatsApp | `whatsapp:status` | — (uses QR code via status event) |
+| Signal | `signal:status` | `signal:pairing-request` |
+| Mattermost | `mattermost:status` | `mattermost:pairing-request` |
+| Nextcloud Talk | `nextcloud-talk:status` | `nextcloud-talk:pairing-request` |
+
+### Merge Queue
+
+### merge-queue:updated
 
 Server --> Client
 
-Status update for a messaging bridge (connected, disconnected, error).
+Complete merge queue state updated.
+
+### merge-queue:entry-updated
+
+Server --> Client
+
+Individual merge queue entry updated.
+
+### MCP
+
+### mcp:status
+
+Server --> Client
+
+MCP server runtime status update (started, stopped, error).
+
+### SSH
+
+### ssh:session-start
+
+Server --> Client
+
+An SSH session was initiated.
+
+### ssh:session-end
+
+Server --> Client
+
+An SSH session was closed.
+
+### ssh:chat-stream
+
+Server --> Client
+
+Streaming tokens from SSH chat analysis.
+
+### ssh:chat-response
+
+Server --> Client
+
+Complete SSH chat response with an optional command suggestion.
+
+### ssh:chat-analyzing
+
+Server --> Client
+
+SSH command analysis is in progress.
 
 ## Data Types
 

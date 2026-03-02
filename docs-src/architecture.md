@@ -181,6 +181,7 @@ OtterBot can delegate coding tasks to external coding agent CLIs that run in
 - **OpenCode** — Open-source coding assistant CLI
 - **Claude Code** — Anthropic's CLI coding agent
 - **Codex** — OpenAI's CLI coding agent
+- **Gemini CLI** — Google's CLI coding agent
 
 Each coding agent runs in its own terminal session. OtterBot streams output back to the UI
 in real-time, handles permission requests (e.g., file write approvals), and captures file
@@ -271,7 +272,7 @@ otterbot/
 |  |  |  +-- registry/    # Agent template registry
 |  |  |  +-- models3d/    # 3D model/environment pack discovery
 |  |  |  +-- memory/      # Episodic memory & soul documents
-|  |  |  +-- coding-agents/ # OpenCode, Claude Code, Codex PTY
+|  |  |  +-- coding-agents/ # OpenCode, Claude Code, Codex, Gemini CLI PTY
 |  |  |  +-- messaging/   # Discord, Slack, Teams, Telegram,
 |  |  |  |               # WhatsApp, Signal, Mattermost,
 |  |  |  |               # Nextcloud Talk, Tlon bridges

@@ -31,16 +31,23 @@ languages available.
 Any provider with an OpenAI-compatible TTS endpoint (`/v1/audio/speech`).
 Configure the base URL and optional API key.
 
+#### Deepgram
+
+**API Key**
+
+Deepgram's Aura neural TTS voices. Requires a Deepgram API key. Voices include asteria, luna, stella, athena, hera, orion, arcas, perseus, angus, orpheus, helios, and zeus.
+
 ### TTS Configuration
 
 | Setting Key | Description | Default |
 |---|---|---|
 | `tts:enabled` | Enable or disable TTS | `false` |
-| `tts:active_provider` | Active provider: `kokoro`, `edge-tts`, or `openai-compatible` | `kokoro` |
+| `tts:active_provider` | Active provider: `kokoro`, `edge-tts`, `openai-compatible`, or `deepgram` | `kokoro` |
 | `tts:voice` | Voice name | `af_heart` |
 | `tts:speed` | Playback speed (0.5 -- 2.0) | `1` |
 | `tts:openai-compatible:base_url` | Base URL for OpenAI-compatible provider | -- |
 | `tts:openai-compatible:api_key` | API key (optional) | -- |
+| `tts:deepgram:api_key` | Deepgram API key | -- |
 
 ### Speech-to-Text Providers
 
@@ -65,15 +72,22 @@ Any provider with an OpenAI-compatible transcription endpoint
 Uses the browser's native Web Speech API for speech recognition. No setup or API key
 required — works directly in supported browsers (Chrome, Edge).
 
+#### Deepgram
+
+**API Key**
+
+Deepgram's real-time speech recognition API. Requires a Deepgram API key.
+
 ### STT Configuration
 
 | Setting Key | Description | Default |
 |---|---|---|
 | `stt:enabled` | Enable or disable STT | `false` |
-| `stt:active_provider` | Active provider: `whisper-local` or `openai-compatible` | `whisper-local` |
+| `stt:active_provider` | Active provider: `whisper-local`, `openai-compatible`, `browser`, or `deepgram` | `whisper-local` |
 | `stt:whisper:model_id` | HuggingFace model ID for local Whisper | `onnx-community/whisper-base` |
 | `stt:openai-compatible:base_url` | Base URL for OpenAI-compatible provider | -- |
 | `stt:openai-compatible:api_key` | API key (optional) | -- |
+| `stt:deepgram:api_key` | Deepgram API key | -- |
 
 ## 3D Live View
 
@@ -354,6 +368,12 @@ Anthropic's CLI coding agent. Requires Claude Code CLI installed and an Anthropi
 **API Key**
 
 OpenAI's CLI coding agent. Requires Codex CLI installed and an OpenAI API key.
+
+#### Gemini CLI
+
+**API Key or OAuth**
+
+Google's CLI coding agent. Requires Gemini CLI installed and a Google API key, or OAuth via `gemini login`.
 
 - **PTY sessions** -- Each coding agent runs in its own terminal, streamed to the UI in real-time
 - **Permission handling** -- File write and shell command permissions are relayed to the user for approval

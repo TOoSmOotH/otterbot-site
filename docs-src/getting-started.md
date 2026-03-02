@@ -33,6 +33,7 @@ That's it. Open **https://localhost:62626** in your browser. The first-run setup
 | `--dir <path>` / `-Dir <path>` | Install directory (default: `~/otterbot`) |
 | `--beta` / `-Beta` | Use the `:beta` image tag |
 | `--no-start` / `-NoStart` | Generate files but don't start the container |
+| `--no-open` | Don't open the browser after starting |
 
 ```bash
 # Example: install beta channel to a custom directory
@@ -306,7 +307,7 @@ The Docker image includes these languages and tools out of the box:
 - **Java** (OpenJDK headless)
 - **Ruby**
 - **Build tools:** build-essential, git, curl, sqlite3, ffmpeg, GitHub CLI (gh)
-- **Coding agent CLIs:** Claude Code, Codex, OpenCode (optional — configure in Settings)
+- **Coding agent CLIs:** Claude Code, Codex, OpenCode, Gemini CLI (optional — configure in Settings)
 
 ## Hosting for Clients
 

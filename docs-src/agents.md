@@ -23,7 +23,7 @@ template defines a role, which determines the agent's position in the hierarchy:
 
 ## Built-in Templates
 
-OtterBot ships with 14 built-in agent templates. These cannot be modified or deleted, but
+OtterBot ships with 17 built-in agent templates. These cannot be modified or deleted, but
 they can be [cloned and customized](#customizing-agents).
 
 ### Management Templates
@@ -34,7 +34,9 @@ they can be [cloned and customized](#customizing-agents).
 
 Chief Operating Officer. Receives goals from the CEO and delegates to Team Leads.
 
-**Capabilities:** management, delegation, coordination
+**Capabilities:** management, delegation, coordination, github
+
+**Tools:** run_command, create_project, send_directive, update_charter, update_project_status, get_project_status, manage_models, manage_search, web_search, manage_packages, delegate_to_admin, memory_save, github_list_issues, github_get_issue, github_list_prs, github_get_pr
 
 **Default Model:** claude-sonnet-4-5-20250929 (Anthropic)
 
@@ -44,7 +46,9 @@ Chief Operating Officer. Receives goals from the CEO and delegates to Team Leads
 
 Manages a team of workers. Breaks directives into tasks and assigns them.
 
-**Capabilities:** management, planning, coordination
+**Capabilities:** management, planning, coordination, github, issues, pull-requests
+
+**Tools:** search_registry, spawn_worker, web_search, report_to_coo, create_task, update_task, list_tasks, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
 
 **Default Model:** claude-sonnet-4-5-20250929 (Anthropic)
 
@@ -56,9 +60,9 @@ Manages a team of workers. Breaks directives into tasks and assigns them.
 
 Writes, edits, and debugs code across multiple languages.
 
-**Capabilities:** code, typescript, python, debugging
+**Capabilities:** code, typescript, python, debugging, github, issues, pull-requests
 
-**Tools:** file_read, file_write, shell_exec, install_package
+**Tools:** file_read, file_write, shell_exec, install_package, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
 
 #### Researcher
 
@@ -66,9 +70,9 @@ Writes, edits, and debugs code across multiple languages.
 
 Searches the web, reads content, and synthesizes findings.
 
-**Capabilities:** research, analysis, summarization
+**Capabilities:** research, analysis, summarization, github, issues, pull-requests
 
-**Tools:** web_search, web_browse, file_read
+**Tools:** web_search, web_browse, file_read, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
 
 #### Reviewer
 
@@ -76,9 +80,9 @@ Searches the web, reads content, and synthesizes findings.
 
 Reviews code for quality, correctness, and best practices.
 
-**Capabilities:** code-review, testing, quality
+**Capabilities:** code-review, testing, quality, github, issues, pull-requests
 
-**Tools:** file_read
+**Tools:** file_read, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
 
 #### Writer
 
@@ -106,9 +110,9 @@ Designs architectures, plans implementations, and decomposes problems.
 
 Audits code for security vulnerabilities and compliance issues.
 
-**Capabilities:** security, audit, vulnerability
+**Capabilities:** security, code-review, vulnerability-analysis, github, issues, pull-requests
 
-**Tools:** file_read, shell_exec
+**Tools:** file_read, shell_exec, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
 
 #### Tester
 
@@ -116,9 +120,9 @@ Audits code for security vulnerabilities and compliance issues.
 
 Writes and runs tests, identifies edge cases, and ensures quality.
 
-**Capabilities:** testing, test-writing, qa, edge-cases
+**Capabilities:** testing, test-writing, qa, edge-cases, github, issues, pull-requests
 
-**Tools:** file_read, file_write, shell_exec
+**Tools:** file_read, file_write, shell_exec, install_package, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
 
 #### Browser Agent
 
@@ -136,9 +140,9 @@ Navigates websites, scrapes content, fills forms, and interacts with web applica
 
 Delegates coding tasks to the OpenCode CLI via a managed PTY session.
 
-**Capabilities:** code, opencode, pty
+**Capabilities:** code, opencode, autonomous-coding, refactoring, github, issues, pull-requests
 
-**Tools:** codeagent_delegate, file_read
+**Tools:** opencode_task, file_read, shell_exec, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
 
 #### Claude Code Coder
 
@@ -146,9 +150,9 @@ Delegates coding tasks to the OpenCode CLI via a managed PTY session.
 
 Delegates coding tasks to the Claude Code CLI via a managed PTY session.
 
-**Capabilities:** code, claude-code, pty
+**Capabilities:** code, claude-code, autonomous-coding, refactoring, github, issues, pull-requests
 
-**Tools:** codeagent_delegate, file_read
+**Tools:** opencode_task, file_read, shell_exec, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
 
 #### Codex Coder
 
@@ -156,9 +160,43 @@ Delegates coding tasks to the Claude Code CLI via a managed PTY session.
 
 Delegates coding tasks to the OpenAI Codex CLI via a managed PTY session.
 
-**Capabilities:** code, codex, pty
+**Capabilities:** code, codex, autonomous-coding, refactoring, github, issues, pull-requests
 
-**Tools:** codeagent_delegate, file_read
+**Default Model:** gpt-5.3-codex-medium (OpenAI)
+
+**Tools:** opencode_task, file_read, shell_exec, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
+
+#### Gemini CLI Coder
+
+**Role:** Worker
+
+Delegates coding tasks to the Google Gemini CLI via a managed PTY session.
+
+**Capabilities:** code, gemini-cli, autonomous-coding, refactoring
+
+**Default Model:** gemini-2.5-flash (Google)
+
+**Tools:** opencode_task, file_read, shell_exec
+
+#### Triage
+
+**Role:** Worker
+
+Triages GitHub issues by analyzing, categorizing, and prioritizing them. Used in the code review pipeline.
+
+**Capabilities:** github, issues, pull-requests
+
+**Tools:** github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr
+
+#### SSH Administrator
+
+**Role:** Worker
+
+Manages remote servers via SSH — executes commands, manages connections, and performs system administration tasks.
+
+**Capabilities:** ssh, remote-management, system-administration
+
+**Tools:** ssh_exec, ssh_list_keys, ssh_list_hosts, ssh_connect
 
 #### Tool Builder
 
@@ -166,9 +204,9 @@ Delegates coding tasks to the OpenAI Codex CLI via a managed PTY session.
 
 Creates custom JavaScript tools at runtime that other agents can use.
 
-**Capabilities:** tools, javascript, automation
+**Capabilities:** tool-building, javascript, api-integration
 
-**Tools:** tool_create, file_read, file_write, shell_exec
+**Tools:** file_read, shell_exec, create_custom_tool, list_custom_tools, update_custom_tool, test_custom_tool
 
 ### Specialized Templates
 
@@ -213,23 +251,43 @@ Workers use tools to interact with the environment. Each tool is injected via a
 
 | Tool | Description | Used By |
 |------|-------------|---------|
-| `file_read` | Read file contents from the workspace | Coder, Researcher, Reviewer, Writer, Planner, Security Reviewer |
-| `file_write` | Create or overwrite files in the workspace | Coder, Writer, Planner |
-| `shell_exec` | Execute shell commands (respects `SUDO_MODE`) | Coder |
-| `web_search` | Search the web using the configured provider | Researcher |
-| `web_browse` | Navigate and extract content from web pages (Playwright) | Researcher |
-| `install_package` | Install apt or npm packages in the container | Coder |
-| `codeagent_delegate` | Delegate a coding task to an external CLI agent (OpenCode, Claude Code, or Codex) via PTY | OpenCode Coder, Claude Code Coder, Codex Coder |
-| `tool_create` | Create a custom JavaScript tool at runtime, sandboxed via `isolated-vm` | Tool Builder |
-| `todo_manage` | Create, list, update, and delete personal todo items | Admin Assistant |
-| `gmail_read` | Read, search, and list Gmail messages and labels | Admin Assistant |
-| `gmail_send` | Send, reply, archive, and label Gmail messages | Admin Assistant |
-| `calendar_manage` | Create, update, delete, and list Google Calendar events | Admin Assistant |
+| `file_read` | Read file contents from the workspace | Coder, Researcher, Reviewer, Writer, Planner, Security Reviewer, Tester, Browser Agent |
+| `file_write` | Create or overwrite files in the workspace | Coder, Writer, Planner, Browser Agent |
+| `shell_exec` | Execute shell commands (respects `SUDO_MODE`) | Coder, Security Reviewer, Tester, Tool Builder |
+| `web_search` | Search the web using the configured provider | Researcher, COO, Team Lead |
+| `web_browse` | Navigate and extract content from web pages (Playwright) | Researcher, Browser Agent |
+| `install_package` | Install apt or npm packages in the container | Coder, Tester |
+| `opencode_task` | Delegate a coding task to an external CLI agent (OpenCode, Claude Code, Codex, or Gemini CLI) via PTY | OpenCode Coder, Claude Code Coder, Codex Coder, Gemini CLI Coder |
+| `create_custom_tool` | Create a custom JavaScript tool at runtime, sandboxed via `isolated-vm` | Tool Builder |
+| `list_custom_tools` | List all custom tools | Tool Builder |
+| `update_custom_tool` | Update an existing custom tool | Tool Builder |
+| `test_custom_tool` | Test a custom tool in the sandbox | Tool Builder |
+| `todo_list` | List personal todo items | Admin Assistant |
+| `todo_create` | Create a new todo item | Admin Assistant |
+| `todo_update` | Update a todo item | Admin Assistant |
+| `todo_delete` | Delete a todo item | Admin Assistant |
+| `gmail_list` | List Gmail messages | Admin Assistant |
+| `gmail_read` | Read a Gmail message | Admin Assistant |
+| `gmail_send` | Send a new email via Gmail | Admin Assistant |
+| `gmail_reply` | Reply to a Gmail message | Admin Assistant |
+| `gmail_label` | Add or remove Gmail labels | Admin Assistant |
+| `gmail_archive` | Archive Gmail messages | Admin Assistant |
+| `calendar_list_events` | List Google Calendar events | Admin Assistant |
+| `calendar_create_event` | Create a Google Calendar event | Admin Assistant |
+| `calendar_update_event` | Update a Google Calendar event | Admin Assistant |
+| `calendar_delete_event` | Delete a Google Calendar event | Admin Assistant |
+| `calendar_list_calendars` | List available Google Calendars | Admin Assistant |
 | `memory_save` | Save an episodic memory for later semantic retrieval | Admin Assistant, COO |
-
-!!! tip
-    **Management agents** (COO and Team Lead) don't use tools directly. Instead,
-    they delegate tasks to workers that have the right tools for the job.
+| `github_get_issue` | Fetch a GitHub issue by number | Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead |
+| `github_list_issues` | List GitHub issues with filters | Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead |
+| `github_get_pr` | Fetch a GitHub pull request | Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead |
+| `github_list_prs` | List GitHub pull requests | Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead |
+| `github_comment` | Comment on a GitHub issue or PR | Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, Team Lead |
+| `github_create_pr` | Create a GitHub pull request | Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, Team Lead |
+| `ssh_exec` | Execute a command on a remote host via SSH | SSH Administrator |
+| `ssh_list_keys` | List available SSH keys | SSH Administrator |
+| `ssh_list_hosts` | List allowed SSH hosts | SSH Administrator |
+| `ssh_connect` | Start an interactive SSH session | SSH Administrator |
 
 ## Customizing Agents
 
