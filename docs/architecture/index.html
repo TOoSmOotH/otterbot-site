@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
@@ -648,6 +648,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#git-hosting-integrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Hosting Integrations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tech-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1077,6 +1088,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#git-hosting-integrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Hosting Integrations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tech-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1348,6 +1370,10 @@ with your agents from anywhere.</p>
 <li><strong>Mattermost</strong> — Mattermost chat integration</li>
 <li><strong>Nextcloud Talk</strong> — Nextcloud Talk integration</li>
 <li><strong>Tlon</strong> — Tlon (Urbit) chat integration</li>
+<li><strong>Bluesky</strong> — AT Protocol integration</li>
+<li><strong>Google Chat</strong> — Google Workspace integration with webhooks</li>
+<li><strong>Mastodon</strong> — ActivityPub/fediverse integration</li>
+<li><strong>Email (IMAP/SMTP)</strong> — Generic email bridge via IMAP and SMTP</li>
 </ul>
 <p>Each bridge runs independently and relays messages bidirectionally between the external
 platform and the COO. Configuration and credentials are managed through the Settings UI.</p>
@@ -1364,6 +1390,14 @@ platform and the COO. Configuration and credentials are managed through the Sett
 in real-time, handles permission requests (e.g., file write approvals), and captures file
 diffs when the session completes. This lets you leverage specialized coding agents while
 keeping everything orchestrated through OtterBot's hierarchy.</p>
+<h2 id="git-hosting-integrations">Git Hosting Integrations<a class="headerlink" href="#git-hosting-integrations" title="Permanent link">&para;</a></h2>
+<p>OtterBot integrates with both <strong>GitHub</strong> and <strong>Gitea</strong> for repository management:</p>
+<ul>
+<li><strong>Multi-account support</strong> — CRUD for multiple accounts per platform, with per-project assignment. The resolution chain tries project-specific → default → legacy config.</li>
+<li><strong>Issue &amp; PR monitoring</strong> — Track issues and PRs across both platforms</li>
+<li><strong>Fork mode</strong> (GitHub) — Fork repos, create cross-fork PRs, and sync upstream changes</li>
+<li><strong>Commit signing</strong> — Per-project toggle for SSH-based commit signing</li>
+</ul>
 <h2 id="tech-stack">Tech Stack<a class="headerlink" href="#tech-stack" title="Permanent link">&para;</a></h2>
 <h3 id="backend">Backend<a class="headerlink" href="#backend" title="Permanent link">&para;</a></h3>
 <table>
@@ -1384,7 +1418,7 @@ keeping everything orchestrated through OtterBot's hierarchy.</p>
 </tr>
 <tr>
 <td><code>Vercel AI SDK</code></td>
-<td>Unified LLM interface (18 providers: Anthropic, OpenAI, Gemini, Ollama, OpenRouter, and more)</td>
+<td>Unified LLM interface (19 providers: Anthropic, OpenAI, Gemini, Ollama, OpenRouter, Vercel AI Gateway, and more)</td>
 </tr>
 <tr>
 <td><code>Drizzle ORM</code></td>
@@ -1429,6 +1463,22 @@ keeping everything orchestrated through OtterBot's hierarchy.</p>
 <tr>
 <td><code>isolated-vm</code></td>
 <td>Sandboxed execution for custom tools</td>
+</tr>
+<tr>
+<td><code>@atproto/*</code></td>
+<td>Bluesky AT Protocol integration</td>
+</tr>
+<tr>
+<td><code>masto</code></td>
+<td>Mastodon ActivityPub integration</td>
+</tr>
+<tr>
+<td><code>imapflow</code></td>
+<td>IMAP email bridge</td>
+</tr>
+<tr>
+<td><code>nodemailer</code></td>
+<td>SMTP email sending</td>
 </tr>
 </tbody>
 </table>
@@ -1535,20 +1585,28 @@ Project, KanbanTask, BusMessage, Socket.IO event interfaces.</p>
 <a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>|  |  |  +-- messaging/   # Discord, Slack, Teams, Telegram,
 <a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>|  |  |  |               # WhatsApp, Signal, Mattermost,
 <a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>|  |  |  |               # Nextcloud Talk, Tlon bridges
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>|  |  |  +-- irc/         # IRC &amp; Matrix bridges
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>|  |  |  +-- modules/     # External module system
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>|  |  |  +-- skills/      # Skill/prompt fragment registry
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>|  |  |  +-- scheduling/  # Scheduler &amp; custom tasks
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>|  +-- web/               # @otterbot/web
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>|  |  +-- src/
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>|  |  |  +-- components/  # React components
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>|  |  |  +-- stores/      # State management
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>|  +-- shared/            # @otterbot/shared
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>|     +-- src/types/     # TypeScript interfaces &amp; enums
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>+-- assets/
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>   +-- workers/           # 3D character models (GLB)
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>   +-- environments/      # 3D environment models (GLTF)
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>   +-- scenes/            # Scene configuration JSON
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>|  |  |  +-- bluesky/     # Bluesky (AT Protocol) bridge
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>|  |  |  +-- googlechat/  # Google Chat bridge
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>|  |  |  +-- mastodon/    # Mastodon (ActivityPub) bridge
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>|  |  |  +-- email/       # Generic IMAP/SMTP email bridge
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>|  |  |  +-- irc/         # IRC &amp; Matrix bridges
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>|  |  |  +-- github/      # GitHub integration &amp; multi-account
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>|  |  |  +-- gitea/       # Gitea integration &amp; monitoring
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>|  |  |  +-- pipeline/    # Code review pipeline orchestration
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>|  |  |  +-- merge-queue/ # Merge queue management
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>|  |  |  +-- modules/     # External module system
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>|  |  |  +-- skills/      # Skill/prompt fragment registry
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>|  |  |  +-- scheduling/  # Scheduler &amp; custom tasks
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>|  +-- web/               # @otterbot/web
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>|  |  +-- src/
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>|  |  |  +-- components/  # React components
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>|  |  |  +-- stores/      # State management
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>|  +-- shared/            # @otterbot/shared
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>|     +-- src/types/     # TypeScript interfaces &amp; enums
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>+-- assets/
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>   +-- workers/           # 3D character models (GLB)
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>   +-- environments/      # 3D environment models (GLTF)
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>   +-- scenes/            # Scene configuration JSON
 </code></pre></div>
 
 
