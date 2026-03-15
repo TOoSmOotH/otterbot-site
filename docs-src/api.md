@@ -529,6 +529,58 @@ Get the public key for the current SSH key pair.
 
 Delete the current SSH key pair.
 
+## REST: GitHub Accounts
+
+Multi-account GitHub support with per-account SSH keys and per-project assignment.
+
+### GET /api/settings/github/accounts
+
+List all GitHub accounts.
+
+### POST /api/settings/github/accounts
+
+Create a new GitHub account (label, token, username, email).
+
+### PUT /api/settings/github/accounts/:id
+
+Update a GitHub account.
+
+### DELETE /api/settings/github/accounts/:id
+
+Delete a GitHub account.
+
+### PUT /api/settings/github/accounts/:id/default
+
+Set a GitHub account as the default.
+
+### POST /api/settings/github/accounts/:id/test
+
+Test connectivity for a GitHub account.
+
+### POST /api/settings/github/accounts/:id/ssh/generate
+
+Generate a new SSH key pair for a specific GitHub account.
+
+### POST /api/settings/github/accounts/:id/ssh/import
+
+Import an existing SSH private key for a GitHub account.
+
+### PUT /api/settings/github/accounts/:id/ssh/usage
+
+Set SSH key usage for a GitHub account (auth, signing, or both).
+
+### GET /api/settings/github/accounts/:id/ssh/public-key
+
+Get the public key for a GitHub account's SSH key.
+
+### DELETE /api/settings/github/accounts/:id/ssh
+
+Delete the SSH key for a GitHub account.
+
+### POST /api/settings/github/accounts/:id/ssh/test
+
+Test SSH connectivity for a GitHub account.
+
 ## REST: Messaging
 
 Each messaging bridge has GET/PUT settings endpoints and a test endpoint.
@@ -686,6 +738,122 @@ Update Tlon bridge settings.
 ### POST /api/settings/tlon/test
 
 Test the Tlon connection.
+
+### Bluesky
+
+### GET /api/settings/bluesky
+
+Get Bluesky bridge settings.
+
+### PUT /api/settings/bluesky
+
+Update Bluesky bridge settings.
+
+### POST /api/settings/bluesky/test
+
+Test the Bluesky connection.
+
+### POST /api/settings/bluesky/pair/approve
+
+Approve a Bluesky pairing request.
+
+### POST /api/settings/bluesky/pair/reject
+
+Reject a Bluesky pairing request.
+
+### DELETE /api/settings/bluesky/pair/:userId
+
+Remove a paired Bluesky user.
+
+### Google Chat
+
+### GET /api/settings/googlechat
+
+Get Google Chat bridge settings.
+
+### PUT /api/settings/googlechat
+
+Update Google Chat bridge settings.
+
+### POST /api/settings/googlechat/test
+
+Test the Google Chat connection.
+
+### POST /api/settings/googlechat/pair/approve
+
+Approve a Google Chat pairing request.
+
+### POST /api/settings/googlechat/pair/reject
+
+Reject a Google Chat pairing request.
+
+### DELETE /api/settings/googlechat/pair/:userId
+
+Remove a paired Google Chat user.
+
+### POST /api/googlechat/webhook
+
+Incoming webhook handler for Google Chat events.
+
+### Mastodon
+
+### GET /api/settings/mastodon
+
+Get Mastodon bridge settings.
+
+### PUT /api/settings/mastodon
+
+Update Mastodon bridge settings.
+
+### POST /api/settings/mastodon/test
+
+Test the Mastodon connection.
+
+### POST /api/settings/mastodon/pair/approve
+
+Approve a Mastodon pairing request.
+
+### POST /api/settings/mastodon/pair/reject
+
+Reject a Mastodon pairing request.
+
+### DELETE /api/settings/mastodon/pair/:userId
+
+Remove a paired Mastodon user.
+
+### Email (IMAP/SMTP)
+
+### GET /api/settings/email
+
+Get email bridge settings (IMAP/SMTP configuration).
+
+### PUT /api/settings/email
+
+Update email bridge settings.
+
+### POST /api/settings/email/test
+
+Test the email bridge connection.
+
+### GET /api/email/folders
+
+List email folders.
+
+### GET /api/email/messages
+
+List email messages.
+
+### GET /api/email/messages/:id
+
+Get a specific email message.
+
+### POST /api/email/send
+
+Send a new email via SMTP.
+
+### POST /api/email/messages/:id/archive
+
+Archive an email message.
 
 ## REST: Coding Agents
 
@@ -1049,7 +1217,13 @@ Send a message from the CEO (human) to the COO.
 
 ```json
 // Payload
-{ "content": "Build a REST API for...", "conversationId"?: "conv_1", "projectId"?: "proj_1" }
+{
+  "content": "Build a REST API for...",
+  "conversationId"?: "conv_1",
+  "projectId"?: "proj_1",
+  "toAgentId"?: "worker-abc",
+  "attachments"?: [{ "id": "att_1", "filename": "spec.pdf", "mimeType": "application/pdf", "size": 12345, "url": "/uploads/..." }]
+}
 
 // Ack callback
 { "messageId": "msg_abc", "conversationId": "conv_1" }
@@ -1083,6 +1257,17 @@ Find the conversation associated with a specific agent.
 { "agentId": "worker-abc" }
 
 // Ack: Conversation | null
+```
+
+### ceo:compact-conversation
+
+Client --> Server
+
+Compact a conversation's context to reduce token usage.
+
+```json
+// Payload
+{ "conversationId": "conv_1" }
 ```
 
 ### Conversations
@@ -1282,6 +1467,60 @@ Client --> Server
 
 Set the code review pipeline configuration for a project.
 
+### project:get-fork-settings
+
+Client --> Server
+
+Get fork mode settings for a project (upstream PR creation, fork sync).
+
+### project:set-fork-upstream-pr
+
+Client --> Server
+
+Toggle whether PRs are created against the upstream repo when using fork mode.
+
+### project:set-issue-monitor
+
+Client --> Server
+
+Enable or disable GitHub issue monitoring for a project.
+
+### project:set-github-account
+
+Client --> Server
+
+Set the GitHub account to use for a specific project.
+
+### project:set-gitea-issue-monitor
+
+Client --> Server
+
+Enable or disable Gitea issue monitoring for a project.
+
+### project:set-gitea-account
+
+Client --> Server
+
+Set the Gitea account to use for a specific project.
+
+### project:get-sign-commits
+
+Client --> Server
+
+Get the commit signing setting for a project.
+
+### project:set-sign-commits
+
+Client --> Server
+
+Toggle SSH-based commit signing for a project.
+
+### project:set-show3d
+
+Client --> Server
+
+Toggle 3D Live View visibility for a project.
+
 ### Agents & Coding
 
 ### agent:stop
@@ -1420,6 +1659,20 @@ Remove an entry from the merge queue.
 Client --> Server
 
 Reorder entries in the merge queue.
+
+### Kanban Pipeline
+
+### kanban:reset-pipeline
+
+Client --> Server
+
+Reset the pipeline status for a Kanban task, allowing it to be re-processed.
+
+### kanban:retriage
+
+Client --> Server
+
+Re-run triage on a Kanban task's associated issue.
 
 ### SSH
 
@@ -1740,6 +1993,9 @@ Each messaging platform emits status and pairing events:
 | Signal | `signal:status` | `signal:pairing-request` |
 | Mattermost | `mattermost:status` | `mattermost:pairing-request` |
 | Nextcloud Talk | `nextcloud-talk:status` | `nextcloud-talk:pairing-request` |
+| Bluesky | `bluesky:status` | `bluesky:pairing-request` |
+| Google Chat | `googlechat:status` | `googlechat:pairing-request` |
+| Mastodon | `mastodon:status` | `mastodon:pairing-request` |
 
 ### Merge Queue
 
@@ -1805,8 +2061,17 @@ SSH command analysis is in progress.
   "name": string,
   "role": "coo" | "team_lead" | "worker" | "admin_assistant" | "scheduler" | "module_agent",
   "status": "idle" | "thinking" | "acting" | "awaiting_input" | "done" | "error",
-  "registryId": string,
-  "projectId": string | null
+  "registryEntryId": string | null,
+  "model": string,
+  "provider": string,
+  "baseUrl": string | null,
+  "temperature": number | null,
+  "parentId": string | null,
+  "projectId": string | null,
+  "workspacePath": string | null,
+  "modelPackId": string | null,
+  "gearConfig": GearConfig | null,
+  "createdAt": string
 }
 ```
 
@@ -1842,6 +2107,17 @@ SSH command analysis is in progress.
   "status": "active" | "completed" | "failed" | "cancelled",
   "charter": string | null,
   "charterStatus": "gathering" | "finalized",
+  "githubRepo": string | null,
+  "githubBranch": string | null,
+  "githubIssueMonitor": boolean,
+  "signCommits": boolean,
+  "show3d": boolean,
+  "githubAccountId": string | null,
+  "giteaRepo": string | null,
+  "giteaBranch": string | null,
+  "giteaIssueMonitor": boolean,
+  "giteaAccountId": string | null,
+  "rules": string[],
   "createdAt": string
 }
 ```
@@ -1884,10 +2160,12 @@ SSH command analysis is in progress.
   "id": string,
   "fromAgentId": string | null,
   "toAgentId": string | null,
+  "type": "chat" | "directive" | "report" | "status" | "status_request" | "status_response",
   "content": string,
-  "role": "user" | "assistant",
-  "conversationId": string,
+  "metadata": object,
   "projectId": string | null,
+  "conversationId": string | null,
+  "correlationId": string | null,
   "timestamp": string
 }
 ```
@@ -1941,10 +2219,16 @@ SSH command analysis is in progress.
 ```json
 {
   "id": string,
+  "category": "observation" | "decision" | "learning" | "preference" | "fact" | "instruction",
   "content": string,
-  "agentId": string | null,
-  "embedding": number[],  // Vector embedding
-  "createdAt": string
+  "source": "agent" | "user" | "system" | "compactor",
+  "agentScope": string | null,   // null = all agents, or specific role
+  "projectId": string | null,    // null = global, or project-scoped
+  "importance": number,          // 1-10
+  "accessCount": number,
+  "lastAccessedAt": string | null,
+  "createdAt": string,
+  "updatedAt": string
 }
 ```
 
@@ -1953,9 +2237,69 @@ SSH command analysis is in progress.
 ```json
 {
   "id": string,
-  "title": string,
-  "content": string,
+  "agentRole": string,              // "coo", "team_lead", "worker", "admin_assistant", "global"
+  "registryEntryId": string | null, // null for role-level defaults, or specific registry entry ID
+  "content": string,                // markdown document
   "createdAt": string,
   "updatedAt": string
+}
+```
+
+### GitHubAccount
+
+```json
+{
+  "id": string,
+  "label": string,
+  "tokenSet": boolean,
+  "username": string | null,
+  "email": string | null,
+  "sshKeySet": boolean,
+  "sshFingerprint": string | null,
+  "sshKeyType": string | null,
+  "isDefault": boolean,
+  "createdAt": string
+}
+```
+
+### GiteaAccount
+
+```json
+{
+  "id": string,
+  "label": string,
+  "tokenSet": boolean,
+  "username": string | null,
+  "email": string | null,
+  "instanceUrl": string,
+  "isDefault": boolean,
+  "createdAt": string
+}
+```
+
+### ProjectAgentAssignments
+
+```json
+Record<string, string>  // Maps role/stage key → registry entry ID
+```
+
+### ProjectPipelineConfig
+
+```json
+{
+  "enabled": boolean,  // master toggle — pipeline on/off for this project
+  "stages": Record<string, { "enabled": boolean, "agentId": string }>
+}
+```
+
+### ChatAttachment
+
+```json
+{
+  "id": string,
+  "filename": string,
+  "mimeType": string,
+  "size": number,
+  "url": string
 }
 ```

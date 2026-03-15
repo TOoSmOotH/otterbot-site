@@ -17,12 +17,12 @@ multi-agent AI assistant that runs entirely in Docker.
 
 | Stat | Description |
 |------|-------------|
-| 17 | Built-in Agent Templates |
-| 85+ | REST API Endpoints |
-| 100+ | Real-time Socket Events |
-| 11 | Messaging Integrations |
-| 40+ | Built-in Tools |
-| 18 | LLM Providers |
+| 19 | Built-in Agent Templates |
+| 100+ | REST API Endpoints |
+| 120+ | Real-time Socket Events |
+| 15 | Messaging Integrations |
+| 50+ | Built-in Tools |
+| 19 | LLM Providers |
 | 4 | Search Providers |
 
 ## Quick Start

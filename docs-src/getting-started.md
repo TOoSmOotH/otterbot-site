@@ -234,6 +234,7 @@ Choose your AI provider and enter your API key. Supported providers:
 - **Z.AI** — GLM models
 - **Deepgram** — Deepgram models
 - **LM Studio** — Local models (no API key needed)
+- **Vercel AI Gateway** — Route requests through Vercel's AI Gateway
 - **OpenAI-Compatible** — Any provider with an OpenAI-compatible API
 
 The wizard probes available models from your provider so you can select which model to use for the COO agent and worker agents.

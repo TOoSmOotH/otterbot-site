@@ -169,6 +169,10 @@ with your agents from anywhere.
 - **Mattermost** — Mattermost chat integration
 - **Nextcloud Talk** — Nextcloud Talk integration
 - **Tlon** — Tlon (Urbit) chat integration
+- **Bluesky** — AT Protocol integration
+- **Google Chat** — Google Workspace integration with webhooks
+- **Mastodon** — ActivityPub/fediverse integration
+- **Email (IMAP/SMTP)** — Generic email bridge via IMAP and SMTP
 
 Each bridge runs independently and relays messages bidirectionally between the external
 platform and the COO. Configuration and credentials are managed through the Settings UI.
@@ -188,6 +192,15 @@ in real-time, handles permission requests (e.g., file write approvals), and capt
 diffs when the session completes. This lets you leverage specialized coding agents while
 keeping everything orchestrated through OtterBot's hierarchy.
 
+## Git Hosting Integrations
+
+OtterBot integrates with both **GitHub** and **Gitea** for repository management:
+
+- **Multi-account support** — CRUD for multiple accounts per platform, with per-project assignment. The resolution chain tries project-specific → default → legacy config.
+- **Issue & PR monitoring** — Track issues and PRs across both platforms
+- **Fork mode** (GitHub) — Fork repos, create cross-fork PRs, and sync upstream changes
+- **Commit signing** — Per-project toggle for SSH-based commit signing
+
 ## Tech Stack
 
 ### Backend
@@ -196,7 +209,7 @@ keeping everything orchestrated through OtterBot's hierarchy.
 | --- | --- |
 | `Fastify` | HTTP server for REST API |
 | `Socket.IO` | Real-time bidirectional communication |
-| `Vercel AI SDK` | Unified LLM interface (18 providers: Anthropic, OpenAI, Gemini, Ollama, OpenRouter, and more) |
+| `Vercel AI SDK` | Unified LLM interface (19 providers: Anthropic, OpenAI, Gemini, Ollama, OpenRouter, Vercel AI Gateway, and more) |
 | `Drizzle ORM` | Type-safe database access |
 | `better-sqlite3` | SQLite with encryption support |
 | `Playwright` | Browser automation for agents |
@@ -208,6 +221,10 @@ keeping everything orchestrated through OtterBot's hierarchy.
 | `irc-framework` | IRC messaging bridge |
 | `node-pty` | PTY sessions for coding agent CLIs |
 | `isolated-vm` | Sandboxed execution for custom tools |
+| `@atproto/*` | Bluesky AT Protocol integration |
+| `masto` | Mastodon ActivityPub integration |
+| `imapflow` | IMAP email bridge |
+| `nodemailer` | SMTP email sending |
 
 ### Frontend
 
@@ -276,7 +293,15 @@ otterbot/
 |  |  |  +-- messaging/   # Discord, Slack, Teams, Telegram,
 |  |  |  |               # WhatsApp, Signal, Mattermost,
 |  |  |  |               # Nextcloud Talk, Tlon bridges
+|  |  |  +-- bluesky/     # Bluesky (AT Protocol) bridge
+|  |  |  +-- googlechat/  # Google Chat bridge
+|  |  |  +-- mastodon/    # Mastodon (ActivityPub) bridge
+|  |  |  +-- email/       # Generic IMAP/SMTP email bridge
 |  |  |  +-- irc/         # IRC & Matrix bridges
+|  |  |  +-- github/      # GitHub integration & multi-account
+|  |  |  +-- gitea/       # Gitea integration & monitoring
+|  |  |  +-- pipeline/    # Code review pipeline orchestration
+|  |  |  +-- merge-queue/ # Merge queue management
 |  |  |  +-- modules/     # External module system
 |  |  |  +-- skills/      # Skill/prompt fragment registry
 |  |  |  +-- scheduling/  # Scheduler & custom tasks

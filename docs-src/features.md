@@ -382,7 +382,7 @@ Google's CLI coding agent. Requires Gemini CLI installed and a Google API key, o
 
 ## Messaging Integrations
 
-OtterBot can bridge conversations to eleven external messaging platforms, letting you chat
+OtterBot can bridge conversations to fifteen external messaging platforms, letting you chat
 with your agents from anywhere.
 
 #### Discord
@@ -451,6 +451,30 @@ Nextcloud Talk chat integration.
 
 Tlon (Urbit) communication platform integration.
 
+#### Bluesky
+
+**Bot Token**
+
+AT Protocol integration for the Bluesky social network. Configure a bot token in Settings. Supports pairing approval flow. New in v0.16.0.
+
+#### Google Chat
+
+**Google Workspace**
+
+Google Workspace integration with webhook support. Pair your Google Chat space through the Settings UI.
+
+#### Mastodon
+
+**ActivityPub**
+
+Fediverse integration via the ActivityPub protocol. Connect to any Mastodon-compatible instance. Supports pairing approval flow.
+
+#### Email (IMAP/SMTP)
+
+**Generic Email**
+
+Generic email bridge via IMAP/SMTP. Separate from the Gmail OAuth integration — connect to any email provider that supports IMAP and SMTP. Configure server addresses, ports, and credentials in Settings.
+
 Each bridge relays messages bidirectionally between the external platform and the COO.
 Configure credentials and channels through the Settings UI.
 
@@ -491,10 +515,20 @@ and API.
 
 OtterBot includes built-in GitHub integration for managing repositories and monitoring activity.
 
-- **SSH key management** -- Generate, import, test, and delete SSH keys for Git authentication
-- **Issue monitoring** -- Track GitHub issues and discussions
-- **Auto-project creation** -- Automatically create OtterBot projects from GitHub issues
+- **SSH key management** -- Generate, import, test, and delete SSH keys for Git authentication. Per-key usage selector (auth, signing, or both).
+- **Multi-account support** -- CRUD for multiple GitHub accounts, each with their own credentials and SSH keys. Per-project account assignment with a resolution chain: project-specific account → default account → legacy configuration.
+- **Issue monitoring** -- Track GitHub issues and discussions. Automatically create OtterBot projects from GitHub issues.
+- **Fork mode** -- Fork repositories, create cross-fork pull requests, and sync upstream changes. Useful for contributing to repositories you don't have push access to.
+- **Commit signing** -- Per-project toggle for SSH-based commit signing.
 - **GitHub CLI** -- The `gh` CLI is pre-installed for agents to use
+
+## Gitea Integration
+
+OtterBot supports Gitea as an alternative to GitHub for self-hosted Git workflows.
+
+- **Account management** -- CRUD for Gitea accounts with per-project assignment
+- **Issue monitoring** -- Track Gitea issues and automatically create OtterBot projects
+- **PR monitoring** -- Monitor pull request activity on Gitea repositories
 
 ## Specialist Agents
 
@@ -685,6 +719,23 @@ MCP servers that provide additional tools for your agents.
 MCP servers are configured through the Settings UI or REST API. Discovered tools appear
 alongside built-in tools and can be assigned to agent templates.
 
+## Demo Recording
+
+OtterBot can record video demos of running web applications with optional voiceover narration
+using the `demo_record` tool and the **Demo Recorder** agent template.
+
+- **Playwright video capture** -- Records browser sessions navigating your web application
+- **TTS voiceover** -- Optional text-to-speech narration overlaid on the recording
+- **Dev server management** -- Start and stop development servers as part of the recording flow
+- **FFmpeg post-processing** -- Produces YouTube-ready MP4 videos with configurable resolution (720p or 1080p)
+- **Scripted demos** -- Run a JSON demo script for repeatable, automated recordings
+
+## 3D Visibility Toggle
+
+Each project has a `show3d` setting that controls whether the project's agents appear in the
+3D Live View. Toggle it via the `project:set-show3d` Socket.IO event to keep the Live View
+focused on active work.
+
 ## Code Review Pipeline
 
 OtterBot includes an automated **code review pipeline** that orchestrates multi-stage
@@ -695,9 +746,10 @@ review and implementation workflows for pull requests.
 | Stage | Description |
 |---|---|
 | `Triage` | LLM-based classification of the issue or PR |
-| `Implementation` | Spawns coding agents to implement changes |
-| `Testing` | Validates changes and runs checks |
-| `Integration` | Final review with optional kickback to earlier stages |
+| `Coder` | Creates a feature branch, implements the solution, and commits changes |
+| `Security Reviewer` | Audits the implementation for vulnerabilities and security risks. Can kick back to the Coder for fixes |
+| `Tester` | Writes and runs tests to validate the implementation |
+| `Code Reviewer` | Reviews code quality and correctness, then creates the pull request |
 
 The pipeline integrates with the Merge Queue for end-to-end automation: issues flow
 through triage and implementation, PRs are opened automatically, and validated changes

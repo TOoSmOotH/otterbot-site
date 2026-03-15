@@ -23,7 +23,7 @@ template defines a role, which determines the agent's position in the hierarchy:
 
 ## Built-in Templates
 
-OtterBot ships with 17 built-in agent templates. These cannot be modified or deleted, but
+OtterBot ships with 19 built-in agent templates. These cannot be modified or deleted, but
 they can be [cloned and customized](#customizing-agents).
 
 ### Management Templates
@@ -208,6 +208,16 @@ Creates custom JavaScript tools at runtime that other agents can use.
 
 **Tools:** file_read, shell_exec, create_custom_tool, list_custom_tools, update_custom_tool, test_custom_tool
 
+#### Demo Recorder
+
+**Role:** Worker
+
+Records video demos of running web applications with optional voiceover narration. Produces YouTube-ready MP4 videos.
+
+**Capabilities:** demo, video, recording, screen-recording, voiceover, narration
+
+**Tools:** demo_record, web_browse, file_read, file_write
+
 ### Specialized Templates
 
 #### Admin Assistant
@@ -218,7 +228,12 @@ Personal productivity agent. Manages todos, reads/sends email, and manages calen
 
 **Capabilities:** todos, email, calendar, productivity
 
-**Tools:** todo_manage, gmail_read, gmail_send, calendar_manage, memory_save
+**Tools:** todo_list, todo_create, todo_update, todo_delete, email_list, email_read, email_send, email_reply, email_folder, email_archive, calendar_list_events, calendar_create_event, calendar_update_event, calendar_delete_event, calendar_list_calendars, memory_save, get_current_time, schedule_list, schedule_create, schedule_update, schedule_delete
+
+!!! info "Skills-Derived Capabilities"
+    Agent template `capabilities` and `tools` are now derived from assigned **skills**, not
+    stored directly on the registry entry. When you assign skills to a template, the tools and
+    capabilities defined by those skills are automatically merged into the agent's configuration.
 
 ## Agent Lifecycle
 
@@ -258,25 +273,31 @@ Workers use tools to interact with the environment. Each tool is injected via a
 | `web_browse` | Navigate and extract content from web pages (Playwright) | Researcher, Browser Agent |
 | `install_package` | Install apt or npm packages in the container | Coder, Tester |
 | `opencode_task` | Delegate a coding task to an external CLI agent (OpenCode, Claude Code, Codex, or Gemini CLI) via PTY | OpenCode Coder, Claude Code Coder, Codex Coder, Gemini CLI Coder |
+| `demo_record` | Record video demos of web applications with Playwright video capture, optional TTS voiceover, and FFmpeg post-processing to MP4 | Demo Recorder |
 | `create_custom_tool` | Create a custom JavaScript tool at runtime, sandboxed via `isolated-vm` | Tool Builder |
 | `list_custom_tools` | List all custom tools | Tool Builder |
 | `update_custom_tool` | Update an existing custom tool | Tool Builder |
 | `test_custom_tool` | Test a custom tool in the sandbox | Tool Builder |
+| `get_current_time` | Get the current date and time | Admin Assistant |
 | `todo_list` | List personal todo items | Admin Assistant |
 | `todo_create` | Create a new todo item | Admin Assistant |
 | `todo_update` | Update a todo item | Admin Assistant |
 | `todo_delete` | Delete a todo item | Admin Assistant |
-| `gmail_list` | List Gmail messages | Admin Assistant |
-| `gmail_read` | Read a Gmail message | Admin Assistant |
-| `gmail_send` | Send a new email via Gmail | Admin Assistant |
-| `gmail_reply` | Reply to a Gmail message | Admin Assistant |
-| `gmail_label` | Add or remove Gmail labels | Admin Assistant |
-| `gmail_archive` | Archive Gmail messages | Admin Assistant |
+| `email_list` | List email messages from the inbox | Admin Assistant |
+| `email_read` | Read a specific email message by ID | Admin Assistant |
+| `email_send` | Send a new email via SMTP | Admin Assistant |
+| `email_reply` | Reply to an existing email message | Admin Assistant |
+| `email_folder` | Move an email to a different folder | Admin Assistant |
+| `email_archive` | Archive an email (move out of inbox) | Admin Assistant |
 | `calendar_list_events` | List Google Calendar events | Admin Assistant |
 | `calendar_create_event` | Create a Google Calendar event | Admin Assistant |
 | `calendar_update_event` | Update a Google Calendar event | Admin Assistant |
 | `calendar_delete_event` | Delete a Google Calendar event | Admin Assistant |
 | `calendar_list_calendars` | List available Google Calendars | Admin Assistant |
+| `schedule_list` | List all scheduled tasks | Admin Assistant |
+| `schedule_create` | Create a new recurring scheduled task | Admin Assistant |
+| `schedule_update` | Update an existing scheduled task | Admin Assistant |
+| `schedule_delete` | Delete a scheduled task | Admin Assistant |
 | `memory_save` | Save an episodic memory for later semantic retrieval | Admin Assistant, COO |
 | `github_get_issue` | Fetch a GitHub issue by number | Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead |
 | `github_list_issues` | List GitHub issues with filters | Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead |
