@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Comprehensive documentation for OtterBot, a free open-source AI assistant running in Docker.">
+        <meta name="description" content="Documentation for OtterBot, a free, open-source, local-first multi-agent AI workspace.">
       
       
       
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -532,10 +532,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#agent-roles-hierarchy" class="md-nav__link">
+  <a href="#agent-roles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent Roles &amp; Hierarchy
+        Agent Roles
       
     </span>
   </a>
@@ -543,287 +543,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#built-in-templates" class="md-nav__link">
+  <a href="#the-coo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Built-in Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Built-in Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#management-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Management Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Management Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        COO
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#team-lead" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Team Lead
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worker-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Worker Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Worker Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#researcher" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Researcher
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reviewer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reviewer
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#writer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Writer
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#planner" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Planner
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#security-reviewer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security Reviewer
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tester" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tester
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#browser-agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Browser Agent
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opencode-coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenCode Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#claude-code-coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Claude Code Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#codex-coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Codex Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gemini-cli-coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Gemini CLI Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#triage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Triage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ssh-administrator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SSH Administrator
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tool-builder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tool Builder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#demo-recorder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Demo Recorder
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#specialized-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Specialized Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Specialized Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#admin-assistant" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin Assistant
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#agent-lifecycle" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Agent Lifecycle
+        The COO
       
     </span>
   </a>
@@ -831,10 +554,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-capabilities" class="md-nav__link">
+  <a href="#creating-agents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tool Capabilities
+        Creating Agents
       
     </span>
   </a>
@@ -842,49 +565,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#customizing-agents" class="md-nav__link">
+  <a href="#subagents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Customizing Agents
+        Subagents
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Customizing Agents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#registry-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Registry Operations
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#registryentry-fields" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RegistryEntry Fields
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#extended-thinking" class="md-nav__link">
+  <a href="#agent-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extended Thinking
+        Agent Studio
       
     </span>
   </a>
@@ -1049,10 +744,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#agent-roles-hierarchy" class="md-nav__link">
+  <a href="#agent-roles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent Roles &amp; Hierarchy
+        Agent Roles
       
     </span>
   </a>
@@ -1060,287 +755,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#built-in-templates" class="md-nav__link">
+  <a href="#the-coo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Built-in Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Built-in Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#management-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Management Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Management Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        COO
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#team-lead" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Team Lead
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worker-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Worker Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Worker Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#researcher" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Researcher
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reviewer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reviewer
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#writer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Writer
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#planner" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Planner
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#security-reviewer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security Reviewer
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tester" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tester
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#browser-agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Browser Agent
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opencode-coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenCode Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#claude-code-coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Claude Code Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#codex-coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Codex Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gemini-cli-coder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Gemini CLI Coder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#triage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Triage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ssh-administrator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SSH Administrator
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tool-builder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tool Builder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#demo-recorder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Demo Recorder
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#specialized-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Specialized Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Specialized Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#admin-assistant" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin Assistant
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#agent-lifecycle" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Agent Lifecycle
+        The COO
       
     </span>
   </a>
@@ -1348,10 +766,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-capabilities" class="md-nav__link">
+  <a href="#creating-agents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tool Capabilities
+        Creating Agents
       
     </span>
   </a>
@@ -1359,49 +777,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#customizing-agents" class="md-nav__link">
+  <a href="#subagents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Customizing Agents
+        Subagents
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Customizing Agents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#registry-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Registry Operations
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#registryentry-fields" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RegistryEntry Fields
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#extended-thinking" class="md-nav__link">
+  <a href="#agent-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extended Thinking
+        Agent Studio
       
     </span>
   </a>
@@ -1429,484 +819,105 @@
 
 
 <h1 id="agent-system">Agent System<a class="headerlink" href="#agent-system" title="Permanent link">&para;</a></h1>
-<p>OtterBot's multi-agent architecture uses a hierarchy of specialized AI agents, each with
-distinct roles, tools, and capabilities.</p>
-<h2 id="agent-roles-hierarchy">Agent Roles &amp; Hierarchy<a class="headerlink" href="#agent-roles-hierarchy" title="Permanent link">&para;</a></h2>
-<p>Every agent instance is created from a template in the <strong>Agent Registry</strong>. Each
-template defines a role, which determines the agent's position in the hierarchy:</p>
+<p>OtterBot is a roster of independent agents. Each agent is a self-contained
+<strong>profile</strong> — its own personality, model, memory, skills, credentials, and
+schedule. This page covers agent roles, the COO, subagents, and Agent Studio.</p>
+<h2 id="agent-roles">Agent Roles<a class="headerlink" href="#agent-roles" title="Permanent link">&para;</a></h2>
+<p>Every agent has one of three roles:</p>
 <table>
 <thead>
 <tr>
 <th>Role</th>
-<th>Count</th>
-<th>Responsibility</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>coo</code></td>
-<td>Exactly 1</td>
-<td>Primary orchestrator. Receives CEO goals, creates projects, writes charters, delegates to Team Leads. Maintains conversation context per chat thread.</td>
+<td>The default coordinating agent. Created during onboarding, pinned at the top of the roster, and cannot be deleted.</td>
 </tr>
 <tr>
-<td><code>team_lead</code></td>
-<td>1 per project</td>
-<td>Project manager. Breaks directives into Kanban tasks, spawns workers, monitors progress, reports results to the COO.</td>
+<td><code>agent</code></td>
+<td>A top-level agent you create and tune yourself.</td>
 </tr>
 <tr>
-<td><code>admin_assistant</code></td>
-<td>Exactly 1</td>
-<td>Personal productivity agent. Manages todos, reads/sends email via Gmail, and manages Google Calendar events. Reports to the CEO alongside the COO.</td>
-</tr>
-<tr>
-<td><code>scheduler</code></td>
-<td>Exactly 1</td>
-<td>Background agent that runs recurring tasks on configurable intervals (e.g., daily summaries, periodic monitoring). Operates autonomously.</td>
-</tr>
-<tr>
-<td><code>worker</code></td>
-<td>1 per task</td>
-<td>Individual contributor. Executes a single task using its assigned tools. Reports completion back to its Team Lead.</td>
-</tr>
-<tr>
-<td><code>specialist_agent</code></td>
-<td>1 per specialist</td>
-<td>Extension agent spawned by a <a href="../features/#specialist-agents">Specialist</a>. Has access to an isolated knowledge store, custom tools, and data ingestion pipelines. Queries are routed through the COO.</td>
+<td><code>subagent</code></td>
+<td>A temporary worker spawned by another agent for a focused task.</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p><strong>The CEO is you.</strong> The human user is always the CEO -- the top of the
-hierarchy. All work flows down from your goals and back up as results.</p>
-</div>
-<h2 id="built-in-templates">Built-in Templates<a class="headerlink" href="#built-in-templates" title="Permanent link">&para;</a></h2>
-<p>OtterBot ships with 19 built-in agent templates. These cannot be modified or deleted, but
-they can be <a href="#customizing-agents">cloned and customized</a>.</p>
-<h3 id="management-templates">Management Templates<a class="headerlink" href="#management-templates" title="Permanent link">&para;</a></h3>
-<h4 id="coo">COO<a class="headerlink" href="#coo" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> COO</p>
-<p>Chief Operating Officer. Receives goals from the CEO and delegates to Team Leads.</p>
-<p><strong>Capabilities:</strong> management, delegation, coordination, github</p>
-<p><strong>Tools:</strong> run_command, create_project, send_directive, update_charter, update_project_status, get_project_status, manage_models, manage_search, web_search, manage_packages, delegate_to_admin, memory_save, github_list_issues, github_get_issue, github_list_prs, github_get_pr</p>
-<p><strong>Default Model:</strong> claude-sonnet-4-5-20250929 (Anthropic)</p>
-<h4 id="team-lead">Team Lead<a class="headerlink" href="#team-lead" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Team Lead</p>
-<p>Manages a team of workers. Breaks directives into tasks and assigns them.</p>
-<p><strong>Capabilities:</strong> management, planning, coordination, github, issues, pull-requests</p>
-<p><strong>Tools:</strong> search_registry, spawn_worker, web_search, report_to_coo, create_task, update_task, list_tasks, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<p><strong>Default Model:</strong> claude-sonnet-4-5-20250929 (Anthropic)</p>
-<h3 id="worker-templates">Worker Templates<a class="headerlink" href="#worker-templates" title="Permanent link">&para;</a></h3>
-<h4 id="coder">Coder<a class="headerlink" href="#coder" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Writes, edits, and debugs code across multiple languages.</p>
-<p><strong>Capabilities:</strong> code, typescript, python, debugging, github, issues, pull-requests</p>
-<p><strong>Tools:</strong> file_read, file_write, shell_exec, install_package, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="researcher">Researcher<a class="headerlink" href="#researcher" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Searches the web, reads content, and synthesizes findings.</p>
-<p><strong>Capabilities:</strong> research, analysis, summarization, github, issues, pull-requests</p>
-<p><strong>Tools:</strong> web_search, web_browse, file_read, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="reviewer">Reviewer<a class="headerlink" href="#reviewer" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Reviews code for quality, correctness, and best practices.</p>
-<p><strong>Capabilities:</strong> code-review, testing, quality, github, issues, pull-requests</p>
-<p><strong>Tools:</strong> file_read, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="writer">Writer<a class="headerlink" href="#writer" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Creates documentation, specifications, and written content.</p>
-<p><strong>Capabilities:</strong> writing, documentation, specs</p>
-<p><strong>Tools:</strong> file_read, file_write</p>
-<h4 id="planner">Planner<a class="headerlink" href="#planner" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Designs architectures, plans implementations, and decomposes problems.</p>
-<p><strong>Capabilities:</strong> planning, architecture, decomposition</p>
-<p><strong>Tools:</strong> file_read, file_write</p>
-<h4 id="security-reviewer">Security Reviewer<a class="headerlink" href="#security-reviewer" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Audits code for security vulnerabilities and compliance issues.</p>
-<p><strong>Capabilities:</strong> security, code-review, vulnerability-analysis, github, issues, pull-requests</p>
-<p><strong>Tools:</strong> file_read, shell_exec, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="tester">Tester<a class="headerlink" href="#tester" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Writes and runs tests, identifies edge cases, and ensures quality.</p>
-<p><strong>Capabilities:</strong> testing, test-writing, qa, edge-cases, github, issues, pull-requests</p>
-<p><strong>Tools:</strong> file_read, file_write, shell_exec, install_package, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="browser-agent">Browser Agent<a class="headerlink" href="#browser-agent" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Navigates websites, scrapes content, fills forms, and interacts with web applications.</p>
-<p><strong>Capabilities:</strong> browser, web-scraping, form-filling, web-interaction</p>
-<p><strong>Tools:</strong> web_browse, file_read, file_write</p>
-<h4 id="opencode-coder">OpenCode Coder<a class="headerlink" href="#opencode-coder" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Delegates coding tasks to the OpenCode CLI via a managed PTY session.</p>
-<p><strong>Capabilities:</strong> code, opencode, autonomous-coding, refactoring, github, issues, pull-requests</p>
-<p><strong>Tools:</strong> opencode_task, file_read, shell_exec, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="claude-code-coder">Claude Code Coder<a class="headerlink" href="#claude-code-coder" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Delegates coding tasks to the Claude Code CLI via a managed PTY session.</p>
-<p><strong>Capabilities:</strong> code, claude-code, autonomous-coding, refactoring, github, issues, pull-requests</p>
-<p><strong>Tools:</strong> opencode_task, file_read, shell_exec, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="codex-coder">Codex Coder<a class="headerlink" href="#codex-coder" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Delegates coding tasks to the OpenAI Codex CLI via a managed PTY session.</p>
-<p><strong>Capabilities:</strong> code, codex, autonomous-coding, refactoring, github, issues, pull-requests</p>
-<p><strong>Default Model:</strong> gpt-5.3-codex-medium (OpenAI)</p>
-<p><strong>Tools:</strong> opencode_task, file_read, shell_exec, github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="gemini-cli-coder">Gemini CLI Coder<a class="headerlink" href="#gemini-cli-coder" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Delegates coding tasks to the Google Gemini CLI via a managed PTY session.</p>
-<p><strong>Capabilities:</strong> code, gemini-cli, autonomous-coding, refactoring</p>
-<p><strong>Default Model:</strong> gemini-2.5-flash (Google)</p>
-<p><strong>Tools:</strong> opencode_task, file_read, shell_exec</p>
-<h4 id="triage">Triage<a class="headerlink" href="#triage" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Triages GitHub issues by analyzing, categorizing, and prioritizing them. Used in the code review pipeline.</p>
-<p><strong>Capabilities:</strong> github, issues, pull-requests</p>
-<p><strong>Tools:</strong> github_get_issue, github_list_issues, github_get_pr, github_list_prs, github_comment, github_create_pr</p>
-<h4 id="ssh-administrator">SSH Administrator<a class="headerlink" href="#ssh-administrator" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Manages remote servers via SSH — executes commands, manages connections, and performs system administration tasks.</p>
-<p><strong>Capabilities:</strong> ssh, remote-management, system-administration</p>
-<p><strong>Tools:</strong> ssh_exec, ssh_list_keys, ssh_list_hosts, ssh_connect</p>
-<h4 id="tool-builder">Tool Builder<a class="headerlink" href="#tool-builder" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Creates custom JavaScript tools at runtime that other agents can use.</p>
-<p><strong>Capabilities:</strong> tool-building, javascript, api-integration</p>
-<p><strong>Tools:</strong> file_read, shell_exec, create_custom_tool, list_custom_tools, update_custom_tool, test_custom_tool</p>
-<h4 id="demo-recorder">Demo Recorder<a class="headerlink" href="#demo-recorder" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Worker</p>
-<p>Records video demos of running web applications with optional voiceover narration. Produces YouTube-ready MP4 videos.</p>
-<p><strong>Capabilities:</strong> demo, video, recording, screen-recording, voiceover, narration</p>
-<p><strong>Tools:</strong> demo_record, web_browse, file_read, file_write</p>
-<h3 id="specialized-templates">Specialized Templates<a class="headerlink" href="#specialized-templates" title="Permanent link">&para;</a></h3>
-<h4 id="admin-assistant">Admin Assistant<a class="headerlink" href="#admin-assistant" title="Permanent link">&para;</a></h4>
-<p><strong>Role:</strong> Admin Assistant</p>
-<p>Personal productivity agent. Manages todos, reads/sends email, and manages calendar events.</p>
-<p><strong>Capabilities:</strong> todos, email, calendar, productivity</p>
-<p><strong>Tools:</strong> todo_list, todo_create, todo_update, todo_delete, email_list, email_read, email_send, email_reply, email_folder, email_archive, calendar_list_events, calendar_create_event, calendar_update_event, calendar_delete_event, calendar_list_calendars, memory_save, get_current_time, schedule_list, schedule_create, schedule_update, schedule_delete</p>
-<div class="admonition info">
-<p class="admonition-title">Skills-Derived Capabilities</p>
-<p>Agent template <code>capabilities</code> and <code>tools</code> are now derived from assigned <strong>skills</strong>, not
-stored directly on the registry entry. When you assign skills to a template, the tools and
-capabilities defined by those skills are automatically merged into the agent's configuration.</p>
-</div>
-<h2 id="agent-lifecycle">Agent Lifecycle<a class="headerlink" href="#agent-lifecycle" title="Permanent link">&para;</a></h2>
-<p>Every agent instance transitions through a defined set of statuses:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Idle -----&gt; Thinking -----&gt; Acting -----&gt; Done
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|                             |  |
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|          (on error)         |  +--&gt; Awaiting Input
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>+---------&gt; Error &lt;-----------+
+<p>There are no fixed "agent templates" — every agent beyond the COO is one you
+create and configure.</p>
+<h2 id="the-coo">The COO<a class="headerlink" href="#the-coo" title="Permanent link">&para;</a></h2>
+<p>The COO (Chief Operating Officer) is the agent you talk to by default. It
+answers you directly and coordinates the rest of the roster: when a request
+suits another agent's specialty, the COO delegates it over the message bus and
+relays the result.</p>
+<p>The COO is configured by the first-run onboarding wizard and cannot be deleted
+through the API.</p>
+<h2 id="creating-agents">Creating Agents<a class="headerlink" href="#creating-agents" title="Permanent link">&para;</a></h2>
+<p>Add agents from the roster's <strong>New Agent</strong> action, or via the API. Each new
+agent gets its own profile directory, persona, model configuration, and
+isolated database. Give different agents different chat and embedding models,
+different skills, and different credentials.</p>
+<p>Each agent is an isolated directory under <code>data/profiles/&lt;id&gt;/</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>profile.json   # identity, role, model refs, transport, avatar, limits
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>SOUL.md        # persona / system-prompt identity block
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>agent.db       # conversations, messages, memories, skills, vectors
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>skills/        # per-agent markdown skills
 </code></pre></div>
+<h2 id="subagents">Subagents<a class="headerlink" href="#subagents" title="Permanent link">&para;</a></h2>
+<p>Agents allowed to spawn subagents can create temporary workers for focused
+research or delegated work. A subagent:</p>
+<ul>
+<li>inherits its parent's model and credentials by default,</li>
+<li>is tracked as a <strong>subagent task</strong> with a goal, status, and result summary,</li>
+<li>is temporary — it exists for the task and is cleaned up afterward.</li>
+</ul>
+<p>Subagent tasks appear in the <strong>Activity</strong> view alongside live bus messages. Each
+agent has a configurable subagent limit.</p>
+<h2 id="agent-studio">Agent Studio<a class="headerlink" href="#agent-studio" title="Permanent link">&para;</a></h2>
+<p>Agent Studio is the per-agent editor. It is organized into tabs:</p>
 <table>
 <thead>
 <tr>
-<th>Status</th>
-<th>Description</th>
+<th>Tab</th>
+<th>What you configure</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Idle</code></td>
-<td>Agent is created but not yet processing. Waiting for a message or task.</td>
+<td>Identity</td>
+<td>Display name, role, email, avatar / model pack, transport</td>
 </tr>
 <tr>
-<td><code>Thinking</code></td>
-<td>Running LLM inference. Streaming tokens to the frontend via <code>agent:stream</code> or <code>coo:stream</code>.</td>
+<td>Persona</td>
+<td>The agent's <code>SOUL.md</code> — its system-prompt personality</td>
 </tr>
 <tr>
-<td><code>Acting</code></td>
-<td>Executing a tool call (file I/O, shell command, web browse, etc.). Tool invocations are broadcast via <code>agent:tool-call</code>.</td>
+<td>Model</td>
+<td>Chat and embedding model references, and per-agent endpoints</td>
 </tr>
 <tr>
-<td><code>Awaiting Input</code></td>
-<td>Agent is waiting for user input (e.g., coding agent permission request or interactive prompt).</td>
+<td>Skills</td>
+<td>View, create, import, install, and export markdown skills</td>
 </tr>
 <tr>
-<td><code>Done</code></td>
-<td>Task completed successfully. Results reported to parent agent.</td>
+<td>Schedule</td>
+<td>Cron prompts that run against the agent</td>
 </tr>
 <tr>
-<td><code>Error</code></td>
-<td>An error occurred during thinking or acting. Error details logged.</td>
+<td>Memory</td>
+<td>Add, review, and delete the agent's long-term memories</td>
+</tr>
+<tr>
+<td>Credentials</td>
+<td>API keys, endpoints, and tokens, stored encrypted per agent</td>
 </tr>
 </tbody>
 </table>
-<p>The <strong>BaseAgent</strong> class manages this lifecycle, including LLM streaming with
-configurable timeouts (30s for first chunk, 120s between chunks) and a serialized message
-queue to prevent concurrent processing.</p>
-<h2 id="tool-capabilities">Tool Capabilities<a class="headerlink" href="#tool-capabilities" title="Permanent link">&para;</a></h2>
-<p>Workers use tools to interact with the environment. Each tool is injected via a
-<strong>ToolContext</strong> based on the agent's template configuration.</p>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Description</th>
-<th>Used By</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>file_read</code></td>
-<td>Read file contents from the workspace</td>
-<td>Coder, Researcher, Reviewer, Writer, Planner, Security Reviewer, Tester, Browser Agent</td>
-</tr>
-<tr>
-<td><code>file_write</code></td>
-<td>Create or overwrite files in the workspace</td>
-<td>Coder, Writer, Planner, Browser Agent</td>
-</tr>
-<tr>
-<td><code>shell_exec</code></td>
-<td>Execute shell commands (respects <code>SUDO_MODE</code>)</td>
-<td>Coder, Security Reviewer, Tester, Tool Builder</td>
-</tr>
-<tr>
-<td><code>web_search</code></td>
-<td>Search the web using the configured provider</td>
-<td>Researcher, COO, Team Lead</td>
-</tr>
-<tr>
-<td><code>web_browse</code></td>
-<td>Navigate and extract content from web pages (Playwright)</td>
-<td>Researcher, Browser Agent</td>
-</tr>
-<tr>
-<td><code>install_package</code></td>
-<td>Install apt or npm packages in the container</td>
-<td>Coder, Tester</td>
-</tr>
-<tr>
-<td><code>opencode_task</code></td>
-<td>Delegate a coding task to an external CLI agent (OpenCode, Claude Code, Codex, or Gemini CLI) via PTY</td>
-<td>OpenCode Coder, Claude Code Coder, Codex Coder, Gemini CLI Coder</td>
-</tr>
-<tr>
-<td><code>demo_record</code></td>
-<td>Record video demos of web applications with Playwright video capture, optional TTS voiceover, and FFmpeg post-processing to MP4</td>
-<td>Demo Recorder</td>
-</tr>
-<tr>
-<td><code>create_custom_tool</code></td>
-<td>Create a custom JavaScript tool at runtime, sandboxed via <code>isolated-vm</code></td>
-<td>Tool Builder</td>
-</tr>
-<tr>
-<td><code>list_custom_tools</code></td>
-<td>List all custom tools</td>
-<td>Tool Builder</td>
-</tr>
-<tr>
-<td><code>update_custom_tool</code></td>
-<td>Update an existing custom tool</td>
-<td>Tool Builder</td>
-</tr>
-<tr>
-<td><code>test_custom_tool</code></td>
-<td>Test a custom tool in the sandbox</td>
-<td>Tool Builder</td>
-</tr>
-<tr>
-<td><code>get_current_time</code></td>
-<td>Get the current date and time</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>todo_list</code></td>
-<td>List personal todo items</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>todo_create</code></td>
-<td>Create a new todo item</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>todo_update</code></td>
-<td>Update a todo item</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>todo_delete</code></td>
-<td>Delete a todo item</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>email_list</code></td>
-<td>List email messages from the inbox</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>email_read</code></td>
-<td>Read a specific email message by ID</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>email_send</code></td>
-<td>Send a new email via SMTP</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>email_reply</code></td>
-<td>Reply to an existing email message</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>email_folder</code></td>
-<td>Move an email to a different folder</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>email_archive</code></td>
-<td>Archive an email (move out of inbox)</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>calendar_list_events</code></td>
-<td>List Google Calendar events</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>calendar_create_event</code></td>
-<td>Create a Google Calendar event</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>calendar_update_event</code></td>
-<td>Update a Google Calendar event</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>calendar_delete_event</code></td>
-<td>Delete a Google Calendar event</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>calendar_list_calendars</code></td>
-<td>List available Google Calendars</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>schedule_list</code></td>
-<td>List all scheduled tasks</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>schedule_create</code></td>
-<td>Create a new recurring scheduled task</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>schedule_update</code></td>
-<td>Update an existing scheduled task</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>schedule_delete</code></td>
-<td>Delete a scheduled task</td>
-<td>Admin Assistant</td>
-</tr>
-<tr>
-<td><code>memory_save</code></td>
-<td>Save an episodic memory for later semantic retrieval</td>
-<td>Admin Assistant, COO</td>
-</tr>
-<tr>
-<td><code>github_get_issue</code></td>
-<td>Fetch a GitHub issue by number</td>
-<td>Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead</td>
-</tr>
-<tr>
-<td><code>github_list_issues</code></td>
-<td>List GitHub issues with filters</td>
-<td>Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead</td>
-</tr>
-<tr>
-<td><code>github_get_pr</code></td>
-<td>Fetch a GitHub pull request</td>
-<td>Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead</td>
-</tr>
-<tr>
-<td><code>github_list_prs</code></td>
-<td>List GitHub pull requests</td>
-<td>Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, COO, Team Lead</td>
-</tr>
-<tr>
-<td><code>github_comment</code></td>
-<td>Comment on a GitHub issue or PR</td>
-<td>Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, Team Lead</td>
-</tr>
-<tr>
-<td><code>github_create_pr</code></td>
-<td>Create a GitHub pull request</td>
-<td>Coder, Researcher, Reviewer, Security Reviewer, Tester, Triage, Team Lead</td>
-</tr>
-<tr>
-<td><code>ssh_exec</code></td>
-<td>Execute a command on a remote host via SSH</td>
-<td>SSH Administrator</td>
-</tr>
-<tr>
-<td><code>ssh_list_keys</code></td>
-<td>List available SSH keys</td>
-<td>SSH Administrator</td>
-</tr>
-<tr>
-<td><code>ssh_list_hosts</code></td>
-<td>List allowed SSH hosts</td>
-<td>SSH Administrator</td>
-</tr>
-<tr>
-<td><code>ssh_connect</code></td>
-<td>Start an interactive SSH session</td>
-<td>SSH Administrator</td>
-</tr>
-</tbody>
-</table>
-<h2 id="customizing-agents">Customizing Agents<a class="headerlink" href="#customizing-agents" title="Permanent link">&para;</a></h2>
-<p>You can create custom agent templates through the Agent Registry. Custom templates let you
-define specialized agents with tailored system prompts, capabilities, and tool sets.</p>
-<h3 id="registry-operations">Registry Operations<a class="headerlink" href="#registry-operations" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>List</strong> -- View all templates (built-in + custom)</li>
-<li><strong>Create</strong> -- Create a new custom template from scratch</li>
-<li><strong>Clone</strong> -- Duplicate a built-in or custom template as a starting point</li>
-<li><strong>Update</strong> -- Modify a custom template (built-in templates are immutable)</li>
-<li><strong>Delete</strong> -- Remove a custom template (built-in templates cannot be deleted)</li>
-<li><strong>Search</strong> -- Find templates by capability keyword</li>
-</ul>
-<h3 id="registryentry-fields">RegistryEntry Fields<a class="headerlink" href="#registryentry-fields" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;custom-api-tester&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;API Tester&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tests REST APIs...&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;systemPrompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;You are an API testing specialist...&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;promptAddendum&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;capabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;testing&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;api&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;http&quot;</span><span class="p">],</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;defaultModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;claude-sonnet-4-5-20250929&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&quot;defaultProvider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;anthropic&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">&quot;tools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;shell_exec&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;file_read&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;web_browse&quot;</span><span class="p">],</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">&quot;builtIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;worker&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="nt">&quot;modelPackId&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nt">&quot;gearConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nt">&quot;clonedFromId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;builtin-coder&quot;</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
-</code></pre></div>
-<p>The <code>gearConfig</code> field lets you assign a 3D model pack to an agent for the
-<a href="../features/#3d-live-view">Live View</a> visualization.</p>
-<h2 id="extended-thinking">Extended Thinking<a class="headerlink" href="#extended-thinking" title="Permanent link">&para;</a></h2>
-<p>OtterBot supports extended thinking (reasoning) for models that support it (e.g., Claude
-Sonnet). When enabled, agents emit <code>coo:thinking</code> / <code>agent:thinking</code>
-events with reasoning tokens before the final response.</p>
-<ul>
-<li>Thinking tokens are streamed in real-time to the frontend</li>
-<li>A <code>coo:thinking-end</code> / <code>agent:thinking-end</code> event signals the end of the reasoning block</li>
-<li>The final response follows as normal <code>coo:stream</code> / <code>agent:stream</code> tokens</li>
-</ul>
-<p>This allows the UI to show the agent's reasoning process separately from its final output,
-giving transparency into how decisions are made.</p>
+<p>See <a href="../features/">Features</a> for skills, memory, scheduling, and the rest of the
+UI in more detail.</p>
 
 
 

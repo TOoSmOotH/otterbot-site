@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Comprehensive documentation for OtterBot, a free open-source AI assistant running in Docker.">
+        <meta name="description" content="Documentation for OtterBot, a free, open-source, local-first multi-agent AI workspace.">
       
       
       
@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -390,6 +390,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-is-otterbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is OtterBot?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#explore-the-docs" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -715,6 +726,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-is-otterbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is OtterBot?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#explore-the-docs" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -768,73 +790,68 @@
 
 
 <h1 id="otterbot-docs">OtterBot Docs<a class="headerlink" href="#otterbot-docs" title="Permanent link">&para;</a></h1>
-<p>Everything you need to run, configure, and extend OtterBot — the free, open-source
-multi-agent AI assistant that runs entirely in Docker.</p>
+<p>Everything you need to run, configure, and extend OtterBot — the free,
+open-source, local-first multi-agent AI workspace.</p>
 <p><a class="md-button" href="getting-started/">Quick Start</a> <a class="md-button" href="api/">API Reference</a> <a class="md-button" href="https://github.com/TOoSmOotH/otterbot">GitHub</a></p>
+<h2 id="what-is-otterbot">What Is OtterBot?<a class="headerlink" href="#what-is-otterbot" title="Permanent link">&para;</a></h2>
+<p>OtterBot is built around <strong>agent profiles</strong>. Instead of one assistant with a
+handful of modes, you run a roster of independent agents — each with its own
+personality, model, memory, skills, credentials, and scheduled tasks. A <strong>COO</strong>
+agent coordinates the team, agents talk to each other over a message bus you
+can watch live, and trusted agents can spawn subagents for focused work.</p>
+<p>Everything runs on your own machine, and every database is encrypted at rest.</p>
 <h2 id="explore-the-docs">Explore the Docs<a class="headerlink" href="#explore-the-docs" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong><a href="getting-started/">Getting Started</a></strong> — Prerequisites, Docker quick start, development setup, and environment variables.</li>
-<li><strong><a href="architecture/">Architecture</a></strong> — System overview, agent hierarchy, message bus, workspace isolation, and monorepo layout.</li>
-<li><strong><a href="agents/">Agent System</a></strong> — Agent roles, built-in templates, lifecycle, tool capabilities, and customization.</li>
-<li><strong><a href="features/">Features</a></strong> — Voice, 3D Live View, web search, browser automation, Kanban boards, messaging bridges, coding agents, memory, and more.</li>
-<li><strong><a href="api/">API Reference</a></strong> — REST endpoints, Socket.IO events, request/response schemas, and data types.</li>
+<li><strong><a href="getting-started/">Getting Started</a></strong> — Install the CLI, run the daemon, and configure your first agent.</li>
+<li><strong><a href="architecture/">Architecture</a></strong> — Agent profiles, the orchestrator, runtimes, the message bus, and storage.</li>
+<li><strong><a href="agents/">Agent System</a></strong> — Agent roles, the COO, subagents, and Agent Studio.</li>
+<li><strong><a href="features/">Features</a></strong> — Roster, chat, memory, skills, the scheduler, integrations, and the 3D scene.</li>
+<li><strong><a href="api/">API Reference</a></strong> — REST endpoints and Socket.IO events.</li>
 </ul>
 <h2 id="at-a-glance">At a Glance<a class="headerlink" href="#at-a-glance" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Stat</th>
-<th>Description</th>
+<th>Aspect</th>
+<th>Detail</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>19</td>
-<td>Built-in Agent Templates</td>
+<td>Local-first</td>
+<td>Runs on your own machine — no cloud required</td>
 </tr>
 <tr>
-<td>100+</td>
-<td>REST API Endpoints</td>
+<td>Multi-agent</td>
+<td>A roster of independent agent profiles</td>
 </tr>
 <tr>
-<td>120+</td>
-<td>Real-time Socket Events</td>
+<td>Encrypted</td>
+<td>Every SQLite database is encrypted at rest</td>
 </tr>
 <tr>
-<td>15</td>
-<td>Messaging Integrations</td>
+<td>Model providers</td>
+<td>Anthropic, OpenAI, LM Studio, Ollama</td>
 </tr>
 <tr>
-<td>50+</td>
-<td>Built-in Tools</td>
+<td>Per-agent</td>
+<td>Personality, model, memory, skills, schedule, credentials</td>
 </tr>
 <tr>
-<td>19</td>
-<td>LLM Providers</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Search Providers</td>
+<td>Observable</td>
+<td>A live message bus and a 3D agent scene</td>
 </tr>
 </tbody>
 </table>
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
-<p>Get OtterBot running with a single command:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux / macOS</label><label for="__tabbed_1_2">Windows (PowerShell)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://otterbot.ai/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+<p>Install the CLI from npm, start the daemon, and open the web UI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>otterbot
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>otterbot<span class="w"> </span>start
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>otterbot<span class="w"> </span>web
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">irm </span><span class="n">https</span><span class="p">://</span><span class="n">otterbot</span><span class="p">.</span><span class="n">ai</span><span class="p">/</span><span class="n">install</span><span class="p">.</span><span class="n">ps1</span> <span class="p">|</span> <span class="nb">iex</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>The installer checks for Docker, generates config files, pulls the image, and starts the container. Open <strong>https://localhost:62626</strong> when it finishes.</p>
-<p>For manual Docker setup, development mode, and environment configuration,
-see the <a href="getting-started/">Getting Started</a> guide.</p>
+<p>The daemon serves the web UI on <code>http://localhost:3001</code>. On first run, a setup
+wizard configures your first agent. See the <a href="getting-started/">Getting Started</a>
+guide for CLI commands, running from source, and configuration.</p>
 
 
 

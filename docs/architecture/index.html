@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Comprehensive documentation for OtterBot, a free open-source AI assistant running in Docker.">
+        <meta name="description" content="Documentation for OtterBot, a free, open-source, local-first multi-agent AI workspace.">
       
       
       
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -515,10 +515,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#agent-hierarchy" class="md-nav__link">
+  <a href="#agent-profiles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent Hierarchy
+        Agent Profiles
       
     </span>
   </a>
@@ -526,33 +526,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#message-bus" class="md-nav__link">
+  <a href="#backend-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Message Bus
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Message Bus">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#message-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Message Flow
+        Backend Components
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#busmessage-structure" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#the-message-bus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        BusMessage Structure
+        The Message Bus
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Message Bus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transports
       
     </span>
   </a>
@@ -565,93 +565,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#workspace-isolation" class="md-nav__link">
+  <a href="#storage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workspace Isolation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#memory-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Memory System
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Memory System">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#episodic-memories" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Episodic Memories
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#soul-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Soul Documents
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module System
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#messaging-bridges" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Messaging Bridges
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coding-agent-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coding Agent Integration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#git-hosting-integrations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git Hosting Integrations
+        Storage
       
     </span>
   </a>
@@ -692,17 +609,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Infrastructure
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -716,45 +622,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Package Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#otterbotserver" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        @otterbot/server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#otterbotweb" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        @otterbot/web
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#otterbotshared" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        @otterbot/shared
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -955,10 +822,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#agent-hierarchy" class="md-nav__link">
+  <a href="#agent-profiles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent Hierarchy
+        Agent Profiles
       
     </span>
   </a>
@@ -966,33 +833,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#message-bus" class="md-nav__link">
+  <a href="#backend-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Message Bus
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Message Bus">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#message-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Message Flow
+        Backend Components
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#busmessage-structure" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#the-message-bus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        BusMessage Structure
+        The Message Bus
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Message Bus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transports
       
     </span>
   </a>
@@ -1005,93 +872,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#workspace-isolation" class="md-nav__link">
+  <a href="#storage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workspace Isolation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#memory-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Memory System
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Memory System">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#episodic-memories" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Episodic Memories
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#soul-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Soul Documents
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module System
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#messaging-bridges" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Messaging Bridges
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coding-agent-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coding Agent Integration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#git-hosting-integrations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git Hosting Integrations
+        Storage
       
     </span>
   </a>
@@ -1132,17 +916,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Infrastructure
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1156,45 +929,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Package Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#otterbotserver" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        @otterbot/server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#otterbotweb" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        @otterbot/web
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#otterbotshared" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        @otterbot/shared
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1219,185 +953,163 @@
 
 
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
-<p>How OtterBot is built: the agent hierarchy, message bus, workspace isolation, and the
-technology that ties it all together.</p>
+<p>How OtterBot is built: agent profiles, the orchestrator, per-agent runtimes,
+the message bus, and the storage that ties it together.</p>
 <h2 id="system-overview">System Overview<a class="headerlink" href="#system-overview" title="Permanent link">&para;</a></h2>
-<p>OtterBot is a multi-agent AI system that runs inside a single Docker container. A human
-user (the "CEO") gives high-level goals to an AI orchestrator (the "COO"), which delegates
-work through a hierarchy of team leads and workers — each with their own tools and
-capabilities.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                    OtterBot Architecture
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  +---------------------------------------------------------+
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  |  Browser (React + Three.js)                              |
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  |  Chat UI · 3D Live View · Agent Graph · Kanban Board   |
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  +---------------------------+-----------------------------+
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                              |
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                     Socket.IO + REST
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                              |
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  +---------------------------+-----------------------------+
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  |  Server (Fastify + Socket.IO)                            |
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  |                                                         |
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  |  CEO → COO → Team Leads → Workers                  |
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  |                                                         |
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  |  Message Bus · Agent Registry · Tool Context           |
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  |  TTS/STT · Search · Browser Pool · Package Mgr       |
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  |  Memory &amp; Soul · Module System · Scheduler            |
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  +---------------------------+-----------------------------+
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                              |
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>  +---------------------------+-----------------------------+
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>  |  Storage &amp; Services                                     |
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>  |  SQLite (encrypted) · Workspace FS · noVNC Desktop     |
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>  |  Messaging Bridges · Coding Agent PTY Sessions         |
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>  +---------------------------------------------------------+
+<p>OtterBot runs <strong>one runtime per agent profile</strong>. The browser talks to a Fastify
+server over REST and Socket.IO; the server owns the agent runtimes, the message
+bus, the scheduler, and encrypted storage.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>  ┌──────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  │  Browser (React + Zustand + Three.js)                     │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  │  Agent roster · Chat · Agent Studio · Activity · 3D       │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  └───────────────────────────┬──────────────────────────────┘
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                       Socket.IO + REST
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  ┌───────────────────────────┴──────────────────────────────┐
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  │  Server (Fastify + Socket.IO)                             │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  │                                                           │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  │  Orchestrator ── AgentRuntime (one per profile)           │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  │       │                                                   │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  │       ├── Message Bus   ── transports: local / discord    │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  │       ├── Scheduler     ── cron prompts                   │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  │       └── Secrets Store ── encrypted per-agent creds      │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  └───────────────────────────┬──────────────────────────────┘
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  ┌───────────────────────────┴──────────────────────────────┐
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  │  Storage (encrypted SQLite)                               │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  │  control.db  ·  data/profiles/&lt;id&gt;/agent.db               │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  └───────────────────────────────────────────────────────────┘
 </code></pre></div>
-<h2 id="agent-hierarchy">Agent Hierarchy<a class="headerlink" href="#agent-hierarchy" title="Permanent link">&para;</a></h2>
-<p>OtterBot uses a corporate-inspired command chain where each level has distinct
-responsibilities:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CEO (Human User)
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> |
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> |  Sends high-level goals via chat
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a> |
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a> v
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>COO (Single persistent AI agent)
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a> |
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a> +--&gt; Admin Assistant (Persistent — todos, email, calendar)
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a> |
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a> +--&gt; Scheduler (Background — recurring tasks)
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a> |
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a> |  Creates projects, writes charters,
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a> |  delegates to Team Leads
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a> |
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a> v
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>Team Leads (One per project)
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a> |
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a> |  Break directives into tasks,
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a> |  assign Kanban items, spawn Workers
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a> |
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a> v
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>Workers (Per-task agents)
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>   Execute individual tasks using tools:
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>   file I/O, shell, browser, web search, etc.
+<h2 id="agent-profiles">Agent Profiles<a class="headerlink" href="#agent-profiles" title="Permanent link">&para;</a></h2>
+<p>Each agent is an isolated directory under <code>data/profiles/&lt;id&gt;/</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>profile.json   # identity, role, model refs, transport, avatar, limits
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>SOUL.md        # persona / system-prompt identity block
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>agent.db       # conversations, messages, memories, skills, vectors
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>skills/        # per-agent markdown skills
 </code></pre></div>
+<p>Every agent owns:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity</td>
+<td>Display name, role, email, avatar/model pack, transport</td>
+</tr>
+<tr>
+<td>Persona</td>
+<td>The <code>SOUL.md</code> prompt that defines the agent's behavior</td>
+</tr>
+<tr>
+<td>Models</td>
+<td>Separate chat and embedding model references</td>
+</tr>
+<tr>
+<td>Credentials</td>
+<td>API keys and local endpoints scoped to that agent</td>
+</tr>
+<tr>
+<td>Skills</td>
+<td>Markdown instruction packs loaded into that agent's prompt</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Long-term facts and observations searchable by that agent</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>Cron prompts that run against that agent</td>
+</tr>
+<tr>
+<td>Subagents</td>
+<td>Optional delegated workers with inherited model and secrets</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backend-components">Backend Components<a class="headerlink" href="#backend-components" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>profiles/profile-store.ts</code></td>
+<td>Creates, loads, saves, and deletes profile directories</td>
+</tr>
+<tr>
+<td><code>orchestrator/orchestrator.ts</code></td>
+<td>Owns agent lifecycles, runtimes, the bus, the scheduler, secrets, and subagent spawning</td>
+</tr>
+<tr>
+<td><code>runtime/agent-runtime.ts</code></td>
+<td>Runs one conversational loop for one agent</td>
+</tr>
+<tr>
+<td><code>runtime/agent-context.ts</code></td>
+<td>Bundles a profile with its DB, memory, skills, secrets, and embeddings</td>
+</tr>
+<tr>
+<td><code>bus/bus.ts</code></td>
+<td>Persists and routes agent-to-agent messages</td>
+</tr>
+<tr>
+<td><code>scheduler/scheduler.ts</code></td>
+<td>Runs cron prompts against agents</td>
+</tr>
+<tr>
+<td><code>secrets/secrets-store.ts</code></td>
+<td>Stores per-agent credentials in the encrypted control DB</td>
+</tr>
+<tr>
+<td><code>providers/registry.ts</code></td>
+<td>Resolves model references into Vercel AI SDK models</td>
+</tr>
+<tr>
+<td><code>skills/*</code></td>
+<td>Loads, scans, imports, installs, and exports markdown skills</td>
+</tr>
+<tr>
+<td><code>memory/*</code></td>
+<td>Summarizes, extracts, stores, and searches agent memories</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-message-bus">The Message Bus<a class="headerlink" href="#the-message-bus" title="Permanent link">&para;</a></h2>
+<p>All agent-to-agent communication flows through a central message bus. When an
+agent sends a request, response, broadcast, spawn notice, report, status
+update, tool event, or error, the bus:</p>
+<ol>
+<li>Persists it to <code>control.db</code>.</li>
+<li>Delivers it to the target runtime, or broadcasts it.</li>
+<li>Emits it to the frontend over Socket.IO.</li>
+</ol>
+<p>The <strong>Activity</strong> view in the UI is a live observer of this bus. It also shows
+subagent task records — goals, status, and result summaries.</p>
+<h3 id="transports">Transports<a class="headerlink" href="#transports" title="Permanent link">&para;</a></h3>
+<p>The bus is pluggable. The transport is chosen with <code>AGENT_TRANSPORT</code>:</p>
 <ul>
-<li><strong>CEO (Human)</strong> — You. Send goals through the chat interface.</li>
-<li><strong>COO</strong> — The primary AI agent. Maintains conversation context, creates projects, writes project charters, and delegates work to Team Leads.</li>
-<li><strong>Admin Assistant</strong> — Persistent personal productivity agent. Manages todos, reads/sends email via Gmail, and manages Google Calendar events. Reports to the CEO alongside the COO.</li>
-<li><strong>Scheduler</strong> — Background agent that executes recurring tasks on configurable intervals (e.g., daily standup summaries, periodic monitoring).</li>
-<li><strong>Team Lead</strong> — Manages a single project. Breaks directives into Kanban tasks, spawns workers, and monitors progress.</li>
-<li><strong>Worker</strong> — Executes a single task. Has access to tools (file read/write, shell, browser, web search, package installs) based on its template.</li>
+<li><strong><code>local</code></strong> (default) — in-process delivery between runtimes.</li>
+<li><strong><code>discord</code></strong> — agents communicate over a Discord channel.</li>
 </ul>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p><strong>Agent lifecycle:</strong> All agents follow the status cycle
-<code>Idle</code> → <code>Thinking</code> → <code>Acting</code> → <code>Done</code>
-(or <code>Error</code>). See <a href="../agents/#agent-lifecycle">Agent System → Lifecycle</a>.</p>
-</div>
-<h2 id="message-bus">Message Bus<a class="headerlink" href="#message-bus" title="Permanent link">&para;</a></h2>
-<p>All agent-to-agent communication flows through a central message bus. Every message is
-persisted to the database and broadcast to connected clients via Socket.IO.</p>
-<h3 id="message-flow">Message Flow<a class="headerlink" href="#message-flow" title="Permanent link">&para;</a></h3>
+<h2 id="storage">Storage<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h2>
+<p>OtterBot uses encrypted SQLite, split into two layers:</p>
 <ul>
-<li>The CEO sends a message via <code>ceo:message</code> Socket.IO event</li>
-<li>The COO receives it, processes with an LLM, and responds via <code>coo:response</code> / <code>coo:stream</code></li>
-<li>If the COO creates a project, it spawns a Team Lead and sends directives via the bus</li>
-<li>Team Leads spawn Workers and assign tasks via bus messages</li>
-<li>Workers report results back up the chain</li>
-<li>All messages are broadcast as <code>bus:message</code> events to the frontend</li>
+<li><strong><code>control.db</code></strong> — the shared control plane: the agent registry, the
+  agent-to-agent bus message log, subagent task records, scheduled tasks,
+  encrypted agent secrets, and app settings.</li>
+<li><strong><code>agent.db</code></strong> — one per agent, holding that agent's conversations, messages,
+  memories, skills, and vector embeddings.</li>
 </ul>
-<h3 id="busmessage-structure">BusMessage Structure<a class="headerlink" href="#busmessage-structure" title="Permanent link">&para;</a></h3>
-<p>Every message on the bus contains:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;msg_abc123&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;fromAgentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coo-main&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;toAgentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tl-project-1&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Implement the login page...&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;conversationId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;conv_xyz&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">&quot;projectId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;proj_1&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-15T10:30:00Z&quot;</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="workspace-isolation">Workspace Isolation<a class="headerlink" href="#workspace-isolation" title="Permanent link">&para;</a></h2>
-<p>Each agent operates within an isolated workspace directory under the
-<code>WORKSPACE_ROOT</code>. This prevents agents from accidentally interfering with each
-other's files.</p>
-<ul>
-<li>The workspace root defaults to <code>./data</code></li>
-<li>Project files are scoped to their project directory</li>
-<li>The database is stored at <code>WORKSPACE_ROOT/otterbot.db</code> and encrypted with <code>OTTERBOT_DB_KEY</code></li>
-<li>AI model caches (TTS/STT) are stored under <code>WORKSPACE_ROOT/data/models</code></li>
-<li>The optional virtual desktop runs in its own X11 session</li>
-</ul>
-<h2 id="memory-system">Memory System<a class="headerlink" href="#memory-system" title="Permanent link">&para;</a></h2>
-<p>OtterBot includes an episodic memory and soul document system that gives agents persistent
-knowledge across conversations.</p>
-<h3 id="episodic-memories">Episodic Memories<a class="headerlink" href="#episodic-memories" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Agents can save key observations, decisions, and learnings as <strong>memories</strong></li>
-<li>Memories are stored with vector embeddings for <strong>semantic search</strong></li>
-<li>Relevant memories are automatically surfaced during conversations</li>
-<li>A <strong>memory compactor</strong> periodically consolidates related memories to prevent bloat</li>
-</ul>
-<h3 id="soul-documents">Soul Documents<a class="headerlink" href="#soul-documents" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Soul documents</strong> define an agent's identity, values, and behavioral guidelines</li>
-<li>A <strong>soul advisor</strong> layer injects relevant identity context into agent prompts</li>
-<li>Soul documents can be created, edited, and managed through the API</li>
-</ul>
-<h2 id="module-system">Module System<a class="headerlink" href="#module-system" title="Permanent link">&para;</a></h2>
-<p>OtterBot supports an extensible <strong>module system</strong> that lets you install third-party
-functionality without modifying core code.</p>
-<ul>
-<li>Modules are installed from GitHub repositories and run in isolation</li>
-<li>Each module can register webhook endpoints, scheduled tasks, or custom behaviors</li>
-<li>Modules can be enabled, disabled, or uninstalled via the API</li>
-<li>Example: the <code>github-discussions</code> module monitors GitHub Discussion activity and posts summaries to the COO</li>
-</ul>
-<h2 id="messaging-bridges">Messaging Bridges<a class="headerlink" href="#messaging-bridges" title="Permanent link">&para;</a></h2>
-<p>OtterBot can bridge conversations to external messaging platforms, allowing you to interact
-with your agents from anywhere.</p>
-<ul>
-<li><strong>Discord</strong> — Full bot integration via <code>discord.js</code></li>
-<li><strong>Slack</strong> — Workspace app via <code>@slack/bolt</code></li>
-<li><strong>Matrix</strong> — Decentralized chat via <code>matrix-js-sdk</code> (E2EE support)</li>
-<li><strong>IRC</strong> — Classic IRC networks via <code>irc-framework</code></li>
-<li><strong>Microsoft Teams</strong> — Teams channel integration via webhook</li>
-<li><strong>Telegram</strong> — Telegram bot integration</li>
-<li><strong>WhatsApp</strong> — WhatsApp messaging bridge</li>
-<li><strong>Signal</strong> — Signal messenger bridge</li>
-<li><strong>Mattermost</strong> — Mattermost chat integration</li>
-<li><strong>Nextcloud Talk</strong> — Nextcloud Talk integration</li>
-<li><strong>Tlon</strong> — Tlon (Urbit) chat integration</li>
-<li><strong>Bluesky</strong> — AT Protocol integration</li>
-<li><strong>Google Chat</strong> — Google Workspace integration with webhooks</li>
-<li><strong>Mastodon</strong> — ActivityPub/fediverse integration</li>
-<li><strong>Email (IMAP/SMTP)</strong> — Generic email bridge via IMAP and SMTP</li>
-</ul>
-<p>Each bridge runs independently and relays messages bidirectionally between the external
-platform and the COO. Configuration and credentials are managed through the Settings UI.</p>
-<h2 id="coding-agent-integration">Coding Agent Integration<a class="headerlink" href="#coding-agent-integration" title="Permanent link">&para;</a></h2>
-<p>OtterBot can delegate coding tasks to external coding agent CLIs that run in
-<strong>PTY (pseudo-terminal) sessions</strong> managed by <code>node-pty</code>.</p>
-<ul>
-<li><strong>OpenCode</strong> — Open-source coding assistant CLI</li>
-<li><strong>Claude Code</strong> — Anthropic's CLI coding agent</li>
-<li><strong>Codex</strong> — OpenAI's CLI coding agent</li>
-<li><strong>Gemini CLI</strong> — Google's CLI coding agent</li>
-</ul>
-<p>Each coding agent runs in its own terminal session. OtterBot streams output back to the UI
-in real-time, handles permission requests (e.g., file write approvals), and captures file
-diffs when the session completes. This lets you leverage specialized coding agents while
-keeping everything orchestrated through OtterBot's hierarchy.</p>
-<h2 id="git-hosting-integrations">Git Hosting Integrations<a class="headerlink" href="#git-hosting-integrations" title="Permanent link">&para;</a></h2>
-<p>OtterBot integrates with both <strong>GitHub</strong> and <strong>Gitea</strong> for repository management:</p>
-<ul>
-<li><strong>Multi-account support</strong> — CRUD for multiple accounts per platform, with per-project assignment. The resolution chain tries project-specific → default → legacy config.</li>
-<li><strong>Issue &amp; PR monitoring</strong> — Track issues and PRs across both platforms</li>
-<li><strong>Fork mode</strong> (GitHub) — Fork repos, create cross-fork PRs, and sync upstream changes</li>
-<li><strong>Commit signing</strong> — Per-project toggle for SSH-based commit signing</li>
-</ul>
+<p>Per-agent databases are intentionally isolated: different agents may use
+different embedding models, and <code>sqlite-vec</code>'s vector table has a fixed
+embedding dimension.</p>
+<p>Every database is encrypted with <code>OTTERBOT_DB_KEY</code>. Credentials are never on
+disk in plaintext — they live in the encrypted <code>agent_secrets</code> table.</p>
 <h2 id="tech-stack">Tech Stack<a class="headerlink" href="#tech-stack" title="Permanent link">&para;</a></h2>
 <h3 id="backend">Backend<a class="headerlink" href="#backend" title="Permanent link">&para;</a></h3>
 <table>
@@ -1409,76 +1121,32 @@ keeping everything orchestrated through OtterBot's hierarchy.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>Fastify</code></td>
-<td>HTTP server for REST API</td>
+<td>Fastify</td>
+<td>HTTP server for the REST API</td>
 </tr>
 <tr>
-<td><code>Socket.IO</code></td>
+<td>Socket.IO</td>
 <td>Real-time bidirectional communication</td>
 </tr>
 <tr>
-<td><code>Vercel AI SDK</code></td>
-<td>Unified LLM interface (19 providers: Anthropic, OpenAI, Gemini, Ollama, OpenRouter, Vercel AI Gateway, and more)</td>
+<td>Vercel AI SDK</td>
+<td>Unified model interface (Anthropic, OpenAI, LM Studio, Ollama)</td>
 </tr>
 <tr>
-<td><code>Drizzle ORM</code></td>
+<td>Drizzle ORM</td>
 <td>Type-safe database access</td>
 </tr>
 <tr>
-<td><code>better-sqlite3</code></td>
-<td>SQLite with encryption support</td>
+<td>SQLite + <code>sqlite-vec</code></td>
+<td>Encrypted storage with vector search</td>
 </tr>
 <tr>
-<td><code>Playwright</code></td>
-<td>Browser automation for agents</td>
+<td><code>croner</code></td>
+<td>Cron scheduling</td>
 </tr>
 <tr>
-<td><code>kokoro-js</code></td>
-<td>Local text-to-speech (Kokoro model)</td>
-</tr>
-<tr>
-<td><code>@huggingface/transformers</code></td>
-<td>Local speech-to-text (Whisper)</td>
-</tr>
-<tr>
-<td><code>discord.js</code></td>
-<td>Discord messaging bridge</td>
-</tr>
-<tr>
-<td><code>@slack/bolt</code></td>
-<td>Slack messaging bridge</td>
-</tr>
-<tr>
-<td><code>matrix-js-sdk</code></td>
-<td>Matrix messaging bridge</td>
-</tr>
-<tr>
-<td><code>irc-framework</code></td>
-<td>IRC messaging bridge</td>
-</tr>
-<tr>
-<td><code>node-pty</code></td>
-<td>PTY sessions for coding agent CLIs</td>
-</tr>
-<tr>
-<td><code>isolated-vm</code></td>
-<td>Sandboxed execution for custom tools</td>
-</tr>
-<tr>
-<td><code>@atproto/*</code></td>
-<td>Bluesky AT Protocol integration</td>
-</tr>
-<tr>
-<td><code>masto</code></td>
-<td>Mastodon ActivityPub integration</td>
-</tr>
-<tr>
-<td><code>imapflow</code></td>
-<td>IMAP email bridge</td>
-</tr>
-<tr>
-<td><code>nodemailer</code></td>
-<td>SMTP email sending</td>
+<td><code>discord.js</code>, <code>@slack/web-api</code>, <code>nodemailer</code></td>
+<td>Integrations</td>
 </tr>
 </tbody>
 </table>
@@ -1492,121 +1160,42 @@ keeping everything orchestrated through OtterBot's hierarchy.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>React 19</code></td>
+<td>React 19</td>
 <td>UI framework</td>
 </tr>
 <tr>
-<td><code>Vite</code></td>
+<td>Vite</td>
 <td>Build tool and dev server</td>
 </tr>
 <tr>
-<td><code>Tailwind CSS + shadcn/ui</code></td>
-<td>Styling and component library</td>
-</tr>
-<tr>
-<td><code>Zustand</code></td>
+<td>Zustand</td>
 <td>State management</td>
 </tr>
 <tr>
-<td><code>Three.js / R3F</code></td>
-<td>3D agent visualization (Live View)</td>
+<td>Three.js</td>
+<td>3D agent scene</td>
 </tr>
 <tr>
-<td><code>@xyflow/react</code></td>
-<td>Agent graph visualization</td>
+<td>Tailwind CSS</td>
+<td>Styling</td>
 </tr>
 <tr>
-<td><code>React Markdown</code></td>
-<td>Markdown rendering with Mermaid diagrams</td>
-</tr>
-<tr>
-<td><code>Socket.IO Client</code></td>
+<td>Socket.IO client</td>
 <td>Real-time event handling</td>
 </tr>
 </tbody>
 </table>
-<h3 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Technology</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Docker</code></td>
-<td>Container runtime</td>
-</tr>
-<tr>
-<td><code>XFCE + noVNC</code></td>
-<td>Virtual desktop environment</td>
-</tr>
-<tr>
-<td><code>TypeScript</code></td>
-<td>Language across all packages</td>
-</tr>
-<tr>
-<td><code>pnpm workspaces</code></td>
-<td>Monorepo management</td>
-</tr>
-</tbody>
-</table>
 <h2 id="package-structure">Package Structure<a class="headerlink" href="#package-structure" title="Permanent link">&para;</a></h2>
-<p>OtterBot is organized as a monorepo with three pnpm workspace packages:</p>
-<h3 id="otterbotserver">@otterbot/server<a class="headerlink" href="#otterbotserver" title="Permanent link">&para;</a></h3>
-<p><code>packages/server/</code></p>
-<p>Main backend: Fastify REST API, Socket.IO handlers, agent orchestration (COO, Team Lead,
-Worker), database, TTS/STT, search, browser pool, tool execution.</p>
-<h3 id="otterbotweb">@otterbot/web<a class="headerlink" href="#otterbotweb" title="Permanent link">&para;</a></h3>
-<p><code>packages/web/</code></p>
-<p>React 19 + Vite frontend: chat interface, 3D Live View (Three.js), agent graph (XYFlow),
-Kanban board, settings panels, room builder.</p>
-<h3 id="otterbotshared">@otterbot/shared<a class="headerlink" href="#otterbotshared" title="Permanent link">&para;</a></h3>
-<p><code>packages/shared/</code></p>
-<p>Shared TypeScript type definitions: Agent, AgentRole, AgentStatus, RegistryEntry,
-Project, KanbanTask, BusMessage, Socket.IO event interfaces.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>otterbot/
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>+-- package.json          # Root workspace config
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>+-- packages/
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>|  +-- server/            # @otterbot/server
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>|  |  +-- src/
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>|  |  |  +-- index.ts     # Fastify app + routes
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>|  |  |  +-- agents/      # COO, Team Lead, Worker, Admin Assistant
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>|  |  |  +-- socket/      # Socket.IO event handlers
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>|  |  |  +-- db/          # Drizzle schema, migrations, seed
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>|  |  |  +-- tools/       # Agent tools (file, shell, browse, search)
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>|  |  |  +-- tts/         # Text-to-speech providers
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>|  |  |  +-- stt/         # Speech-to-text providers
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>|  |  |  +-- registry/    # Agent template registry
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>|  |  |  +-- models3d/    # 3D model/environment pack discovery
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>|  |  |  +-- memory/      # Episodic memory &amp; soul documents
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>|  |  |  +-- coding-agents/ # OpenCode, Claude Code, Codex, Gemini CLI PTY
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>|  |  |  +-- messaging/   # Discord, Slack, Teams, Telegram,
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>|  |  |  |               # WhatsApp, Signal, Mattermost,
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>|  |  |  |               # Nextcloud Talk, Tlon bridges
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>|  |  |  +-- bluesky/     # Bluesky (AT Protocol) bridge
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>|  |  |  +-- googlechat/  # Google Chat bridge
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>|  |  |  +-- mastodon/    # Mastodon (ActivityPub) bridge
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>|  |  |  +-- email/       # Generic IMAP/SMTP email bridge
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>|  |  |  +-- irc/         # IRC &amp; Matrix bridges
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>|  |  |  +-- github/      # GitHub integration &amp; multi-account
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>|  |  |  +-- gitea/       # Gitea integration &amp; monitoring
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>|  |  |  +-- pipeline/    # Code review pipeline orchestration
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>|  |  |  +-- merge-queue/ # Merge queue management
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>|  |  |  +-- modules/     # External module system
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>|  |  |  +-- skills/      # Skill/prompt fragment registry
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>|  |  |  +-- scheduling/  # Scheduler &amp; custom tasks
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>|  +-- web/               # @otterbot/web
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>|  |  +-- src/
-<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>|  |  |  +-- components/  # React components
-<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>|  |  |  +-- stores/      # State management
-<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>|  +-- shared/            # @otterbot/shared
-<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>|     +-- src/types/     # TypeScript interfaces &amp; enums
-<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>+-- assets/
-<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>   +-- workers/           # 3D character models (GLB)
-<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>   +-- environments/      # 3D environment models (GLTF)
-<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>   +-- scenes/            # Scene configuration JSON
+<p>OtterBot is a pnpm-workspace monorepo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>packages/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  shared/   TypeScript contracts for agents, messages, memory, skills, views
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  server/   Fastify API, Socket.IO, orchestration, profile storage, SQLite
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  web/      React/Vite UI, Zustand stores, Three.js agent scene
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  cli/      Ink terminal client and daemon launcher
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>assets/
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  workers/       3D character / model packs
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  environments/  3D environment packs
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  scenes/        scene configurations
 </code></pre></div>
 
 
