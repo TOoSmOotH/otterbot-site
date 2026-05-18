@@ -1,367 +1,136 @@
 # Getting Started
 
-Get OtterBot up and running in minutes. The install script is the fastest path — one command and you're live.
+OtterBot ships to npm as a single self-contained package — the server, the web
+UI, and the CLI in one install.
 
 ## Prerequisites
 
-- **Docker** 20.10+ (or Docker Desktop) — the installer can set this up for you
-- At least **2 GB RAM** available for the container
-- An **LLM API key** (Anthropic, OpenAI, or any OpenAI-compatible provider)
+- **Node.js 20+** (Node 22 recommended)
+- A **model provider** — one of:
+    - **Anthropic** or **OpenAI** — a cloud API key (or a ChatGPT subscription for OpenAI)
+    - **LM Studio** or **Ollama** — a local OpenAI-compatible endpoint, no key required
 
-## Quick Start (Recommended)
-
-The install script detects your OS, checks for Docker, generates a `docker-compose.yml` and `.env` with a secure random DB key, then pulls and starts the container.
-
-=== "Linux / macOS"
-
-    ```bash
-    curl -fsSL https://otterbot.ai/install.sh | sh
-    ```
-
-=== "Windows (PowerShell)"
-
-    ```powershell
-    irm https://otterbot.ai/install.ps1 | iex
-    ```
-
-That's it. Open **https://localhost:62626** in your browser. The first-run setup wizard will guide you through configuring your LLM provider and API key.
-
-### Installer options
-
-| Flag | Description |
-|------|-------------|
-| `--dir <path>` / `-Dir <path>` | Install directory (default: `~/otterbot`) |
-| `--beta` / `-Beta` | Use the `:beta` image tag |
-| `--no-start` / `-NoStart` | Generate files but don't start the container |
-| `--no-open` | Don't open the browser after starting |
+## Install
 
 ```bash
-# Example: install beta channel to a custom directory
-curl -fsSL https://otterbot.ai/install.sh | sh -s -- --beta --dir /opt/otterbot
+npm install -g otterbot
 ```
 
-### What the installer creates
+This installs the `otterbot` command (also available as `otter`).
 
-```
-~/otterbot/
-├── docker-compose.yml   # Container configuration
-├── .env                 # Environment (auto-generated DB key, UID/GID)
-└── data/                # Persistent volume mount
-```
+## Run the Daemon
 
-!!! tip "Idempotent"
-    Running the installer again will update `docker-compose.yml` but **never overwrite your `.env`** — your DB encryption key and settings are preserved.
-
-### Managing your installation
+`otterbot` runs as a background **daemon** that serves the web UI and chat on a
+single port. Control it with the CLI:
 
 ```bash
-cd ~/otterbot
-
-# Stop
-docker compose down
-
-# Start
-docker compose up -d
-
-# View logs
-docker compose logs -f
-
-# Update to latest
-docker compose pull && docker compose up -d
+otterbot start      # start the daemon in the background
+otterbot status     # check whether it is running
+otterbot web        # open the web UI in a browser
+otterbot chat       # interactive terminal chat (the default with no command)
+otterbot logs -f    # follow the daemon log
+otterbot restart    # restart the daemon
+otterbot stop       # stop the daemon
 ```
 
-!!! warning "Important"
-    Your `OTTERBOT_DB_KEY` in `.env` encrypts the database (which stores API keys and settings). Back it up — losing this key means losing access to stored data.
+| Command | Description |
+|---------|-------------|
+| `otterbot start` | Start the daemon in the background |
+| `otterbot stop` | Stop the daemon |
+| `otterbot restart` | Restart the daemon |
+| `otterbot status` | Report whether the daemon is running |
+| `otterbot logs [-f]` | Print the daemon log; `-f` follows it |
+| `otterbot chat` | Open an interactive terminal chat (the default with no command) |
+| `otterbot web` | Open the web UI in a browser |
 
-!!! info "Accessing remotely?"
-    If you're connecting from a different origin (e.g. behind a reverse proxy or on a different host), set `OTTERBOT_ALLOWED_ORIGIN` in your `.env` file to a comma-separated list of allowed origins.
+## First-Run Setup
 
-## Docker (Manual Setup)
+On first run, the daemon generates an `OTTERBOT_DB_KEY` and an onboarding
+wizard in the web UI walks you through configuring your first agent — the
+**COO**:
 
-If you prefer to set things up yourself rather than using the install script:
+1. **Provider** — choose Anthropic, OpenAI, LM Studio, or Ollama.
+2. **Model** — pick a chat model; OtterBot probes the provider for available models.
+3. **Credentials** — enter an API key (cloud providers) or an endpoint URL (local providers).
+4. **Personality** — give the COO its persona.
 
-### Quick run
+You can skip setup and configure agents later in Agent Studio.
+
+!!! warning "Back up your encryption key"
+    `OTTERBOT_DB_KEY` encrypts every database, including all stored
+    credentials. If you lose it, the databases cannot be opened.
+
+## Where Data Lives
+
+State lives under `~/.otterbot/`:
+
+```text
+~/.otterbot/
+├── otterbot.pid     # daemon process id
+├── otterbot.log     # daemon log
+├── .env             # contains the generated OTTERBOT_DB_KEY
+└── data/
+    ├── control.db   # shared control plane (registry, bus, secrets, settings)
+    └── profiles/    # one directory per agent
+```
+
+Set `OTTERBOT_HOME` to relocate this directory, or `PORT` / `HOST` to change
+where the daemon listens (default `3001` / `0.0.0.0`).
+
+## Running From Source
+
+To develop or contribute, run OtterBot from source. Requires **Node.js 20+** and
+**pnpm 9+**.
 
 ```bash
-$ docker run -d -p 62626:62626 \
-  --name otterbot \
-  -e OTTERBOT_DB_KEY=$(openssl rand -hex 16) \
-  -v ~/otterbot:/otterbot \
-  --shm-size 256m \
-  ghcr.io/toosmooth/otterbot:latest
+git clone https://github.com/TOoSmOotH/otterbot.git
+cd otterbot
+pnpm install
+pnpm dev
 ```
 
-Without `-v ~/otterbot:/otterbot`, OtterBot runs fully ephemeral — everything resets when the container is removed. See [Volume & Persistent Data](#volume-persistent-data) for details.
+`pnpm dev` starts both servers:
 
-### Full Docker command with all options
+- Backend API and Socket.IO: `http://localhost:3001`
+- Vite web app (hot reload): `http://localhost:5173`
+
+On first launch, `pnpm dev` creates `.env` from `.env.example` and generates a
+local `OTTERBOT_DB_KEY`.
+
+For a single-port, production-style run, build first, then start — the backend
+serves the built frontend from the same port as the API:
 
 ```bash
-$ docker run -d \
-  --name otterbot \
-  -p 62626:62626 \
-  --shm-size 256m \
-  --restart unless-stopped \
-  -v ~/otterbot:/otterbot            # Persistent storage
-  -e OTTERBOT_DB_KEY=my-secret-key   # Required: DB encryption key
-  -e OTTERBOT_UID=$(id -u)           # Match host user
-  -e OTTERBOT_GID=$(id -g)           # Match host group
-  -e ENABLE_DESKTOP=true             # Virtual XFCE desktop
-  -e SUDO_MODE=restricted            # Sudo policy
-  -e OTTERBOT_ALLOWED_ORIGIN=https://otterbot.example.com # CORS (if remote)
-  ghcr.io/toosmooth/otterbot:latest
+pnpm build
+pnpm start
 ```
 
-### Docker Compose
-
-The repository includes a `docker-compose.yml` for easier management. Create a `.env` file alongside it:
-
-```bash
-# .env
-OTTERBOT_DB_KEY=change-me-to-something-secret
-OTTERBOT_UID=1000
-OTTERBOT_GID=1000
-OTTERBOT_DATA_DIR=./docker/otterbot
-```
-
-```bash
-$ docker compose up -d
-```
-
-## Volume & Persistent Data
-
-OtterBot uses a single bind mount at `/otterbot` inside the container. All persistent data lives here:
-
-```
-~/otterbot/                  # or your OTTERBOT_DATA_DIR
-+-- config/
-|  +-- packages.json        # Auto-restored apt/npm packages
-|  +-- bootstrap.sh         # Custom startup script (optional)
-+-- data/
-|  +-- otterbot.db          # Encrypted SQLite database
-+-- home/
-|  +-- .ssh/                # SSH keys (auto-chmod 700/600)
-|  +-- .gitconfig           # Git configuration
-|  +-- .npmrc               # npm configuration
-|  +-- .venv/               # Python venv (auto-created)
-|  +-- go/                  # Go workspace (GOPATH)
-+-- projects/               # Agent workspaces (per project)
-+-- tools/                  # npm global installs (persist)
-+-- logs/                   # Application logs
-```
-
-!!! tip "Persistent home"
-    Place your `.ssh` keys, `.gitconfig`, and `.npmrc` in the `home/` directory on the host. The entrypoint automatically fixes SSH permissions on startup.
-
-### Bootstrap Script
-
-To run custom setup on every container start, create a `config/bootstrap.sh` file in your data directory. It runs as root before the application starts:
-
-```bash
-#!/bin/sh
-# ~/otterbot/config/bootstrap.sh
-apt-get update && apt-get install -y --no-install-recommends python3
-npm install -g @anthropic-ai/claude-code
-```
-
-### Package Manifest
-
-Agents can install packages at runtime. These are recorded in `config/packages.json` and automatically restored on container restart:
-
-```json
-{
-  "repos": [],
-  "apt": [{ "name": "python3" }],
-  "npm": [{ "name": "typescript", "version": "latest" }]
-}
-```
-
-## Development Setup
-
-Requires **Node.js 20+**, **pnpm 9+**, and **Git**. To run OtterBot from source for development or contribution:
-
-```bash
-# Clone the repository
-$ git clone https://github.com/TOoSmOotH/otterbot.git
-$ cd otterbot
-
-# Install dependencies (monorepo via pnpm workspaces)
-$ pnpm install
-
-# Configure environment
-$ cp .env.example .env
-# Edit .env and set OTTERBOT_DB_KEY to a unique secret
-
-# Apply the database schema
-$ pnpm db:push
-
-# Start the dev server (server + web concurrently)
-$ pnpm dev
-```
-
-The development server starts on `http://localhost:62626` (server) and `http://localhost:5173` (Vite frontend with hot-reload).
-
-!!! info "Monorepo structure"
-    OtterBot uses pnpm workspaces with three packages: `@otterbot/server`, `@otterbot/web`, and `@otterbot/shared`. See [Architecture](architecture.md) for details.
-
-You can also develop inside Docker with hot-reload:
-
-```bash
-$ pnpm docker:dev
-```
-
-## First-Run Setup Wizard
-
-When you first open OtterBot, the setup wizard walks you through the essential configuration:
-
-### 1. LLM Provider
-
-Choose your AI provider and enter your API key. Supported providers:
-
-- **Anthropic** — Claude models (recommended)
-- **OpenAI** — GPT-4o, o3, and more
-- **Google Gemini** — Gemini 2.5, 2.0 models
-- **OpenRouter** — 200+ models from multiple providers
-- **Ollama** — Local models (no API key needed)
-- **DeepSeek** — DeepSeek Chat and Reasoner
-- **xAI** — Grok models
-- **Mistral** — Mistral Large, Small, Codestral
-- **Perplexity** — Sonar search-grounded models
-- **AWS Bedrock** — Managed AWS AI service
-- **GitHub Copilot** — GitHub-hosted models
-- **Hugging Face** — Open-source models
-- **NVIDIA** — NVIDIA-hosted models
-- **MiniMax** — MiniMax models
-- **Z.AI** — GLM models
-- **Deepgram** — Deepgram models
-- **LM Studio** — Local models (no API key needed)
-- **Vercel AI Gateway** — Route requests through Vercel's AI Gateway
-- **OpenAI-Compatible** — Any provider with an OpenAI-compatible API
-
-The wizard probes available models from your provider so you can select which model to use for the COO agent and worker agents.
-
-### 2. Voice Setup (optional)
-
-Configure text-to-speech and speech-to-text if desired. You can preview voices during setup. See [Features — Voice](features.md#voice-tts-stt) for provider details.
-
-### 3. Search Provider (optional)
-
-Set up web search for your agents. DuckDuckGo works out of the box with no API key. See [Features — Web Search](features.md#web-search-providers) for all providers.
-
-## Environment Variables
-
-OtterBot is configured through environment variables passed to the container at runtime. LLM API keys, search provider keys, and model preferences are managed through the Settings UI and stored in the encrypted database — not in environment variables.
-
-### Required
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `OTTERBOT_DB_KEY` | Encryption key for the SQLite database. All API keys and settings are stored encrypted with this key. **Required.** | — |
-
-### Docker Runtime
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `OTTERBOT_UID` | User ID for the container process. Set to your host UID (`id -u`) to avoid permission issues with bind-mounted volumes. | `1000` |
-| `OTTERBOT_GID` | Group ID for the container process. Set to your host GID (`id -g`). | `1000` |
-| `OTTERBOT_DATA_DIR` | Host path for the data volume (used in `docker-compose.yml`). | `./docker/otterbot` |
-
-!!! info "Why set UID/GID?"
-    The entrypoint script updates the container's `otterbot` user to match your host UID/GID at startup. This ensures files created inside the container are owned by your host user, avoiding permission headaches with bind mounts.
-
-### Server
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `PORT` | HTTP server port | `62626` |
-| `HOST` | Bind address | `0.0.0.0` |
-| `DATABASE_URL` | SQLite database file path | `file:/otterbot/data/otterbot.db` |
-| `WORKSPACE_ROOT` | Root directory for all OtterBot data | `/otterbot` |
-| `OTTERBOT_ALLOWED_ORIGIN` | Comma-separated list of origins allowed to access the API (CORS). Example: `http://localhost:62626,https://otterbot.example.com` | Same-origin only |
-
-### Desktop Environment
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `ENABLE_DESKTOP` | Start the virtual XFCE desktop with noVNC viewer. When enabled, Playwright runs in headed mode so you can watch agents browse. | `true` |
-| `DESKTOP_RESOLUTION` | Desktop resolution (WxHxDepth) | `1280x720x24` |
-| `VNC_PORT` | Internal VNC server port (bound to localhost only) | `5900` |
-| `SUDO_MODE` | Sudo policy for the container user. `restricted` limits sudo to `apt-get`, `npm`, `tee`, `gpg`, and `install`. `full` grants unrestricted sudo. | `restricted` |
-
-### Toolchain & Paths
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `NPM_CONFIG_PREFIX` | npm global install prefix. Installs persist across restarts on the bind mount. | `/otterbot/tools` |
-| `GOPATH` | Go workspace directory | `/otterbot/home/go` |
-| `VIRTUAL_ENV` | Python venv location (auto-created on first run) | `/otterbot/home/.venv` |
-| `PLAYWRIGHT_BROWSERS_PATH` | Playwright Chromium location | `/opt/playwright` |
-| `HOME` | Container home directory (persistent on bind mount) | `/otterbot/home` |
-
-### Pre-installed Languages
-
-The Docker image includes these languages and tools out of the box:
-
-- **Node.js 22** with pnpm
-- **Python 3** with pip and venv
-- **Go 1.24**
-- **Rust** (via rustup)
-- **Java** (OpenJDK headless)
-- **Ruby**
-- **Build tools:** build-essential, git, curl, sqlite3, ffmpeg, GitHub CLI (gh)
-- **Coding agent CLIs:** Claude Code, Codex, OpenCode, Gemini CLI (optional — configure in Settings)
-
-## Hosting for Clients
-
-If you're hosting an OtterBot instance for someone else — a client, teammate, or friend — you can set a temporary bootstrap passphrase so they can log in and complete their own setup (change passphrase, configure LLM provider, profile, voice, search, etc.).
-
-### Bootstrap Passphrase
-
-Set the `OTTER_PASSPHRASE` environment variable to a temporary passphrase before starting the container. This passphrase is marked as temporary — the client will be required to change it on first login.
-
-For Docker secrets, use `OTTER_PASSPHRASE_FILE` instead, pointing to a file containing the passphrase.
-
-```bash
-$ docker run -d -p 62626:62626 \
-  --name otterbot \
-  -v ~/otterbot:/otterbot \
-  -e OTTERBOT_DB_KEY=my-secret-key \
-  -e OTTER_PASSPHRASE=temp-pass-for-client \
-  --shm-size 256m \
-  ghcr.io/toosmooth/otterbot:latest
-```
-
-### Client Setup Flow
-
-### Step 1 — Log in
-
-The client opens `https://your-host:62626` in their browser and enters the bootstrap passphrase you provided.
-
-### Step 2 — Set a permanent passphrase
-
-Because the bootstrap passphrase is temporary, the client is immediately prompted to choose their own permanent passphrase.
-
-### Step 3 — Complete the setup wizard
-
-The client walks through the standard setup wizard — configuring their LLM provider and API key, profile, voice, and search preferences.
-
-### CORS / Remote Access
-
-If your OtterBot instance is behind a reverse proxy or accessed from a different origin, set `OTTERBOT_ALLOWED_ORIGIN` to the origin(s) that need access:
-
-```bash
--e OTTERBOT_ALLOWED_ORIGIN=https://otterbot.example.com
-```
-
-!!! info "HTTPS & Microphone"
-    OtterBot automatically generates a self-signed TLS certificate so the UI is served over HTTPS. This is required for browser microphone access (`getUserMedia`) when connecting from a remote host.
-
-### Hosting Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `OTTER_PASSPHRASE` | Bootstrap passphrase for client login. Marked as temporary — the client must change it on first use. | — |
-| `OTTER_PASSPHRASE_FILE` | Path to a file containing the bootstrap passphrase (for Docker secrets). | — |
-| `OTTERBOT_ALLOWED_ORIGIN` | Comma-separated origins allowed to access the API (CORS). Required when the client connects from a different origin than the server. | Same-origin only |
-
-!!! warning "Security"
-    The bootstrap passphrase is intended as a one-time handoff. Ensure your client changes it immediately. For production deployments, place OtterBot behind a reverse proxy with a proper TLS certificate rather than relying on the self-signed cert.
+## Configuration
+
+OtterBot reads configuration from `.env`. For development, `pnpm dev` creates it
+from `.env.example` automatically; to reset it manually, run
+`cp .env.example .env`.
+
+Most credentials — API keys, endpoints, tokens — are stored **per agent** in the
+encrypted database and managed through Agent Studio, not in `.env`. The one
+secret expected in `.env` is `OTTERBOT_DB_KEY`.
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OTTERBOT_DB_KEY` | unset | Encrypts `control.db` and every per-agent database. If unset, local dev databases are unencrypted. |
+| `PORT` | `3001` | Backend HTTP and Socket.IO port |
+| `HOST` | `0.0.0.0` | Backend bind host |
+| `DATA_DIR` | `./data` | Runtime data directory |
+| `LOG_LEVEL` | `info` | Logger level |
+| `LMSTUDIO_BASE_URL` | `http://localhost:1234/v1` | Default OpenAI-compatible local endpoint |
+| `LMSTUDIO_MODEL` | `local-model` | Initial COO chat model fallback |
+| `ENABLE_EMBEDDINGS` | `false` | Enables embedding initialization for semantic memory |
+| `AGENT_TRANSPORT` | `local` | Agent bus transport: `local` or `discord` |
+| `DISCORD_BOT_TOKEN` | unset | Required only when `AGENT_TRANSPORT=discord` |
+| `DISCORD_CHANNEL_ID` | unset | Required only when `AGENT_TRANSPORT=discord` |
+
+## Next Steps
+
+- Learn how OtterBot is put together in [Architecture](architecture.md).
+- Understand agent roles and Agent Studio in [Agent System](agents.md).
+- Browse what you can do in [Features](features.md).

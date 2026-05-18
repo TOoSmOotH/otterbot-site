@@ -1,47 +1,49 @@
 # OtterBot Docs
 
-Everything you need to run, configure, and extend OtterBot — the free, open-source
-multi-agent AI assistant that runs entirely in Docker.
+Everything you need to run, configure, and extend OtterBot — the free,
+open-source, local-first multi-agent AI workspace.
 
 [Quick Start](getting-started.md){ .md-button } [API Reference](api.md){ .md-button } [GitHub](https://github.com/TOoSmOotH/otterbot){ .md-button }
 
+## What Is OtterBot?
+
+OtterBot is built around **agent profiles**. Instead of one assistant with a
+handful of modes, you run a roster of independent agents — each with its own
+personality, model, memory, skills, credentials, and scheduled tasks. A **COO**
+agent coordinates the team, agents talk to each other over a message bus you
+can watch live, and trusted agents can spawn subagents for focused work.
+
+Everything runs on your own machine, and every database is encrypted at rest.
+
 ## Explore the Docs
 
-- **[Getting Started](getting-started.md)** — Prerequisites, Docker quick start, development setup, and environment variables.
-- **[Architecture](architecture.md)** — System overview, agent hierarchy, message bus, workspace isolation, and monorepo layout.
-- **[Agent System](agents.md)** — Agent roles, built-in templates, lifecycle, tool capabilities, and customization.
-- **[Features](features.md)** — Voice, 3D Live View, web search, browser automation, Kanban boards, messaging bridges, coding agents, memory, and more.
-- **[API Reference](api.md)** — REST endpoints, Socket.IO events, request/response schemas, and data types.
+- **[Getting Started](getting-started.md)** — Install the CLI, run the daemon, and configure your first agent.
+- **[Architecture](architecture.md)** — Agent profiles, the orchestrator, runtimes, the message bus, and storage.
+- **[Agent System](agents.md)** — Agent roles, the COO, subagents, and Agent Studio.
+- **[Features](features.md)** — Roster, chat, memory, skills, the scheduler, integrations, and the 3D scene.
+- **[API Reference](api.md)** — REST endpoints and Socket.IO events.
 
 ## At a Glance
 
-| Stat | Description |
-|------|-------------|
-| 19 | Built-in Agent Templates |
-| 100+ | REST API Endpoints |
-| 120+ | Real-time Socket Events |
-| 15 | Messaging Integrations |
-| 50+ | Built-in Tools |
-| 19 | LLM Providers |
-| 4 | Search Providers |
+| Aspect | Detail |
+|--------|--------|
+| Local-first | Runs on your own machine — no cloud required |
+| Multi-agent | A roster of independent agent profiles |
+| Encrypted | Every SQLite database is encrypted at rest |
+| Model providers | Anthropic, OpenAI, LM Studio, Ollama |
+| Per-agent | Personality, model, memory, skills, schedule, credentials |
+| Observable | A live message bus and a 3D agent scene |
 
 ## Quick Start
 
-Get OtterBot running with a single command:
+Install the CLI from npm, start the daemon, and open the web UI:
 
-=== "Linux / macOS"
+```bash
+npm install -g otterbot
+otterbot start
+otterbot web
+```
 
-    ```bash
-    curl -fsSL https://otterbot.ai/install.sh | sh
-    ```
-
-=== "Windows (PowerShell)"
-
-    ```powershell
-    irm https://otterbot.ai/install.ps1 | iex
-    ```
-
-The installer checks for Docker, generates config files, pulls the image, and starts the container. Open **https://localhost:62626** when it finishes.
-
-For manual Docker setup, development mode, and environment configuration,
-see the [Getting Started](getting-started.md) guide.
+The daemon serves the web UI on `http://localhost:3001`. On first run, a setup
+wizard configures your first agent. See the [Getting Started](getting-started.md)
+guide for CLI commands, running from source, and configuration.
