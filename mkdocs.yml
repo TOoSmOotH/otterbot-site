@@ -1,6 +1,6 @@
 site_name: OtterBot Documentation
 site_url: https://otterbot.ai/docs/
-site_description: Comprehensive documentation for OtterBot, a free open-source AI assistant running in Docker.
+site_description: Documentation for OtterBot, a free, open-source, local-first multi-agent AI workspace.
 repo_url: https://github.com/TOoSmOotH/otterbot
 repo_name: TOoSmOotH/otterbot
 
